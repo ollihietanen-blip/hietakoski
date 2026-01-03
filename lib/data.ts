@@ -15,25 +15,25 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'atrin-atmos',
-    name: 'Atrin Atmos',
+    name: 'Levi – Ylellistä loma-asumista tunturissa',
     location: 'Levi, Lappi',
     status: 'Ennakkomarkkinoinnissa',
     statusColor: 'copper',
     description: 'Kaksi 118 m² loma-asuntoa Levin parhailla paikoilla. Hietakulman suurelementeistä rakennettu kokonaisuus takaa, että loma-kotisi on terveellinen, tiivis ja energiatehokas.',
     specs: '118 m² | Paritalo | Hinta alk. 495 000€',
     tag: 'Luksus vapaa-aika',
-    imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
+    imageUrl: '/AtrinAtmos_001.jpg',
   },
   {
     id: 'tampereen-liittokallionkatu',
-    name: 'Asunto Oy Tampereen Liittokallionkatu',
+    name: 'Tampere, Liittokallio – Moderni koti luonnon helmassa',
     location: 'Kaarila, Tampere',
     status: 'Tulossa',
     statusColor: 'slate-blue',
     description: 'Moderni koti arvostetussa Kaarilassa. Kävelymatka Tesoman juna-asemalle ja Westerin palveluihin. Rauhallinen pientaloalue hyvien yhteyksien äärellä.',
     specs: 'Perheasuntoja | Arvostettu sijainti',
     tag: 'Kaupunkikoti',
-    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop',
+    imageUrl: '/Liittokallio_001.jpeg',
   },
   {
     id: 'siiratie',
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     description: 'Toimivia ja laadukkaita yksitasoratkaisuja arjen sujuvuutta arvostaville. Tutustu valmistuneisiin kohteisiimme.',
     specs: '78-100 m² | Yksitaso',
     tag: 'Uusimaa',
-    imageUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop',
+    imageUrl: '/Siiratie5_001.jpg',
   },
 ];
 

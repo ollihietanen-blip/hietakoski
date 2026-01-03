@@ -60,10 +60,10 @@ export default function Hero() {
             </motion.p>
             
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-12 leading-[1.1] tracking-tight">
-              <span className="block">Laadukkaita koteja</span>
+              <span className="block">Ekologisia koteja</span>
               <span className="block text-light-oak/90">ja vapaa-ajan asuntoja</span>
               <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-white/80 mt-4 font-sans">
-                Suomen halutuimmille paikoille
+                Suomen parhaille paikoille.
               </span>
             </h1>
           </motion.div>

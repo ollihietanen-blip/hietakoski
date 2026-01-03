@@ -21,7 +21,7 @@ export default function Footer() {
               <Logo variant="light" />
             </div>
             <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
-              Laadukkaita koteja ja vapaa-ajan asuntoja Suomen halutuimmille paikoille.
+              Ekologisia koteja ja vapaa-ajan asuntoja Suomen parhaille paikoille.
             </p>
           </motion.div>
 
@@ -35,10 +35,10 @@ export default function Footer() {
             <h3 className="font-display font-bold text-lg md:text-xl mb-5 md:mb-6">Navigaatio</h3>
             <ul className="space-y-3 text-sm md:text-base">
               {[
-                { href: '#etusivu', label: 'Etusivu' },
-                { href: '#kohteet', label: 'Kohteet' },
-                { href: '#yritys', label: 'Yritys' },
-                { href: '#yhteystiedot', label: 'Ota yhteyttä' },
+                { href: '/#etusivu', label: 'Etusivu' },
+                { href: '/#kohteet', label: 'Kohteet' },
+                { href: '/yritys', label: 'Yritys' },
+                { href: '/yhteystiedot', label: 'Ota yhteyttä' },
               ].map((link) => (
                 <li key={link.href}>
                   <motion.a
@@ -64,14 +64,15 @@ export default function Footer() {
             <ul className="space-y-3 text-sm md:text-base text-white/80">
               <li>
                 <motion.a
-                  href="mailto:hietakoski@gmail.com"
+                  href="mailto:info@hietakoski.fi"
                   whileHover={{ x: 5 }}
                   className="hover:text-white transition-colors inline-block"
                 >
-                  hietakoski@gmail.com
+                  info@hietakoski.fi
                 </motion.a>
               </li>
-              <li>Kankaanpää</li>
+              <li>Kuninkaanlähteenkatu 8</li>
+              <li>38700 Kankaanpää</li>
             </ul>
           </motion.div>
         </div>

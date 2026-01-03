@@ -24,7 +24,7 @@ export default function ProjectsSection() {
             Kohteemme
           </h2>
           <p className="text-lg md:text-xl text-deep-charcoal/70 max-w-2xl leading-relaxed">
-            Tutustu ajankohtaisiin projekteihimme eri puolilta Suomea
+            Löydä tuleva kotisi – Tutustu myynnissä oleviin kohteisiin
           </p>
         </motion.div>
 

@@ -24,7 +24,7 @@ export default function AboutSection() {
             <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Tietoja meistä</span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-deep-charcoal mb-6 leading-[1.1] tracking-tight max-w-3xl">
-            Kasvollinen rakentaja
+            Kankaanpääläistä rakennusosaamista suurella sydämellä
           </h2>
         </motion.div>
 
@@ -39,26 +39,21 @@ export default function AboutSection() {
           >
             <div className="space-y-6">
               <p className="text-deep-charcoal/80 text-lg md:text-xl leading-relaxed font-light">
-                Hietakoski Oy on kokenut rakennusyhtiö, jota johtavat kaksi ammattitaitoista asiantuntijaa. 
-                Yhdistämme perinteisen rakentamisen taitavuuden moderniin teknologiaan ja laadukkaisiin ratkaisuihin.
-              </p>
-              <p className="text-deep-charcoal/80 text-lg md:text-xl leading-relaxed font-light">
-                Vahva kumppanuusverkostomme takaa, että jokainen projekti toteutetaan parhailla mahdollisilla 
-                menetelmillä ja laadukkaimmilla materiaaleilla.
+                Hietakoski Oy on vuonna 2019 perustettu kankaanpääläinen rakennusliike. Toimintamme ydin on yksinkertainen mutta harvinainen: rakennamme laadukkaat puutalokodit täysin valmiiksi omalla rahoituksellamme, jotta sinä voit tehdä ostopäätöksen ilman riskiä. Vahva kasvu ja vakaa talous ovat osoitus siitä, että konseptimme toimii.
               </p>
             </div>
 
             {/* Stats or Features - more refined */}
             <div className="grid grid-cols-2 gap-4 pt-8">
-              <div className="p-5 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/60 shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-5 bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-sm hover:shadow-md transition-shadow">
                 <Award className="text-aged-copper mb-3" size={28} />
                 <p className="text-xl font-bold text-deep-charcoal mb-1">Laatu</p>
-                <p className="text-xs text-deep-charcoal/50 uppercase tracking-wider">Ensimmäisenä</p>
+                <p className="text-xs text-deep-charcoal/50 uppercase tracking-wider">Tinkimätön</p>
               </div>
-              <div className="p-5 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/60 shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-5 bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-sm hover:shadow-md transition-shadow">
                 <Users className="text-aged-copper mb-3" size={28} />
                 <p className="text-xl font-bold text-deep-charcoal mb-1">Kokemus</p>
-                <p className="text-xs text-deep-charcoal/50 uppercase tracking-wider">Vuosia</p>
+                <p className="text-xs text-deep-charcoal/50 uppercase tracking-wider">Vankka</p>
               </div>
             </div>
           </motion.div>
@@ -71,7 +66,7 @@ export default function AboutSection() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-96 overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
                 alt="Construction and building"
@@ -95,19 +90,18 @@ export default function AboutSection() {
           <motion.div
             whileHover={{ y: -5, scale: 1.02 }}
             transition={{ duration: 0.3 }}
-            className="group relative bg-white/70 backdrop-blur-md rounded-2xl p-8 border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="group relative bg-white/70 backdrop-blur-md p-8 border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300"
           >
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-aged-copper to-aged-copper/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-aged-copper to-aged-copper/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Building2 className="text-white" size={32} />
               </div>
               <div className="flex-1">
                 <h3 className="font-display font-bold text-xl text-deep-charcoal mb-3 group-hover:text-aged-copper transition-colors">
-                  Hietakulma Oy
+                  Hietakulma Oy – Turvallinen rakenne
                 </h3>
                 <p className="text-deep-charcoal/70 leading-relaxed text-sm">
-                  Hietakulma Oy:n tehtaalla valmistetut elementit takaavat kuivaketjun. 
-                  Laadukkaat suurelementit varmistavat, että koti on terveellinen, tiivis ja energiatehokas.
+                  Hietakulma vastaa lupaprosesseista ja teknisestä suunnittelusta, me toteutuksesta. Yhdessä varmistamme, että kotisi on terveellinen, ekologinen ja energiatehokas. Laadun ketju on katkeamaton suunnittelupöydältä avainten luovutukseen.
                 </p>
               </div>
             </div>
@@ -116,19 +110,18 @@ export default function AboutSection() {
           <motion.div
             whileHover={{ y: -5, scale: 1.02 }}
             transition={{ duration: 0.3 }}
-            className="group relative bg-white/70 backdrop-blur-md rounded-2xl p-8 border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="group relative bg-white/70 backdrop-blur-md p-8 border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300"
           >
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-slate-blue to-slate-blue/80 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-slate-blue to-slate-blue/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Handshake className="text-white" size={32} />
               </div>
               <div className="flex-1">
                 <h3 className="font-display font-bold text-xl text-deep-charcoal mb-3 group-hover:text-aged-copper transition-colors">
-                  Mallirakennus Oy
+                  Mallirakennus Oy – Arjessa toimivat kodit
                 </h3>
                 <p className="text-deep-charcoal/70 leading-relaxed text-sm">
-                  Mallirakennus Oy:n pientalo-osaaminen takaa toimivat pohjat. 
-                  Kokenut suunnittelu varmistaa, että jokainen koti vastaa asukkaiden tarpeita.
+                  Mallirakennus Oy:n pitkä kokemus pientaloista takaa, että pohjaratkaisut ovat aidosti toimivia. Kokenut suunnittelu varmistaa, että neliöt ovat hyötykäytössä ja koti palvelee asukkaiden tarpeita vuosikymmeniä.
                 </p>
               </div>
             </div>

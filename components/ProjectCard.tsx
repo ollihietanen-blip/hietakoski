@@ -34,7 +34,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           src={project.imageUrl}
           alt={project.name}
           fill
-          className={`object-cover transition-transform duration-700 ease-out ${isHovered ? 'scale-105' : 'scale-100'}`}
+          className={`object-cover object-[center_65%] transition-transform duration-700 ease-out ${isHovered ? 'scale-105' : 'scale-100'}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {/* Subtle gradient overlay */}
