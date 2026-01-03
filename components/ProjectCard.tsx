@@ -26,7 +26,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileHover={{ y: -12 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 group cursor-pointer border border-gray-100/50"
+      className="bg-white shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 group cursor-pointer border border-gray-100/50"
     >
       {/* Project Image with Overlay */}
       <div className="relative w-full h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
@@ -42,14 +42,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         
         {/* Tag on Image - more refined */}
         <div className="absolute top-5 left-5 z-10">
-          <span className="inline-block px-4 py-1.5 bg-white/95 backdrop-blur-sm text-aged-copper text-xs font-semibold rounded-md shadow-lg border border-white/50">
+          <span className="inline-block px-4 py-1.5 bg-white/95 backdrop-blur-sm text-aged-copper text-xs font-semibold shadow-lg border border-white/50">
             {project.tag}
           </span>
         </div>
 
         {/* Status Badge on Image */}
         <div className="absolute top-5 right-5 z-10">
-          <span className={`inline-block px-4 py-1.5 ${statusColorClass} text-white text-xs font-semibold rounded-md shadow-lg`}>
+          <span className={`inline-block px-4 py-1.5 ${statusColorClass} text-white text-xs font-semibold shadow-lg`}>
             {project.status}
           </span>
         </div>
@@ -84,7 +84,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           href="#yhteystiedot"
           whileHover={{ x: 4 }}
           whileTap={{ scale: 0.98 }}
-          className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium rounded-lg hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md"
+          className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md"
         >
           <span>Katso kohteet</span>
           <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Logo from './Logo'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -45,12 +46,9 @@ export default function Navbar() {
             href="#etusivu"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative"
+            className="group"
           >
-            <span className="font-display text-xl md:text-2xl font-bold text-deep-charcoal group-hover:text-aged-copper transition-colors duration-300 tracking-tight">
-              HIETAKOSKI
-            </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-aged-copper group-hover:w-full transition-all duration-300" />
+            <Logo className="group-hover:[&_svg]:text-aged-copper group-hover:[&_span]:text-aged-copper transition-colors duration-300" />
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -63,7 +61,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -2 }}
-                className="relative px-4 py-2 text-slate-blue font-medium rounded-lg hover:text-aged-copper transition-colors duration-200 group"
+                className="relative px-4 py-2 text-slate-blue font-light text-sm tracking-wide rounded-lg hover:text-aged-copper transition-colors duration-200 group"
               >
                 {link.label}
                 <motion.span
@@ -116,7 +114,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ x: 5 }}
-                    className="block py-4 px-4 text-slate-blue font-medium rounded-lg hover:bg-mist-white hover:text-aged-copper transition-all duration-200"
+                    className="block py-4 px-4 text-slate-blue font-light text-base tracking-wide rounded-lg hover:bg-mist-white hover:text-aged-copper transition-all duration-200"
                   >
                     {link.label}
                   </motion.a>

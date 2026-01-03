@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Logo from './Logo'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -16,7 +17,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="font-display font-bold text-2xl md:text-3xl mb-5 md:mb-6 tracking-tight">HIETAKOSKI OY</h3>
+            <div className="mb-5 md:mb-6">
+              <Logo variant="light" />
+            </div>
             <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
               Laadukkaita koteja ja vapaa-ajan asuntoja Suomen halutuimmille paikoille.
             </p>

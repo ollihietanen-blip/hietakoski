@@ -13,10 +13,18 @@ export default function Hero() {
   return (
     <section id="etusivu" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-deep-charcoal via-slate-blue to-deep-charcoal">
       {/* Background Image with more natural composition */}
+      {/* 
+        Hero Image Guidelines:
+        - Recommended size: 1920x1080px (16:9 aspect ratio) or larger
+        - Format: JPG or WebP for optimal performance
+        - Quality: High resolution (at least 1920px width)
+        - Content: Finnish architecture, modern houses, or construction
+        - Place in: public/images/hero.jpg or update src below
+      */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80&auto=format"
-          alt="Finnish architecture"
+          src="/hero.jpg"
+          alt="Modern interior with staircase"
           fill
           className="object-cover object-center"
           priority
@@ -46,30 +54,18 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-aged-copper text-sm md:text-base font-medium mb-4 tracking-wider uppercase"
+              className="text-white/50 text-xs md:text-sm font-light mb-4 tracking-wide"
             >
               Rakentamista vuodesta 1980
             </motion.p>
             
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-12 leading-[1.1] tracking-tight">
               <span className="block">Laadukkaita koteja</span>
               <span className="block text-light-oak/90">ja vapaa-ajan asuntoja</span>
               <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-white/80 mt-4 font-sans">
                 Suomen halutuimmille paikoille
               </span>
             </h1>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex items-center gap-4 mt-8 mb-12"
-            >
-              <div className="h-px w-16 bg-aged-copper" />
-              <p className="text-white/70 text-lg md:text-xl font-light">
-                Uusimaa – Pirkanmaa – Lappi
-              </p>
-            </motion.div>
           </motion.div>
 
           <motion.div
@@ -90,7 +86,7 @@ export default function Hero() {
                 className={`
                   group relative px-8 py-4 bg-white/5 backdrop-blur-md 
                   border border-white/20 text-white font-medium 
-                  rounded-lg hover:bg-aged-copper hover:border-aged-copper 
+                  hover:bg-aged-copper hover:border-aged-copper 
                   transition-all duration-300 shadow-lg hover:shadow-2xl
                   text-base sm:text-lg overflow-hidden
                 `}
@@ -103,22 +99,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator - more subtle */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 1.5 }}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2"
-        >
-          <div className="w-px h-12 bg-gradient-to-b from-white/60 to-transparent" />
-          <div className="w-1 h-1 rounded-full bg-white/40" />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }

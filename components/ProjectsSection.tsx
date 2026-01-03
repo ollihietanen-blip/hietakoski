@@ -20,14 +20,10 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-20 md:mb-24"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-12 bg-aged-copper" />
-            <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Projektit</span>
-          </div>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-deep-charcoal mb-6 leading-[1.1] tracking-tight max-w-3xl">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
             Kohteemme
           </h2>
-          <p className="text-lg md:text-xl text-deep-charcoal/60 max-w-2xl leading-relaxed">
+          <p className="text-lg md:text-xl text-deep-charcoal/70 max-w-2xl leading-relaxed">
             Tutustu ajankohtaisiin projekteihimme eri puolilta Suomea
           </p>
         </motion.div>
