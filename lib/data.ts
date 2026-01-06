@@ -4,11 +4,23 @@ export type Kohdetyyppi = 'Paritalo' | 'Rivitalo' | 'Asuinkohde';
 
 export type Kaytto = 'Asuminen' | 'Loma-asunto';
 
+export interface FeaturedUnit {
+  unitId: string;
+  unitTitle: string;
+  rooms: string;
+  size: string;
+  year: string;
+  availability: string;
+  priceDebtFree: string;
+  teaser: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
   name: string;
   location: string;
+  area?: string; // Esim. "Nikinmäki"
   status: ProjectStatus;
   statusColor: 'copper' | 'slate-blue';
   description: string;
@@ -24,6 +36,9 @@ export interface Project {
   pintaAlat?: string;
   rakennusvuosi?: number;
   valmistumisvuosi?: number;
+  buildMethod?: string; // Esim. "Kotimaiset puuelementit"
+  keySellingPoints?: string[]; // Esim. ["PILP + viilennys", "Kuitu", "EV-valmius"]
+  featuredUnit?: FeaturedUnit; // A1-nosto
 }
 
 export const projects: Project[] = [
@@ -50,18 +65,41 @@ export const projects: Project[] = [
   },
   {
     id: 'vantaan-siira',
-    slug: 'asunto-oy-vantaan-siira-siiratie-5',
-    name: 'Asunto Oy Vantaan Siira (Siiratie 5, Vanttila)',
+    slug: 'siiratie-5-vantaa',
+    name: 'Siiratie 5, Vantaa',
     location: 'Vantaa',
+    area: 'Nikinmäki',
     status: 'Myynnissä',
     statusColor: 'copper',
-    description: 'Valmis ja myynnissä oleva paritalokokonaisuus Vantaalla. Toimivia ja laadukkaita yksitasoratkaisuja arjen sujuvuutta arvostaville.',
+    description: 'Valmis kolmen paritalon kokonaisuus (6 asuntoa) rauhallisella pientaloalueella. Moderni varustelutaso: poistoilmalämpöpumppu viilennyksellä, vesikiertoinen lattialämmitys, kuituliittymä sekä 2 autopaikkaa / asunto sähköauton latausvalmiudella.',
     specs: '3 paritaloa / 6 asuntoa | Paritalo',
-    tag: 'Uusimaa',
+    tag: 'Valmis',
     imageUrl: '/Siiratie5_001.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Asuminen',
     asuntojenLkm: 6,
+    buildMethod: 'Kotimaiset puuelementit',
+    keySellingPoints: [
+      'Poistoilmalämpöpumppu viilennyksellä',
+      'Vesikiertoinen lattialämmitys',
+      'Taloyhtiön kuituliittymä',
+      '2 autopaikkaa / asunto + sähköauton latausvalmius',
+      'Terassi mahdollista lasittaa',
+    ],
+    kuvat: [
+      '/Siiratie5_001.jpg',
+      '/Siiratie5_001.jpg', // Voi korvata oikeilla kuvilla
+    ],
+    featuredUnit: {
+      unitId: 'A1',
+      unitTitle: 'Siiratie 5 A 1',
+      rooms: '4h, kt, kh, s, lämmin varasto',
+      size: '78,5 m²',
+      year: '2024',
+      availability: 'Heti',
+      priceDebtFree: '270 000 €',
+      teaser: 'Uusi, yksitasoinen koti viilennyksellä varustetulla poistoilmalämpöpumpulla. Vesikiertoinen lattialämmitys, taloyhtiön kuituliittymä, lasitettavissa oleva terassi sekä kaksi autopaikkaa sähköauton latausvalmiudella.',
+    },
   },
 
   // TULOSSA / SUUNNITTELUSSA
