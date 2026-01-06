@@ -81,7 +81,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       <Navbar />
       
       {/* Breadcrumb Navigation */}
-      <section className="pt-20 md:pt-24 pb-3 bg-white border-b border-gray-100">
+      <section className="pt-16 md:pt-20 pb-2 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -105,7 +105,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
       {/* Kohteen otsikko ja status - Vantaan Siira (ennen karusellia) */}
       {isVantaanSiira && (
-        <section className="py-6 md:py-8 bg-white border-b border-gray-200">
+        <section className="py-4 md:py-6 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
