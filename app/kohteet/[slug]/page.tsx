@@ -102,6 +102,34 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           </motion.div>
         </div>
       </section>
+
+      {/* Kohteen otsikko ja status - Vantaan Siira (ennen karusellia) */}
+      {isVantaanSiira && (
+        <section className="py-6 md:py-8 bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className={`px-4 py-1.5 ${getStatusColor()} text-white text-sm font-semibold rounded-full`}>
+                  Valmis ja myynnissä
+                </span>
+              </div>
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal mb-2 leading-[1.1] tracking-tight">
+                {project.name}
+              </h1>
+              <h2 className="font-display text-lg md:text-xl text-deep-charcoal/70 mb-4">
+                Siiratie 5, Vantaa – Nikinmäki
+              </h2>
+              <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed max-w-4xl">
+                {project.description}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
       
       {/* Hero - Vantaan Siira: Kuvakaruselli */}
       {isVantaanSiira && project.kuvat && project.kuvat.length > 0 ? (
@@ -155,33 +183,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </section>
       )}
 
-      {/* Kohteen otsikko ja status - Vantaan Siira */}
-      {isVantaanSiira && (
-        <section className="py-8 md:py-12 bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className={`px-4 py-1.5 ${getStatusColor()} text-white text-sm font-semibold rounded-full`}>
-                  Valmis ja myynnissä
-                </span>
-              </div>
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal mb-2 leading-[1.1] tracking-tight">
-                {project.name}
-              </h1>
-              <h2 className="font-display text-lg md:text-xl text-deep-charcoal/70 mb-4">
-                Siiratie 5, Vantaa – Nikinmäki
-              </h2>
-              <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed max-w-4xl">
-                {project.description}
-              </p>
-            </motion.div>
-          </div>
-        </section>
-      )}
 
       {/* Kuvaus / kohteen tarina - Vantaan Siira */}
       {isVantaanSiira && (
