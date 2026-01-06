@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Home, CheckCircle, Droplets, Zap, Wifi, Car } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ImageCarousel from '@/components/ImageCarousel'
@@ -20,12 +20,26 @@ interface ProjectPageProps {
 export default function ProjectPage({ params }: ProjectPageProps) {
   const router = useRouter()
   const project = getProjectBySlug(params.slug)
+  const [showStickyCTA, setShowStickyCTA] = useState(false)
 
   useEffect(() => {
     if (!project) {
       router.push('/kohteet')
     }
   }, [project, router])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const a1Section = document.getElementById('a1')
+      if (a1Section) {
+        const rect = a1Section.getBoundingClientRect()
+        setShowStickyCTA(rect.top < -100) // Näytä sticky CTA kun A1-osio on scrollattu ohi
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   if (!project) {
     return (
@@ -66,15 +80,38 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     <main className="min-h-screen">
       <Navbar />
       
+      {/* Breadcrumb Navigation */}
+      <section className="pt-24 md:pt-28 pb-4 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center gap-2 text-sm text-deep-charcoal/60"
+          >
+            <Link href="/" className="hover:text-aged-copper transition-colors flex items-center gap-1">
+              <Home size={14} />
+              <span>Etusivu</span>
+            </Link>
+            <span>/</span>
+            <Link href="/kohteet" className="hover:text-aged-copper transition-colors">
+              Kohteet
+            </Link>
+            <span>/</span>
+            <span className="text-deep-charcoal font-medium">{project.name}</span>
+          </motion.div>
+        </div>
+      </section>
+      
       {/* Hero - Vantaan Siira: Kuvakaruselli */}
       {isVantaanSiira && project.kuvat && project.kuvat.length > 0 ? (
-        <section className="relative pt-24 md:pt-32">
+        <section className="relative">
           <div className="relative w-full aspect-video" role="region" aria-label={`Kuvakaruselli: ${project.name}, Siiratie 5`}>
             <ImageCarousel images={project.kuvat} alt={`${project.name}, Siiratie 5`} />
           </div>
         </section>
       ) : isVantaanSiira ? (
-        <section className="relative pt-24 md:pt-32">
+        <section className="relative">
           <div className="relative w-full aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
             <p className="text-deep-charcoal/50 text-lg">Kuvat tulossa – {project.name}</p>
           </div>
@@ -127,8 +164,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <span className={`px-4 py-1.5 ${getStatusColor()} text-white text-sm font-semibold`}>
+              <div className="flex items-center gap-3 mb-6">
+                <span className={`px-4 py-1.5 ${getStatusColor()} text-white text-sm font-semibold rounded-full`}>
                   Valmis ja myynnissä
                 </span>
               </div>
@@ -208,41 +245,86 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </h2>
             {isVantaanSiira ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Kohdetyyppi</span>
-                  <p className="text-deep-charcoal font-semibold">Paritalokokonaisuus</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <Home className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Kohdetyyppi</span>
+                    <p className="text-deep-charcoal font-semibold">Paritalokokonaisuus</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Asuntoja</span>
-                  <p className="text-deep-charcoal font-semibold">6</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <span className="text-aged-copper font-bold text-lg">6</span>
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Asuntoja</span>
+                    <p className="text-deep-charcoal font-semibold">6 asuntoa</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Rakennusvuosi</span>
-                  <p className="text-deep-charcoal font-semibold">2024</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <span className="text-aged-copper font-bold text-sm">2024</span>
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Rakennusvuosi</span>
+                    <p className="text-deep-charcoal font-semibold">2024</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Rakennustapa</span>
-                  <p className="text-deep-charcoal font-semibold">Kotimaiset puuelementit</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Rakennustapa</span>
+                    <p className="text-deep-charcoal font-semibold">Kotimaiset puuelementit</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Lämmitys</span>
-                  <p className="text-deep-charcoal font-semibold">Poistoilmalämpöpumppu + vesikiertoinen lattialämmitys</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <Droplets className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Lämmitys</span>
+                    <p className="text-deep-charcoal font-semibold text-sm">PILP + vesikiertoinen lattialämmitys</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Viilennys</span>
-                  <p className="text-deep-charcoal font-semibold">Kyllä (PILP)</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <Droplets className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Viilennys</span>
+                    <p className="text-deep-charcoal font-semibold">Kyllä (PILP)</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Autopaikat</span>
-                  <p className="text-deep-charcoal font-semibold">2 / asunto</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <Car className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Autopaikat</span>
+                    <p className="text-deep-charcoal font-semibold">2 / asunto</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Sähköauto</span>
-                  <p className="text-deep-charcoal font-semibold">Latausvalmius</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <Zap className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Sähköauto</span>
+                    <p className="text-deep-charcoal font-semibold">Latausvalmius</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Tietoliikenne</span>
-                  <p className="text-deep-charcoal font-semibold">Taloyhtiön kuituliittymä</p>
+                <div className="flex items-start gap-3 p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                  <div className="flex-shrink-0 w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
+                    <Wifi className="text-aged-copper" size={20} />
+                  </div>
+                  <div>
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-1">Tietoliikenne</span>
+                    <p className="text-deep-charcoal font-semibold">Taloyhtiön kuitu</p>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -314,17 +396,20 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
       {/* A1-asunnon myyntinosto - Vantaan Siira */}
       {isVantaanSiira && (
-        <section id="a1" className="py-24 md:py-32 bg-gradient-to-br from-aged-copper/5 via-aged-copper/10 to-aged-copper/5 border-y border-aged-copper/20">
+        <section id="a1" className="py-24 md:py-32 bg-gradient-to-br from-aged-copper/5 via-aged-copper/10 to-aged-copper/5 border-y border-aged-copper/20 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-white p-8 md:p-12 rounded-lg shadow-lg border border-aged-copper/20"
+              className="bg-white p-8 md:p-12 rounded-xl shadow-xl border-2 border-aged-copper/30 relative overflow-hidden"
             >
-              <div className="mb-6">
-                <span className="inline-block px-3 py-1 bg-aged-copper/10 text-aged-copper text-sm font-semibold rounded mb-4">
+              {/* Decorative background element */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-aged-copper/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="mb-6 relative z-10">
+                <span className="inline-block px-4 py-1.5 bg-aged-copper text-white text-sm font-semibold rounded-full mb-4">
                   Myyntinosto
                 </span>
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-2">
@@ -332,46 +417,46 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 </h2>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8 mb-6">
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-1">Huoneet</span>
+              <div className="grid md:grid-cols-2 gap-8 mb-8 relative z-10">
+                <div className="space-y-4">
+                  <div className="p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-2">Huoneet</span>
                     <p className="text-deep-charcoal font-semibold text-lg">4h, kt, kh, s, lämmin varasto</p>
                   </div>
-                  <div>
-                    <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-1">Koko</span>
+                  <div className="p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-2">Koko</span>
                     <p className="text-deep-charcoal font-semibold text-lg">78,5 m²</p>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-1">Rakennusvuosi</span>
+                <div className="space-y-4">
+                  <div className="p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-2">Rakennusvuosi</span>
                     <p className="text-deep-charcoal font-semibold text-lg">2024</p>
                   </div>
-                  <div>
-                    <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-1">Saatavuus</span>
+                  <div className="p-4 bg-mist-white/50 rounded-lg border border-gray-200/60">
+                    <span className="text-deep-charcoal/60 text-xs font-medium uppercase tracking-wide block mb-2">Saatavuus</span>
                     <p className="text-deep-charcoal font-semibold text-lg">Heti</p>
                   </div>
                 </div>
               </div>
 
-              <div className="mb-6 p-4 bg-aged-copper/5 rounded-lg border border-aged-copper/20">
-                <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Velaton hinta</span>
-                <p className="text-aged-copper font-bold text-3xl">270 000 €</p>
+              <div className="mb-8 p-6 bg-gradient-to-br from-aged-copper/10 to-aged-copper/5 rounded-xl border-2 border-aged-copper/30 relative z-10">
+                <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-3">Velaton hinta</span>
+                <p className="text-aged-copper font-bold text-4xl md:text-5xl">270 000 €</p>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-8 relative z-10">
                 <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed">
                   Uusi, yksitasoinen koti viilennyksellä varustetulla poistoilmalämpöpumpulla. Vesikiertoinen lattialämmitys, taloyhtiön kuituliittymä, lasitettavissa oleva terassi sekä kaksi autopaikkaa sähköauton latausvalmiudella.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 relative z-10">
                 <Link href="/yhteystiedot#elma">
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg cursor-pointer rounded-lg"
                   >
                     Ota yhteyttä A1:stä
                     <ArrowRight size={20} />
@@ -384,7 +469,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-aged-copper text-aged-copper font-semibold hover:bg-aged-copper hover:text-white transition-all duration-200 shadow-lg hover:shadow-xl text-lg"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-aged-copper text-aged-copper font-semibold hover:bg-aged-copper hover:text-white transition-all duration-200 shadow-lg hover:shadow-xl text-lg rounded-lg"
                   >
                     Katso Etuovessa
                     <ArrowRight size={20} />
@@ -394,6 +479,25 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </motion.div>
           </div>
         </section>
+      )}
+
+      {/* Sticky CTA - Mobiili (näkyy kun A1-osio on scrollattu ohi) */}
+      {isVantaanSiira && (
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: showStickyCTA ? 0 : 100 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-2xl md:hidden p-4"
+        >
+          <Link href="/yhteystiedot#elma">
+            <motion.div
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-aged-copper text-white font-semibold py-4 px-6 rounded-lg text-center shadow-lg"
+            >
+              Ota yhteyttä A1:stä
+            </motion.div>
+          </Link>
+        </motion.div>
       )}
 
       {/* Pohjat - jos saatavilla */}
