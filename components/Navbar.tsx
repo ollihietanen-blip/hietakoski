@@ -125,56 +125,45 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full screen overlay */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/40 z-40 md:hidden"
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="md:hidden fixed top-16 right-0 bottom-0 w-64 bg-white shadow-2xl z-50"
-            >
-              <div className="px-6 pt-8 space-y-1">
-                {navLinks.map((link, index) => (
-                  <Link key={link.href} href={link.href}>
-                    <motion.div
-                      onClick={handleLinkClick}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: 5 }}
-                      className="block py-4 px-4 text-slate-blue font-medium text-base tracking-wide rounded-lg hover:bg-mist-white hover:text-aged-copper transition-all duration-200 cursor-pointer"
-                    >
-                      {link.label}
-                    </motion.div>
-                  </Link>
-                ))}
-                
-                {/* Mobile CTA Button */}
-                <Link href="/kohteet">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed inset-0 top-16 bg-white z-50"
+          >
+            <div className="px-6 py-8 space-y-2">
+              {navLinks.map((link, index) => (
+                <Link key={link.href} href={link.href}>
                   <motion.div
                     onClick={handleLinkClick}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: navLinks.length * 0.1 }}
-                    whileHover={{ x: 5 }}
-                    className="block mt-4 py-4 px-4 bg-aged-copper text-white font-semibold text-base tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 text-center cursor-pointer"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="block py-4 px-4 text-deep-charcoal font-medium text-lg border-b border-gray-100 hover:text-aged-copper transition-colors cursor-pointer"
                   >
-                    Myynnissä
+                    {link.label}
                   </motion.div>
                 </Link>
-              </div>
-            </motion.div>
-          </>
+              ))}
+              
+              {/* Mobile CTA Button */}
+              <Link href="/kohteet">
+                <motion.div
+                  onClick={handleLinkClick}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="block mt-6 py-4 px-6 bg-aged-copper text-white font-semibold text-lg rounded-lg text-center cursor-pointer"
+                >
+                  Myynnissä
+                </motion.div>
+              </Link>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>
