@@ -98,20 +98,19 @@ export default function Navbar() {
               </Link>
             ))}
             
-            {/* CTA Button - Kohteet Etuovessa */}
-            <motion.a
-              href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: navLinks.length * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              Kohteet Etuovessa
-            </motion.a>
+            {/* CTA Button - Myynnissä */}
+            <Link href="/kohteet">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: navLinks.length * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
+              >
+                Myynnissä
+              </motion.div>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -135,7 +134,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/40 z-40 md:hidden"
             />
             <motion.div
               initial={{ x: '100%' }}
@@ -161,19 +160,18 @@ export default function Navbar() {
                 ))}
                 
                 {/* Mobile CTA Button */}
-                <motion.a
-                  href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleLinkClick}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navLinks.length * 0.1 }}
-                  whileHover={{ x: 5 }}
-                  className="block mt-4 py-4 px-4 bg-aged-copper text-white font-semibold text-base tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 text-center"
-                >
-                  Kohteet Etuovessa
-                </motion.a>
+                <Link href="/kohteet">
+                  <motion.div
+                    onClick={handleLinkClick}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navLinks.length * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="block mt-4 py-4 px-4 bg-aged-copper text-white font-semibold text-base tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 text-center cursor-pointer"
+                  >
+                    Myynnissä
+                  </motion.div>
+                </Link>
               </div>
             </motion.div>
           </>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import { Project } from '@/lib/data'
 
@@ -13,9 +14,30 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const statusColorClass = project.statusColor === 'copper' 
-    ? 'bg-aged-copper' 
-    : 'bg-slate-blue'
+  
+  // Status-värikoodaus
+  const getStatusColor = () => {
+    switch (project.status) {
+      case 'Myynnissä':
+        return 'bg-aged-copper'
+      case 'Vuokrattavana':
+        return 'bg-slate-blue'
+      case 'Tulossa':
+        return 'bg-slate-blue'
+      case 'Suunnittelussa':
+        return 'bg-slate-blue'
+      case 'Valmis':
+        return 'bg-aged-copper'
+      case 'Myyty':
+        return 'bg-aged-copper'
+      case 'Vuokrattu':
+        return 'bg-slate-blue'
+      default:
+        return 'bg-slate-blue'
+    }
+  }
+
+  const statusColorClass = getStatusColor()
 
   return (
     <motion.div
@@ -26,7 +48,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileHover={{ y: -12 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-white shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 group cursor-pointer border border-gray-100/50"
+      className="bg-white shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 group border border-gray-100/50"
     >
       {/* Project Image with Overlay */}
       <div className="relative w-full h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
@@ -40,7 +62,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         
-        {/* Tag on Image - more refined */}
+        {/* Tag on Image */}
         <div className="absolute top-5 left-5 z-10">
           <span className="inline-block px-4 py-1.5 bg-white/95 backdrop-blur-sm text-aged-copper text-xs font-semibold shadow-lg border border-white/50">
             {project.tag}
@@ -56,7 +78,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       <div className="p-7">
-        {/* Name and Location with better typography */}
+        {/* Name and Location */}
         <div className="mb-4">
           <h3 className="font-display text-2xl font-bold text-deep-charcoal mb-2 group-hover:text-aged-copper transition-colors duration-300 leading-tight">
             {project.name}
@@ -72,28 +94,31 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {project.description}
         </p>
 
-        {/* Specs with better styling */}
+        {/* Specs */}
         <div className="flex items-center gap-3 mb-6 pb-5 border-b border-gray-200/50">
           <p className="text-deep-charcoal font-semibold text-sm tracking-wide">
             {project.specs}
           </p>
         </div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - kontekstisidonnainen logiikka */}
         <div className="flex flex-col gap-3">
-          <motion.a
-            href={`/kohteet#${project.id}`}
-            whileHover={{ x: 4 }}
-            whileTap={{ scale: 0.98 }}
-            className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md text-sm"
-          >
-            <span>Katso kohde</span>
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-          </motion.a>
+          {/* Katso kohde - aina näkyvissä */}
+          <Link href={`/kohteet/${project.slug}`}>
+            <motion.div
+              whileHover={{ x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md text-sm cursor-pointer"
+            >
+              <span>Katso kohde</span>
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+            </motion.div>
+          </Link>
           
-          {project.status === 'Myynnissä / Valmis' && (
+          {/* Etuovi - vain jos Myynnissä */}
+          {project.status === 'Myynnissä' && project.etuoviUrl && (
             <motion.a
-              href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
+              href={project.etuoviUrl}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ x: 4 }}
@@ -105,24 +130,46 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </motion.a>
           )}
           
-          <motion.a
-            href="#elma"
-            onClick={(e) => {
-              e.preventDefault()
-              const element = document.getElementById('elma')
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
-            whileHover={{ x: 4 }}
-            whileTap={{ scale: 0.98 }}
-            className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-mist-white text-deep-charcoal font-medium hover:bg-aged-copper hover:text-white transition-all duration-300 text-sm"
-          >
-            <span>Kysy Elmalta</span>
-          </motion.a>
+          {/* Ota yhteys myyntiin - Myynnissä tai Vuokrattavana */}
+          {(project.status === 'Myynnissä' || project.status === 'Vuokrattavana') && (
+            <Link href="/yhteystiedot#elma">
+              <motion.div
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-mist-white text-deep-charcoal font-medium hover:bg-aged-copper hover:text-white transition-all duration-300 text-sm cursor-pointer"
+              >
+                <span>Ota yhteys myyntiin</span>
+              </motion.div>
+            </Link>
+          )}
+
+          {/* Kysy tulevista kohteista - Tulossa tai Suunnittelussa */}
+          {(project.status === 'Tulossa' || project.status === 'Suunnittelussa') && (
+            <Link href="/yhteystiedot#elma">
+              <motion.div
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-mist-white text-deep-charcoal font-medium hover:bg-aged-copper hover:text-white transition-all duration-300 text-sm cursor-pointer"
+              >
+                <span>Kysy tulevista kohteista</span>
+              </motion.div>
+            </Link>
+          )}
+
+          {/* Kysy vastaavasta kohteesta - Valmis, Myyty, Vuokrattu */}
+          {(project.status === 'Valmis' || project.status === 'Myyty' || project.status === 'Vuokrattu') && (
+            <Link href="/yhteystiedot#elma">
+              <motion.div
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-mist-white text-deep-charcoal font-medium hover:bg-aged-copper hover:text-white transition-all duration-300 text-sm cursor-pointer"
+              >
+                <span>Kysy vastaavasta kohteesta</span>
+              </motion.div>
+            </Link>
+          )}
         </div>
       </div>
     </motion.div>
   )
 }
-

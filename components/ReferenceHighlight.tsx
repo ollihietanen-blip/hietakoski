@@ -42,7 +42,7 @@ export default function ReferenceHighlight() {
               Referenssi näyttää, miten suunnittelu ja toteutus viimeistellään kokonaisuudeksi.
             </p>
             <motion.a
-              href="/kohteet"
+              href="/kohteet/asunto-oy-puustellin-helmi"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg"

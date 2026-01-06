@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
@@ -56,19 +57,18 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 md:gap-6"
           >
-            <motion.a
-              href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center"
-            >
-              Katso kohteet Etuovessa
-            </motion.a>
+            <Link href="/kohteet">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center cursor-pointer"
+              >
+                Myytävät asunnot
+              </motion.div>
+            </Link>
             
             <motion.a
               href="#elma"
@@ -86,7 +86,7 @@ export default function Hero() {
               }}
               className="group relative px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center"
             >
-              Ota yhteyttä Elmaan
+              Ota yhteyttä myyntiin
             </motion.a>
           </motion.div>
         </div>

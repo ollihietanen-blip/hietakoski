@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Mail, Phone } from 'lucide-react'
+import Image from 'next/image'
 
 export default function ContactSection() {
   return (
@@ -28,11 +29,21 @@ export default function ContactSection() {
           className="bg-white/80 backdrop-blur-sm p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100"
         >
           <div className="text-center mb-8">
+            {/* Elman kuva */}
+            <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-aged-copper/20 shadow-lg">
+              <Image
+                src="/Elma_Alakoski.jpg"
+                alt="Elma Alakoski-Tomberg"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 128px, 160px"
+              />
+            </div>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-2">
               Elma Alakoski-Tomberg
             </h3>
             <p className="text-deep-charcoal/70 text-base md:text-lg">
-              Myynti, vuokraus, markkinointi, laskutus — RI
+              Myynti, vuokraus
             </p>
           </div>
           
