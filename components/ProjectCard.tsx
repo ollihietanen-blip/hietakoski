@@ -1,12 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Project } from '@/lib/data'
-import ProjectCardCarousel from './ProjectCardCarousel'
 
 interface ProjectCardProps {
   project: Project
@@ -39,7 +38,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   }
 
   const statusColorClass = getStatusColor()
-  const isFeatured = project.id === 'vantaan-siira' && project.kuvat && project.kuvat.length > 0
 
   return (
     <motion.div
@@ -52,45 +50,32 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       onHoverEnd={() => setIsHovered(false)}
       className="bg-white shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 group border border-gray-100/50"
     >
-      {/* Featured Project: Carousel */}
-      {isFeatured ? (
-        <div className="relative">
-          <ProjectCardCarousel images={project.kuvat} alt={project.name} />
-          {/* Status Badge on Carousel */}
-          <div className="absolute top-4 right-4 z-10">
-            <span className={`inline-block px-4 py-1.5 ${statusColorClass} text-white text-xs font-semibold shadow-lg`}>
-              Valmis ja myynnissä
-            </span>
-          </div>
+      {/* Project Image with Overlay */}
+      <div className="relative w-full h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+        <Image
+          src={project.imageUrl}
+          alt={project.name}
+          fill
+          className={`object-cover object-[center_65%] transition-transform duration-700 ease-out ${isHovered ? 'scale-105' : 'scale-100'}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        
+        {/* Tag on Image */}
+        <div className="absolute top-5 left-5 z-10">
+          <span className="inline-block px-4 py-1.5 bg-white/95 backdrop-blur-sm text-aged-copper text-xs font-semibold shadow-lg border border-white/50">
+            {project.tag}
+          </span>
         </div>
-      ) : (
-        /* Regular Project: Single Image */
-        <div className="relative w-full h-72 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-          <Image
-            src={project.imageUrl}
-            alt={project.name}
-            fill
-            className={`object-cover object-[center_65%] transition-transform duration-700 ease-out ${isHovered ? 'scale-105' : 'scale-100'}`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          
-          {/* Tag on Image */}
-          <div className="absolute top-5 left-5 z-10">
-            <span className="inline-block px-4 py-1.5 bg-white/95 backdrop-blur-sm text-aged-copper text-xs font-semibold shadow-lg border border-white/50">
-              {project.tag}
-            </span>
-          </div>
 
-          {/* Status Badge on Image */}
-          <div className="absolute top-5 right-5 z-10">
-            <span className={`inline-block px-4 py-1.5 ${statusColorClass} text-white text-xs font-semibold shadow-lg`}>
-              {project.status}
-            </span>
-          </div>
+        {/* Status Badge on Image */}
+        <div className="absolute top-5 right-5 z-10">
+          <span className={`inline-block px-4 py-1.5 ${statusColorClass} text-white text-xs font-semibold shadow-lg`}>
+            {project.status}
+          </span>
         </div>
-      )}
+      </div>
 
       <div className="p-7">
         {/* Name and Location */}
@@ -100,81 +85,21 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </h3>
           <div className="flex items-center gap-2">
             <div className="w-1 h-1 rounded-full bg-aged-copper" />
-            <p className="text-slate-blue/60 text-sm font-medium">
-              {project.area ? `${project.location} • ${project.area}` : project.location}
-            </p>
+            <p className="text-slate-blue/60 text-sm font-medium">{project.location}</p>
           </div>
         </div>
 
         {/* Description */}
-        <p className="text-deep-charcoal/70 text-sm mb-5 leading-relaxed">
+        <p className="text-deep-charcoal/70 text-sm mb-5 line-clamp-3 leading-relaxed">
           {project.description}
         </p>
 
-        {/* Key Facts - Featured Project */}
-        {isFeatured && (
-          <div className="mb-5 space-y-2 pb-5 border-b border-gray-200/50">
-            <div className="flex flex-wrap gap-2 text-xs text-deep-charcoal/70">
-              <span className="font-medium">Kokonaisuus:</span>
-              <span>{project.asuntojenLkm ? `${Math.floor(project.asuntojenLkm / 2)} paritaloa / ${project.asuntojenLkm} asuntoa` : project.specs}</span>
-            </div>
-            <div className="flex flex-wrap gap-2 text-xs text-deep-charcoal/70">
-              <span className="font-medium">Tyyppi:</span>
-              <span>{project.kohdetyyppi} {project.area && `(asuinalue: ${project.area})`}</span>
-            </div>
-            {project.buildMethod && (
-              <div className="flex flex-wrap gap-2 text-xs text-deep-charcoal/70">
-                <span className="font-medium">Rakennustapa:</span>
-                <span>{project.buildMethod}</span>
-              </div>
-            )}
-            {project.keySellingPoints && project.keySellingPoints.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                {project.keySellingPoints.slice(0, 4).map((point, idx) => (
-                  <span key={idx} className="inline-flex items-center gap-1 px-2 py-0.5 bg-aged-copper/10 text-aged-copper text-xs rounded">
-                    <CheckCircle size={12} />
-                    {point}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Specs - Regular Project */}
-        {!isFeatured && (
-          <div className="flex items-center gap-3 mb-6 pb-5 border-b border-gray-200/50">
-            <p className="text-deep-charcoal font-semibold text-sm tracking-wide">
-              {project.specs}
-            </p>
-          </div>
-        )}
-
-        {/* Featured Unit (A1-nosto) */}
-        {isFeatured && project.featuredUnit && (
-          <div className="mb-6 p-4 bg-gradient-to-br from-aged-copper/5 to-aged-copper/10 border border-aged-copper/20 rounded-lg">
-            <h4 className="font-display font-bold text-deep-charcoal text-sm mb-3">
-              Nosto: {project.featuredUnit.unitId}
-            </h4>
-            <div className="space-y-2 text-sm text-deep-charcoal/80 mb-3">
-              <p className="font-medium">{project.featuredUnit.rooms}</p>
-              <p>{project.featuredUnit.size} • {project.featuredUnit.year} • {project.featuredUnit.availability}</p>
-              <p className="font-bold text-aged-copper">Velaton hinta {project.featuredUnit.priceDebtFree}</p>
-            </div>
-            <p className="text-xs text-deep-charcoal/70 leading-relaxed line-clamp-3 mb-3">
-              {project.featuredUnit.teaser}
-            </p>
-            <Link href={`/kohteet/${project.slug}#a1`}>
-              <motion.div
-                whileHover={{ x: 2 }}
-                className="inline-flex items-center gap-1 text-xs text-aged-copper font-medium hover:underline"
-              >
-                Katso A1 tiedot
-                <ArrowRight size={12} />
-              </motion.div>
-            </Link>
-          </div>
-        )}
+        {/* Specs */}
+        <div className="flex items-center gap-3 mb-6 pb-5 border-b border-gray-200/50">
+          <p className="text-deep-charcoal font-semibold text-sm tracking-wide">
+            {project.specs}
+          </p>
+        </div>
 
         {/* CTA Buttons - kontekstisidonnainen logiikka */}
         <div className="flex flex-col gap-3">
@@ -185,7 +110,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               whileTap={{ scale: 0.98 }}
               className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md text-sm cursor-pointer"
             >
-              <span>{isFeatured ? 'Katso kohteen tiedot' : 'Katso kohde'}</span>
+              <span>Katso kohde</span>
               <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
             </motion.div>
           </Link>
