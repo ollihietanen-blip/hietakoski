@@ -61,30 +61,35 @@ export default function KohteetPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-warm-cream">
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-24 md:pt-32 pb-16 md:pb-24 bg-warm-cream">
+      <section className="pt-24 md:pt-32 pb-8 md:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-12 md:mb-16"
           >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-px w-12 bg-aged-copper" />
+              <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Kohteet</span>
+            </div>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
-              Kohteet
+              Kaikki kohteet
             </h1>
-            <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed max-w-3xl mb-4">
-              Hietakoski toteuttaa paritaloja ja pienempiä asuinkohteita kasvukeskuksiin ja valikoituihin kohteisiin.
-              Alta löydät myynnissä, vuokrattavana, tulossa, suunnittelussa sekä valmiit kohteet.
-            </p>
-            <p className="text-deep-charcoal/60 text-sm md:text-base leading-relaxed max-w-3xl">
-              Hietakosken toteuttamat kohteet ovat myynnissä ja vuokrattavana eri välityskumppaneiden kautta. Toteutus, laatu ja vastuut ovat aina Hietakosken.
+            <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed max-w-3xl">
+              Hietakoski toteuttaa paritaloja ja pienempiä asuinkohteita kasvukeskuksiin. 
+              Alta löydät myynnissä, tulossa ja valmiit kohteet.
             </p>
           </motion.div>
+        </div>
+      </section>
 
+      {/* Filters and Projects */}
+      <section className="py-8 md:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Suodatus */}
           <ProjectFilter
             selectedStatus={selectedStatus}
@@ -102,9 +107,18 @@ export default function KohteetPage() {
             onClearFilters={handleClearFilters}
           />
 
+          {/* Results count */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-deep-charcoal/60 text-sm mb-6"
+          >
+            {filteredProjects.length} kohdetta
+          </motion.p>
+
           {/* Kohdelistaus */}
           {filteredProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filteredProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
               ))}
@@ -113,7 +127,7 @@ export default function KohteetPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16"
+              className="text-center py-16 bg-white rounded-xl border border-gray-100"
             >
               <p className="text-deep-charcoal/70 text-lg mb-4">
                 Ei kohteita valittujen suodattimien mukaan.

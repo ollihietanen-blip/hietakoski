@@ -9,66 +9,89 @@ export default function CustomerJourney() {
     {
       number: 1,
       icon: Search,
-      title: 'Löydä kohde etuovi.com tai hietakoski.fi',
+      title: 'Löydä kohde',
+      description: 'Selaa kohteita etuovi.com tai hietakoski.fi',
     },
     {
       number: 2,
       icon: CheckCircle,
-      title: 'Varmista tekijä – tutustu Hietakoskeen',
+      title: 'Tutustu tekijään',
+      description: 'Varmista, kuka rakentaa ja vastaa laadusta',
     },
     {
       number: 3,
       icon: Calendar,
-      title: 'Sovi esittely – Elma auttaa',
+      title: 'Sovi esittely',
+      description: 'Elma auttaa kaikissa asioissa',
       link: '/yhteystiedot#elma',
     },
     {
       number: 4,
       icon: Home,
       title: 'Osta valmis koti',
+      description: 'Muuta uuteen kotiin ilman riskejä',
     },
   ]
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-white via-mist-white/30 to-white">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-mist-white/50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+            Näin etenet kohti uutta kotia
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {steps.map((step, index) => {
             const Icon = step.icon
-            return (
+            const content = (
               <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex flex-col items-center text-center"
+                className="group relative flex flex-col items-center text-center p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-aged-copper/20 transition-all duration-300"
               >
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-aged-copper/10 rounded-full flex items-center justify-center mb-4">
-                    <Icon className="text-aged-copper" size={32} />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-aged-copper text-white rounded-full flex items-center justify-center font-bold text-sm">
-                    {step.number}
-                  </div>
+                {/* Step number badge */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 bg-aged-copper text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg">
+                  {step.number}
                 </div>
-                {step.link ? (
-                  <Link href={step.link}>
-                    <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal hover:text-aged-copper transition-colors cursor-pointer">
-                      {step.title}
-                    </h3>
-                  </Link>
-                ) : (
-                  <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal">
-                    {step.title}
-                  </h3>
-                )}
+                
+                {/* Icon */}
+                <div className="w-16 h-16 bg-mist-white rounded-full flex items-center justify-center mb-4 mt-2 group-hover:bg-aged-copper/10 transition-colors duration-300">
+                  <Icon className="text-aged-copper" size={28} />
+                </div>
+                
+                {/* Content */}
+                <h3 className={`font-display text-lg md:text-xl font-bold text-deep-charcoal mb-2 ${step.link ? 'group-hover:text-aged-copper' : ''} transition-colors`}>
+                  {step.title}
+                </h3>
+                <p className="text-deep-charcoal/60 text-sm leading-relaxed">
+                  {step.description}
+                </p>
               </motion.div>
             )
+
+            if (step.link) {
+              return (
+                <Link key={index} href={step.link} className="cursor-pointer">
+                  {content}
+                </Link>
+              )
+            }
+
+            return <div key={index}>{content}</div>
           })}
         </div>
       </div>
     </section>
   )
 }
-

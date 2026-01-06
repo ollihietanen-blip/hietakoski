@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium text-deep-charcoal mb-2">
-                        First Name <span className="text-aged-copper">*</span>
+                        Etunimi <span className="text-aged-copper">*</span>
                       </label>
                       <input
                         type="text"
@@ -181,7 +181,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium text-deep-charcoal mb-2">
-                        Last Name <span className="text-aged-copper">*</span>
+                        Sukunimi <span className="text-aged-copper">*</span>
                       </label>
                       <input
                         type="text"

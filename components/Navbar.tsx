@@ -13,28 +13,10 @@ export default function Navbar() {
   const pathname = usePathname()
 
   const navLinks = [
-    { href: '/kohteet', label: 'Kohteet', isHash: false },
-    { href: '/rakentaminen', label: 'Rakentaminen', isHash: false },
-    { href: '/yhteystiedot', label: 'Ota yhteyttä', isHash: false },
+    { href: '/kohteet', label: 'Kohteet' },
+    { href: '/rakentaminen', label: 'Rakentaminen' },
+    { href: '/yhteystiedot', label: 'Yhteystiedot' },
   ]
-
-  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('/#')) {
-      const hash = href.split('#')[1]
-      if (pathname !== '/') {
-        // If not on home page, navigate first then scroll
-        e.preventDefault()
-        window.location.href = href
-      } else {
-        // If on home page, just scroll
-        e.preventDefault()
-        const element = document.getElementById(hash)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }
-    }
-  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +30,11 @@ export default function Navbar() {
     setIsOpen(false)
   }
 
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -55,58 +42,56 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-white/90 backdrop-blur-sm shadow-md'
+          ? 'bg-white/98 backdrop-blur-md shadow-lg' 
+          : 'bg-white shadow-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group"
-          >
-            <Link 
-              href="/#etusivu" 
-              onClick={(e) => handleHashClick(e, '/#etusivu')}
-              className="group"
+          <Link href="/" className="group">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <Logo className="group-hover:[&_svg]:text-aged-copper group-hover:[&_span]:text-aged-copper transition-colors duration-300" />
-            </Link>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link, index) => (
               <Link key={link.href} href={link.href}>
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -2 }}
-                  className="relative px-4 py-2 text-slate-blue font-medium text-sm tracking-wide rounded-lg hover:text-aged-copper transition-colors duration-200 group cursor-pointer"
+                  className={`relative px-4 py-2 font-medium text-sm transition-colors duration-200 cursor-pointer ${
+                    isActive(link.href) 
+                      ? 'text-aged-copper' 
+                      : 'text-deep-charcoal hover:text-aged-copper'
+                  }`}
                 >
                   {link.label}
-                  <motion.span
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-aged-copper"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  {isActive(link.href) && (
+                    <motion.span
+                      layoutId="navbar-indicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-aged-copper"
+                    />
+                  )}
                 </motion.div>
               </Link>
             ))}
             
-            {/* CTA Button - Myynnissä */}
-            <Link href="/kohteet">
+            {/* CTA Button */}
+            <Link href="/kohteet?status=Myynnissa">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: navLinks.length * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
                 Myynnissä
               </motion.div>
@@ -115,7 +100,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-slate-blue p-2 rounded-lg hover:bg-mist-white transition-colors"
+            className="md:hidden text-deep-charcoal p-2 rounded-lg hover:bg-mist-white transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
             aria-label="Toggle menu"
@@ -125,25 +110,29 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu - Full screen overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed inset-0 top-16 bg-white z-50"
+            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
-            <div className="px-6 py-8 space-y-2">
+            <div className="px-4 py-4 space-y-1">
               {navLinks.map((link, index) => (
                 <Link key={link.href} href={link.href}>
                   <motion.div
                     onClick={handleLinkClick}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="block py-4 px-4 text-deep-charcoal font-medium text-lg border-b border-gray-100 hover:text-aged-copper transition-colors cursor-pointer"
+                    className={`block py-3 px-4 font-medium text-base rounded-lg transition-colors cursor-pointer ${
+                      isActive(link.href)
+                        ? 'text-aged-copper bg-aged-copper/5'
+                        : 'text-deep-charcoal hover:text-aged-copper hover:bg-mist-white'
+                    }`}
                   >
                     {link.label}
                   </motion.div>
@@ -154,12 +143,12 @@ export default function Navbar() {
               <Link href="/kohteet">
                 <motion.div
                   onClick={handleLinkClick}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.05 }}
-                  className="block mt-6 py-4 px-6 bg-aged-copper text-white font-semibold text-lg rounded-lg text-center cursor-pointer"
+                  className="block mt-4 py-3 px-6 bg-aged-copper text-white font-semibold text-base rounded-lg text-center cursor-pointer"
                 >
-                  Myynnissä
+                  Myynnissä olevat kohteet
                 </motion.div>
               </Link>
             </div>
@@ -169,4 +158,3 @@ export default function Navbar() {
     </motion.nav>
   )
 }
-

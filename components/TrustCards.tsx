@@ -1,48 +1,73 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ShieldCheck, TreePine, Users } from 'lucide-react'
 
 export default function TrustCards() {
   const cards = [
     {
+      icon: ShieldCheck,
       title: 'Valmis koti ilman riskiä',
       text: 'Emme myy keskeneräisiä projekteja. Kohteet rakennetaan valmiiksi ennen myyntiä, jotta asiakas näkee mitä ostaa.',
     },
     {
+      icon: TreePine,
       title: 'Kotimaiset puuelementit',
       text: 'Rakennamme kotimaisista puuelementeistä hallitulla tuotantoketjulla ja laadunvarmistuksella.',
     },
     {
+      icon: Users,
       title: 'Selkeät vastuut',
       text: 'Myynti ja asiakasasiat hoitaa Elma. Työmaiden työnjohto vastaa toteutuksesta ja laadusta.',
     },
   ]
 
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-          {cards.map((card, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-mist-white/50 p-8 md:p-10 border border-gray-200/60 shadow-sm hover:shadow-md transition-all duration-300"
-            >
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-4">
-                {card.title}
-              </h3>
-              <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed">
-                {card.text}
-              </p>
-            </motion.div>
-          ))}
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+            Miksi valita Hietakoski?
+          </h2>
+          <p className="text-deep-charcoal/70 text-base md:text-lg max-w-2xl mx-auto">
+            Rakennamme kodit valmiiksi asti – turvallisesti ja läpinäkyvästi.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {cards.map((card, index) => {
+            const Icon = card.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)' }}
+                className="group bg-white p-8 md:p-10 border border-gray-200 rounded-xl shadow-sm hover:border-aged-copper/30 transition-all duration-300"
+              >
+                <div className="w-14 h-14 bg-aged-copper/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-aged-copper group-hover:scale-110 transition-all duration-300">
+                  <Icon className="text-aged-copper group-hover:text-white transition-colors duration-300" size={28} />
+                </div>
+                <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal mb-3 group-hover:text-aged-copper transition-colors duration-300">
+                  {card.title}
+                </h3>
+                <p className="text-deep-charcoal/70 text-base leading-relaxed">
+                  {card.text}
+                </p>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
   )
 }
-

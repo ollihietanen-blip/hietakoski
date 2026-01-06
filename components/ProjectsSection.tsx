@@ -2,19 +2,20 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import ProjectCard from './ProjectCard'
 import { projects } from '@/lib/data'
 
 export default function ProjectsSection() {
-  // Näytä Levi, Vantaan Siira ja Liittokallionkatu (tulossa)
+  // Näytä Vantaan Siira ja Liittokallionkatu (tulossa)
   const featuredProjects = projects.filter(p => 
-    p.id === 'levi-suvannoisenkuja' || 
     p.id === 'vantaan-siira' || 
-    p.id === 'liittokallionkatu-5'
+    p.id === 'liittokallionkatu-5' ||
+    p.id === 'sankimaankuja'
   )
 
   return (
-    <section id="kohteet" className="py-24 md:py-32 bg-warm-cream relative overflow-hidden">
+    <section id="kohteet" className="py-20 md:py-28 bg-warm-cream relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_2px_2px,#000_1px,transparent_0)] bg-[length:40px_40px]" />
@@ -26,9 +27,13 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12 md:mb-16"
+          className="mb-10 md:mb-14"
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-px w-12 bg-aged-copper" />
+            <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Kohteet</span>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
             Ajankohtaiset kohteet
           </h2>
           <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed max-w-3xl">
@@ -36,7 +41,7 @@ export default function ProjectsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -48,19 +53,19 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 text-center"
+          className="mt-10 text-center"
         >
-          <motion.a
-            href="/kohteet"
-            whileHover={{ x: 5 }}
-            className="inline-flex items-center gap-2 text-aged-copper font-semibold text-lg hover:underline"
-          >
-            Katso kaikki kohteet
-            <ArrowRight size={20} />
-          </motion.a>
+          <Link href="/kohteet">
+            <motion.div
+              whileHover={{ x: 5 }}
+              className="inline-flex items-center gap-2 text-aged-copper font-semibold text-base hover:underline cursor-pointer"
+            >
+              Katso kaikki kohteet
+              <ArrowRight size={18} />
+            </motion.div>
+          </Link>
         </motion.div>
       </div>
     </section>
   )
 }
-
