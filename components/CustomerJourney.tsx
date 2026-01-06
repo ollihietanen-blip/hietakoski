@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { Search, CheckCircle, Calendar, Home } from 'lucide-react'
+import Link from 'next/link'
 
 export default function CustomerJourney() {
   const steps = [
     {
       number: 1,
       icon: Search,
-      title: 'Löydä kohde Etuovesta',
+      title: 'Löydä kohde etuovi.com tai hietakoski.fi',
     },
     {
       number: 2,
@@ -19,6 +20,7 @@ export default function CustomerJourney() {
       number: 3,
       icon: Calendar,
       title: 'Sovi esittely – Elma auttaa',
+      link: '/yhteystiedot#elma',
     },
     {
       number: 4,
@@ -50,9 +52,17 @@ export default function CustomerJourney() {
                     {step.number}
                   </div>
                 </div>
-                <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal">
-                  {step.title}
-                </h3>
+                {step.link ? (
+                  <Link href={step.link}>
+                    <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal hover:text-aged-copper transition-colors cursor-pointer">
+                      {step.title}
+                    </h3>
+                  </Link>
+                ) : (
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal">
+                    {step.title}
+                  </h3>
+                )}
               </motion.div>
             )
           })}

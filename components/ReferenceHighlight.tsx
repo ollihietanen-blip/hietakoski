@@ -18,8 +18,8 @@ export default function ReferenceHighlight() {
             className="relative h-96 md:h-[500px] overflow-hidden shadow-2xl"
           >
             <Image
-              src="/hero.jpg"
-              alt="Puustellin Helmi - Referenssi"
+              src="/AtrinAtmos_001.jpg"
+              alt="Levi – Suvannoisenkuja 10"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -35,19 +35,18 @@ export default function ReferenceHighlight() {
             className="space-y-6"
           >
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-deep-charcoal leading-[1.1] tracking-tight">
-              Puustellin Helmi
+              Levi – Suvannoisenkuja 10
             </h2>
             <p className="text-deep-charcoal/80 text-lg md:text-xl leading-relaxed">
-              Puustellin Helmi on esimerkki Hietakosken viimeistellystä toteutuksesta ja materiaaliosaamisesta.
-              Referenssi näyttää, miten suunnittelu ja toteutus viimeistellään kokonaisuudeksi.
+              Kaksi 118 m² loma-asuntoa Levin parhailla paikoilla. Hietakulman suurelementeistä rakennettu kokonaisuus takaa, että loma-kotisi on terveellinen, tiivis ja energiatehokas.
             </p>
             <motion.a
-              href="/kohteet/asunto-oy-puustellin-helmi"
+              href="/kohteet/levi-suvannoisenkuja-10"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg"
             >
-              Tutustu referenssiin
+              Tutustu kohteeseen
               <ArrowRight size={20} />
             </motion.a>
           </motion.div>

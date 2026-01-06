@@ -6,8 +6,12 @@ import ProjectCard from './ProjectCard'
 import { projects } from '@/lib/data'
 
 export default function ProjectsSection() {
-  // Näytä vain myynnissä olevat kohteet etusivulla (max 6)
-  const myynnissaProjects = projects.filter(p => p.status === 'Myynnissä').slice(0, 6)
+  // Näytä Levi, Vantaan Siira ja Liittokallionkatu (tulossa)
+  const featuredProjects = projects.filter(p => 
+    p.id === 'levi-suvannoisenkuja' || 
+    p.id === 'vantaan-siira' || 
+    p.id === 'liittokallionkatu-5'
+  )
 
   return (
     <section id="kohteet" className="py-24 md:py-32 bg-warm-cream relative overflow-hidden">
@@ -33,7 +37,7 @@ export default function ProjectsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {myynnissaProjects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>

@@ -86,7 +86,7 @@ export default function Hero() {
               }}
               className="group relative px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center"
             >
-              Ota yhteyttä myyntiin
+              Ota yhteyttä
             </motion.a>
           </motion.div>
         </div>
