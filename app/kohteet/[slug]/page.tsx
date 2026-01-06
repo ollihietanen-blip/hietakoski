@@ -62,6 +62,13 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   const isVantaanSiira = project.id === 'vantaan-siira'
 
+  // Laske asuntojen tilanne dynaamisesti
+  const apartmentsForSale = project.apartments?.filter(apt => apt.status === 'Myynnissä') || []
+  const apartmentsFree = project.apartments?.filter(apt => apt.status === 'Vapaa') || []
+  const allSoldOrReserved = project.apartments && project.apartments.every(apt => apt.status === 'Myyty' || apt.status === 'Varattu')
+  const hasAvailableApartments = apartmentsForSale.length > 0 || apartmentsFree.length > 0
+  const featuredApartment = apartmentsForSale[0] // Ensimmäinen myynnissä oleva asunto
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -127,7 +134,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             )}
           </section>
 
-          {/* A1-asunnon nosto */}
+          {/* Asuntonosto - dynaaminen sisältö tilanteen mukaan */}
           <section id="a1" className="py-16 md:py-20 bg-warm-cream">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -136,60 +143,117 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="text-center mb-8">
-                  <span className="inline-block px-4 py-1.5 bg-aged-copper text-white text-sm font-semibold uppercase tracking-wide mb-3">
-                    Myynnissä
-                  </span>
-                  <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-2">
-                    Asunto A1
-                  </h2>
-                  <p className="text-deep-charcoal/60">Siiratie 5 A 1</p>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  <div className="space-y-3 text-deep-charcoal/80 text-lg">
-                    <p>• 4h, kt, kh, s, lämmin varasto</p>
-                    <p>• 78,5 m² • Yksitasoinen</p>
-                    <p>• Valmistunut 2024</p>
-                    <p>• Heti vapaa</p>
-                  </div>
-                  <div className="flex items-center justify-center bg-white p-8 rounded-lg shadow-sm">
-                    <div className="text-center">
-                      <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Velaton hinta</span>
-                      <p className="text-aged-copper font-bold text-4xl md:text-5xl">270 000 €</p>
+                {/* CASE 1: Myynnissä oleva asunto */}
+                {featuredApartment && (
+                  <>
+                    <div className="text-center mb-8">
+                      <span className="inline-block px-4 py-1.5 bg-aged-copper text-white text-sm font-semibold uppercase tracking-wide mb-3">
+                        Myynnissä
+                      </span>
+                      <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-2">
+                        Asunto {featuredApartment.id}
+                      </h2>
+                      <p className="text-deep-charcoal/60">{featuredApartment.name}</p>
                     </div>
+
+                    <div className="grid md:grid-cols-2 gap-8 mb-8">
+                      <div className="space-y-3 text-deep-charcoal/80 text-lg">
+                        {featuredApartment.rooms && <p>• {featuredApartment.rooms}</p>}
+                        {featuredApartment.size && <p>• {featuredApartment.size} • Yksitasoinen</p>}
+                        <p>• Valmistunut 2024</p>
+                        <p>• Heti vapaa</p>
+                      </div>
+                      {featuredApartment.price && (
+                        <div className="flex items-center justify-center bg-white p-8 rounded-lg shadow-sm">
+                          <div className="text-center">
+                            <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Velaton hinta</span>
+                            <p className="text-aged-copper font-bold text-4xl md:text-5xl">{featuredApartment.price}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+                      Uusi, yksitasoinen koti viilennyksellä varustetulla poistoilmalämpöpumpulla. Vesikiertoinen lattialämmitys, taloyhtiön kuituliittymä, lasitettavissa oleva terassi sekä kaksi autopaikkaa sähköauton latausvalmiudella.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      {featuredApartment.etuoviUrl && (
+                        <motion.a
+                          href={featuredApartment.etuoviUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white border-2 border-aged-copper text-aged-copper font-semibold hover:bg-aged-copper hover:text-white transition-all duration-200 text-base"
+                        >
+                          Katso Etuovessa
+                          <ArrowRight size={18} />
+                        </motion.a>
+                      )}
+                      <Link href="/yhteystiedot#elma">
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer"
+                        >
+                          Ota yhteyttä
+                          <ArrowRight size={18} />
+                        </motion.div>
+                      </Link>
+                    </div>
+                  </>
+                )}
+
+                {/* CASE 2: Ei myynnissä olevia, mutta vapaita asuntoja */}
+                {!featuredApartment && apartmentsFree.length > 0 && (
+                  <div className="text-center">
+                    <span className="inline-block px-4 py-1.5 bg-slate-blue text-white text-sm font-semibold uppercase tracking-wide mb-3">
+                      Kysy saatavuutta
+                    </span>
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+                      {apartmentsFree.length} asuntoa saatavilla
+                    </h2>
+                    <p className="text-deep-charcoal/70 text-base md:text-lg mb-8 max-w-xl mx-auto">
+                      Kohteessa on vapaita asuntoja. Kysy lisätietoja ja saatavuutta myyntitiimiltämme.
+                    </p>
+                    <Link href="/yhteystiedot#elma">
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer"
+                      >
+                        Kysy saatavuutta
+                        <ArrowRight size={18} />
+                      </motion.div>
+                    </Link>
                   </div>
-                </div>
+                )}
 
-                <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed mb-8 text-center max-w-2xl mx-auto">
-                  Uusi, yksitasoinen koti viilennyksellä varustetulla poistoilmalämpöpumpulla. Vesikiertoinen lattialämmitys, taloyhtiön kuituliittymä, lasitettavissa oleva terassi sekä kaksi autopaikkaa sähköauton latausvalmiudella.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  {project.etuoviUrl && (
-                    <motion.a
-                      href={project.etuoviUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white border-2 border-aged-copper text-aged-copper font-semibold hover:bg-aged-copper hover:text-white transition-all duration-200 text-base"
-                    >
-                      Katso Etuovessa
-                      <ArrowRight size={18} />
-                    </motion.a>
-                  )}
-                  <Link href="/yhteystiedot#elma">
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer"
-                    >
-                      Ota yhteyttä
-                      <ArrowRight size={18} />
-                    </motion.div>
-                  </Link>
-                </div>
+                {/* CASE 3: Kaikki asunnot myyty tai varattu */}
+                {allSoldOrReserved && (
+                  <div className="text-center">
+                    <span className="inline-block px-4 py-1.5 bg-gray-400 text-white text-sm font-semibold uppercase tracking-wide mb-3">
+                      Kaikki asunnot varattu
+                    </span>
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+                      Kohde on loppuunmyyty
+                    </h2>
+                    <p className="text-deep-charcoal/70 text-base md:text-lg mb-8 max-w-xl mx-auto">
+                      Kaikki kohteen asunnot on myyty tai varattu. Kysy vastaavista kohteista tai jätä yhteystietosi, niin kerromme tulevista kohteista.
+                    </p>
+                    <Link href="/yhteystiedot#elma">
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer"
+                      >
+                        Kysy tulevista kohteista
+                        <ArrowRight size={18} />
+                      </motion.div>
+                    </Link>
+                  </div>
+                )}
               </motion.div>
             </div>
           </section>
@@ -304,6 +368,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       <span className="text-deep-charcoal/60 text-sm">Taloyhtiö</span>
                       <span className="text-deep-charcoal font-medium text-sm">Asunto Oy Vantaan Siira</span>
                     </div>
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <span className="text-deep-charcoal/60 text-sm">Tontti</span>
+                      <span className="text-deep-charcoal font-medium text-sm">Vuokratontti (lunastusmahdollisuus)</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -340,10 +408,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           <section className="py-16 md:py-20 bg-gradient-to-b from-mist-white/30 to-white">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-4">
-                Kiinnostuitko tästä kohteesta?
+                {allSoldOrReserved ? 'Kiinnostaako vastaavanlainen kohde?' : 'Kiinnostuitko tästä kohteesta?'}
               </h2>
               <p className="text-deep-charcoal/70 text-base mb-8">
-                Ota yhteyttä ja kysy lisätietoja Asunto Oy Vantaan Siirasta tai myynnissä olevasta A1-asunnosta.
+                {allSoldOrReserved 
+                  ? 'Ota yhteyttä ja kerro, millaista kotia etsit. Kerromme tulevista kohteista.'
+                  : hasAvailableApartments 
+                    ? 'Ota yhteyttä ja kysy lisätietoja kohteesta tai myynnissä olevista asunnoista.'
+                    : 'Ota yhteyttä myyntiin.'
+                }
               </p>
               <Link href="/yhteystiedot#elma">
                 <motion.div
@@ -351,7 +424,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center gap-2 px-8 py-3 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer"
                 >
-                  Ota yhteyttä
+                  {allSoldOrReserved ? 'Kysy tulevista kohteista' : 'Ota yhteyttä'}
                   <ArrowRight size={18} />
                 </motion.div>
               </Link>
