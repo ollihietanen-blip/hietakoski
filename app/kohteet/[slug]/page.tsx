@@ -20,26 +20,12 @@ interface ProjectPageProps {
 export default function ProjectPage({ params }: ProjectPageProps) {
   const router = useRouter()
   const project = getProjectBySlug(params.slug)
-  const [showStickyCTA, setShowStickyCTA] = useState(false)
 
   useEffect(() => {
     if (!project) {
       router.push('/kohteet')
     }
   }, [project, router])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const a1Section = document.getElementById('a1')
-      if (a1Section) {
-        const rect = a1Section.getBoundingClientRect()
-        setShowStickyCTA(rect.top < -100) // Näytä sticky CTA kun A1-osio on scrollattu ohi
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   if (!project) {
     return (
@@ -576,24 +562,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </section>
       )}
 
-      {/* Sticky CTA - Mobiili (näkyy kun A1-osio on scrollattu ohi) */}
-      {isVantaanSiira && (
-        <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: showStickyCTA ? 0 : 100 }}
-          transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-2xl md:hidden p-4"
-        >
-          <Link href="/yhteystiedot#elma">
-            <motion.div
-              whileTap={{ scale: 0.98 }}
-              className="w-full bg-aged-copper text-white font-semibold py-4 px-6 rounded-lg text-center shadow-lg"
-            >
-              Ota yhteyttä A1:stä
-            </motion.div>
-          </Link>
-        </motion.div>
-      )}
 
       {/* Pohjat - jos saatavilla */}
       {project.pohjat && project.pohjat.length > 0 && (
@@ -798,22 +766,45 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
-              Kiinnostuitko tästä kohteesta?
-            </h2>
-            <p className="text-deep-charcoal/70 text-lg mb-8">
-              Myynti auttaa kaikissa kohteeseen liittyvissä kysymyksissä.
-            </p>
-            <Link href="/yhteystiedot#elma">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg cursor-pointer"
-              >
-                Ota yhteys myyntiin
-                <ArrowRight size={20} />
-              </motion.div>
-            </Link>
+            {isVantaanSiira ? (
+              <>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+                  Kiinnostuitko tästä kohteesta?
+                </h2>
+                <p className="text-deep-charcoal/70 text-lg mb-8">
+                  Ota yhteyttä ja kysy lisätietoja Asunto Oy Vantaan Siirasta tai myynnissä olevasta A1-asunnosta.
+                </p>
+                <Link href="/yhteystiedot#elma">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg cursor-pointer"
+                  >
+                    Ota yhteyttä
+                    <ArrowRight size={20} />
+                  </motion.div>
+                </Link>
+              </>
+            ) : (
+              <>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+                  Kiinnostuitko tästä kohteesta?
+                </h2>
+                <p className="text-deep-charcoal/70 text-lg mb-8">
+                  Myynti auttaa kaikissa kohteeseen liittyvissä kysymyksissä.
+                </p>
+                <Link href="/yhteystiedot#elma">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg cursor-pointer"
+                  >
+                    Ota yhteys myyntiin
+                    <ArrowRight size={20} />
+                  </motion.div>
+                </Link>
+              </>
+            )}
           </motion.div>
         </div>
       </section>
