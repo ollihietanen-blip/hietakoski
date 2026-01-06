@@ -4,6 +4,18 @@ export type Kohdetyyppi = 'Paritalo' | 'Rivitalo' | 'Asuinkohde';
 
 export type Kaytto = 'Asuminen' | 'Loma-asunto';
 
+export type ApartmentStatus = 'Myynnissä' | 'Varattu' | 'Myyty' | 'Vapaa';
+
+export interface Apartment {
+  id: string;
+  name: string;
+  status: ApartmentStatus;
+  rooms?: string;
+  size?: string;
+  price?: string;
+  etuoviUrl?: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -24,6 +36,7 @@ export interface Project {
   pintaAlat?: string;
   rakennusvuosi?: number;
   valmistumisvuosi?: number;
+  apartments?: Apartment[];
 }
 
 export const projects: Project[] = [
@@ -66,6 +79,42 @@ export const projects: Project[] = [
     kuvat: [
       '/Siiratie5_001.jpg',
       '/Siiratie5_001.jpg', // Voi korvata oikeilla kuvilla
+    ],
+    apartments: [
+      {
+        id: 'A1',
+        name: 'Siiratie 5 A 1',
+        status: 'Myynnissä',
+        rooms: '4h, kt, kh, s, lämmin varasto',
+        size: '78,5 m²',
+        price: '270 000 €',
+        etuoviUrl: 'https://www.etuovi.com/kohde/34567890',
+      },
+      {
+        id: 'A2',
+        name: 'Siiratie 5 A 2',
+        status: 'Myyty',
+      },
+      {
+        id: 'A3',
+        name: 'Siiratie 5 A 3',
+        status: 'Vapaa',
+      },
+      {
+        id: 'A4',
+        name: 'Siiratie 5 A 4',
+        status: 'Vapaa',
+      },
+      {
+        id: 'A5',
+        name: 'Siiratie 5 A 5',
+        status: 'Vapaa',
+      },
+      {
+        id: 'A6',
+        name: 'Siiratie 5 A 6',
+        status: 'Varattu',
+      },
     ],
   },
 

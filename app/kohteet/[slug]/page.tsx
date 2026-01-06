@@ -293,33 +293,47 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       )}
 
       {/* Asunnot-osio */}
-      {isVantaanSiira && (
+      {isVantaanSiira && project.apartments && (
         <section className="py-20 md:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-8">Asunnot</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { id: 'A1', status: 'Myynnissä', highlight: true },
-                { id: 'A2', status: 'Kysy saatavuus' },
-                { id: 'A3', status: 'Kysy saatavuus' },
-                { id: 'A4', status: 'Kysy saatavuus' },
-                { id: 'A5', status: 'Kysy saatavuus' },
-                { id: 'A6', status: 'Kysy saatavuus' },
-              ].map((apt) => (
-                <div key={apt.id} className={`p-5 border ${apt.highlight ? 'border-aged-copper' : 'border-gray-200'} rounded-lg bg-white shadow-sm`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-deep-charcoal">Asunto {apt.id}</h3>
-                    <span className={`text-xs px-2 py-1 rounded ${apt.status === 'Myynnissä' ? 'bg-aged-copper text-white' : 'bg-gray-100 text-deep-charcoal/70'}`}>
-                      {apt.status}
-                    </span>
+              {project.apartments.map((apt) => {
+                const getStatusDisplay = (status: string) => {
+                  switch (status) {
+                    case 'Myynnissä':
+                      return { label: 'Myynnissä', color: 'bg-aged-copper text-white' }
+                    case 'Varattu':
+                      return { label: 'Varattu', color: 'bg-slate-blue text-white' }
+                    case 'Myyty':
+                      return { label: 'Myyty', color: 'bg-gray-400 text-white' }
+                    case 'Vapaa':
+                      return { label: 'Kysy saatavuus', color: 'bg-gray-100 text-deep-charcoal/70' }
+                    default:
+                      return { label: 'Kysy saatavuus', color: 'bg-gray-100 text-deep-charcoal/70' }
+                  }
+                }
+                const statusDisplay = getStatusDisplay(apt.status)
+                const isHighlight = apt.status === 'Myynnissä'
+                
+                return (
+                  <div key={apt.id} className={`p-5 border ${isHighlight ? 'border-aged-copper' : 'border-gray-200'} rounded-lg bg-white shadow-sm`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-semibold text-deep-charcoal">Asunto {apt.id}</h3>
+                      <span className={`text-xs px-2 py-1 rounded ${statusDisplay.color}`}>
+                        {statusDisplay.label}
+                      </span>
+                    </div>
+                    {apt.id === 'A1' ? (
+                      <a href="#a1" className="text-aged-copper text-sm hover:underline">Katso A1</a>
+                    ) : apt.status === 'Vapaa' ? (
+                      <Link href="/yhteystiedot#elma" className="text-aged-copper text-sm hover:underline">Kysy saatavuus</Link>
+                    ) : apt.status === 'Myyty' || apt.status === 'Varattu' ? (
+                      <span className="text-deep-charcoal/50 text-sm">{apt.status}</span>
+                    ) : null}
                   </div>
-                  {apt.id === 'A1' ? (
-                    <a href="#a1" className="text-aged-copper text-sm hover:underline">Katso A1</a>
-                  ) : (
-                    <Link href="/yhteystiedot#elma" className="text-aged-copper text-sm hover:underline">Kysy saatavuus</Link>
-                  )}
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
