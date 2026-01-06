@@ -130,7 +130,7 @@ export default function ContactPage() {
               </div>
 
               {/* Laskutusohje */}
-              <div className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
+              <div id="laskutus" className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-blue/10 flex items-center justify-center">
                     <Building2 className="text-slate-blue" size={24} />

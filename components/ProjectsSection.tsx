@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import ProjectCard from './ProjectCard'
 import { projects } from '@/lib/data'
 
@@ -18,21 +19,39 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20 md:mb-24"
+          className="mb-12 md:mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
-            Kohteemme
+            Ajankohtaiset kohteet
           </h2>
-          <p className="text-lg md:text-xl text-deep-charcoal/70 max-w-2xl leading-relaxed">
-            Löydä tuleva kotisi – Tutustu myynnissä oleviin kohteisiin
+          <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed max-w-3xl">
+            Hietakosken toteuttamat kohteet ovat myynnissä Etuovessa eri välityskumppaneiden kautta. Toteutus, laatu ja vastuut ovat aina Hietakosken.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {projects.map((project, index) => (
+          {projects.slice(0, 6).map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
+        
+        {/* Link to all projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 text-center"
+        >
+          <motion.a
+            href="/kohteet"
+            whileHover={{ x: 5 }}
+            className="inline-flex items-center gap-2 text-aged-copper font-semibold text-lg hover:underline"
+          >
+            Katso kaikki kohteet
+            <ArrowRight size={20} />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   )

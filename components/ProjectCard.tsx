@@ -79,16 +79,48 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </p>
         </div>
 
-        {/* CTA Button - more refined */}
-        <motion.a
-          href="#yhteystiedot"
-          whileHover={{ x: 4 }}
-          whileTap={{ scale: 0.98 }}
-          className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md"
-        >
-          <span>Katso kohteet</span>
-          <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
-        </motion.a>
+        {/* CTA Buttons */}
+        <div className="flex flex-col gap-3">
+          <motion.a
+            href={`/kohteet#${project.id}`}
+            whileHover={{ x: 4 }}
+            whileTap={{ scale: 0.98 }}
+            className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-charcoal text-white font-medium hover:bg-aged-copper transition-all duration-300 shadow-sm hover:shadow-md text-sm"
+          >
+            <span>Katso kohde</span>
+            <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+          </motion.a>
+          
+          {project.status === 'Myynnissä / Valmis' && (
+            <motion.a
+              href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-aged-copper text-aged-copper font-medium hover:bg-aged-copper hover:text-white transition-all duration-300 shadow-sm hover:shadow-md text-sm"
+            >
+              <span>Etuovi</span>
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+            </motion.a>
+          )}
+          
+          <motion.a
+            href="#elma"
+            onClick={(e) => {
+              e.preventDefault()
+              const element = document.getElementById('elma')
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+            whileHover={{ x: 4 }}
+            whileTap={{ scale: 0.98 }}
+            className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-mist-white text-deep-charcoal font-medium hover:bg-aged-copper hover:text-white transition-all duration-300 text-sm"
+          >
+            <span>Kysy Elmalta</span>
+          </motion.a>
+        </div>
       </div>
     </motion.div>
   )

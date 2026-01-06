@@ -4,36 +4,21 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 export default function Hero() {
-  const regions = [
-    { name: 'Uusimaa', href: '#kohteet', accent: 'from-blue-600/20' },
-    { name: 'Pirkanmaa', href: '#kohteet', accent: 'from-green-600/20' },
-    { name: 'Lappi', href: '#kohteet', accent: 'from-cyan-600/20' },
-  ]
-
   return (
     <section id="etusivu" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-deep-charcoal via-slate-blue to-deep-charcoal">
-      {/* Background Image with more natural composition */}
-      {/* 
-        Hero Image Guidelines:
-        - Recommended size: 1920x1080px (16:9 aspect ratio) or larger
-        - Format: JPG or WebP for optimal performance
-        - Quality: High resolution (at least 1920px width)
-        - Content: Finnish architecture, modern houses, or construction
-        - Place in: public/images/hero.jpg or update src below
-      */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero.jpg"
-          alt="Modern interior with staircase"
+          alt="Hietakoski Oy - Muuttovalmiit kodit"
           fill
           className="object-cover object-center"
           priority
           quality={90}
         />
-        {/* More sophisticated overlay */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-deep-charcoal/85 via-slate-blue/75 to-deep-charcoal/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-        {/* Subtle texture overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(168,93,44,0.1),transparent_50%)]" />
       </div>
 
@@ -41,7 +26,7 @@ export default function Hero() {
       <div className="absolute top-20 right-10 w-32 h-32 bg-aged-copper/10 rounded-full blur-3xl hidden lg:block" />
       <div className="absolute bottom-20 left-10 w-40 h-40 bg-light-oak/10 rounded-full blur-3xl hidden lg:block" />
 
-      {/* Content with asymmetric layout */}
+      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div className="max-w-4xl">
           <motion.div
@@ -49,56 +34,63 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Small accent text */}
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-white/50 text-xs md:text-sm font-light mb-4 tracking-wide"
-            >
-              Rakentamista vuodesta 1980
-            </motion.p>
-            
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-12 leading-[1.1] tracking-tight">
-              <span className="block">Ekologisia koteja</span>
-              <span className="block text-light-oak/90">ja vapaa-ajan asuntoja</span>
-              <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-white/80 mt-4 font-sans">
-                Suomen parhaille paikoille.
-              </span>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+              Muuttovalmiit kodit – turvallisesti valmiina
             </h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-white/90 text-lg md:text-xl lg:text-2xl font-light mb-12 leading-relaxed max-w-3xl"
+            >
+              Hietakoski Oy rakentaa paritaloja ja pienkohteita kasvukeskuksiin.
+              Kohteet toteutetaan hallitulla ketjulla: kotimaiset puuelementit, kokenut työnjohto ja viimeistely valmiiksi ennen myyntiä.
+              Asiakas ostaa kodin – ei keskeneräistä lupausta.
+            </motion.p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 md:gap-6"
           >
-            {regions.map((region, index) => (
-              <motion.a
-                key={region.name}
-                href={region.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`
-                  group relative px-8 py-4 bg-white/5 backdrop-blur-md 
-                  border border-white/20 text-white font-medium 
-                  hover:bg-aged-copper hover:border-aged-copper 
-                  transition-all duration-300 shadow-lg hover:shadow-2xl
-                  text-base sm:text-lg overflow-hidden
-                `}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${region.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                <span className="relative z-10">{region.name}</span>
-              </motion.a>
-            ))}
+            <motion.a
+              href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center"
+            >
+              Katso kohteet Etuovessa
+            </motion.a>
+            
+            <motion.a
+              href="#elma"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={(e) => {
+                e.preventDefault()
+                const element = document.getElementById('elma')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+              className="group relative px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center"
+            >
+              Ota yhteyttä Elmaan
+            </motion.a>
           </motion.div>
         </div>
       </div>
-
     </section>
   )
 }

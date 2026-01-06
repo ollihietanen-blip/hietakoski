@@ -13,9 +13,8 @@ export default function Navbar() {
   const pathname = usePathname()
 
   const navLinks = [
-    { href: '/#etusivu', label: 'Etusivu', isHash: true },
-    { href: '/#kohteet', label: 'Kohteet', isHash: true },
-    { href: '/yritys', label: 'Yritys', isHash: false },
+    { href: '/kohteet', label: 'Kohteet', isHash: false },
+    { href: '/miksi-hietakoski', label: 'Miksi Hietakoski', isHash: false },
     { href: '/yhteystiedot', label: 'Ota yhteyttä', isHash: false },
   ]
 
@@ -54,7 +53,7 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
           : 'bg-white/90 backdrop-blur-sm shadow-md'
@@ -78,13 +77,10 @@ export default function Navbar() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link, index) => (
-              link.isHash ? (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleHashClick(e, link.href)}
+              <Link key={link.href} href={link.href}>
+                <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -98,27 +94,24 @@ export default function Navbar() {
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.3 }}
                   />
-                </motion.a>
-              ) : (
-                <Link key={link.href} href={link.href}>
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -2 }}
-                    className="relative px-4 py-2 text-slate-blue font-medium text-sm tracking-wide rounded-lg hover:text-aged-copper transition-colors duration-200 group cursor-pointer"
-                  >
-                    {link.label}
-                    <motion.span
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-aged-copper"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.div>
-                </Link>
-              )
+                </motion.div>
+              </Link>
             ))}
+            
+            {/* CTA Button - Kohteet Etuovessa */}
+            <motion.a
+              href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: navLinks.length * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-md hover:shadow-lg"
+            >
+              Kohteet Etuovessa
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -153,14 +146,9 @@ export default function Navbar() {
             >
               <div className="px-6 pt-8 space-y-1">
                 {navLinks.map((link, index) => (
-                  link.isHash ? (
-                    <motion.a
-                      key={link.href}
-                      href={link.href}
-                      onClick={(e) => {
-                        handleLinkClick()
-                        handleHashClick(e, link.href)
-                      }}
+                  <Link key={link.href} href={link.href}>
+                    <motion.div
+                      onClick={handleLinkClick}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -168,22 +156,24 @@ export default function Navbar() {
                       className="block py-4 px-4 text-slate-blue font-medium text-base tracking-wide rounded-lg hover:bg-mist-white hover:text-aged-copper transition-all duration-200 cursor-pointer"
                     >
                       {link.label}
-                    </motion.a>
-                  ) : (
-                    <Link key={link.href} href={link.href}>
-                      <motion.div
-                        onClick={handleLinkClick}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ x: 5 }}
-                        className="block py-4 px-4 text-slate-blue font-medium text-base tracking-wide rounded-lg hover:bg-mist-white hover:text-aged-copper transition-all duration-200 cursor-pointer"
-                      >
-                        {link.label}
-                      </motion.div>
-                    </Link>
-                  )
+                    </motion.div>
+                  </Link>
                 ))}
+                
+                {/* Mobile CTA Button */}
+                <motion.a
+                  href="https://www.etuovi.com/myytavat-asunnot?rakentaja=Hietakoski"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleLinkClick}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
+                  whileHover={{ x: 5 }}
+                  className="block mt-4 py-4 px-4 bg-aged-copper text-white font-semibold text-base tracking-wide rounded-lg hover:bg-aged-copper/90 transition-all duration-200 text-center"
+                >
+                  Kohteet Etuovessa
+                </motion.a>
               </div>
             </motion.div>
           </>

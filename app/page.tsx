@@ -1,8 +1,9 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import TrustBar from '@/components/TrustBar'
+import TrustCards from '@/components/TrustCards'
+import CustomerJourney from '@/components/CustomerJourney'
 import ProjectsSection from '@/components/ProjectsSection'
-import AboutSection from '@/components/AboutSection'
+import ReferenceHighlight from '@/components/ReferenceHighlight'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 
@@ -11,9 +12,10 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <AboutSection />
+      <TrustCards />
+      <CustomerJourney />
       <ProjectsSection />
-      <TrustBar />
+      <ReferenceHighlight />
       <ContactSection />
       <Footer />
     </main>
