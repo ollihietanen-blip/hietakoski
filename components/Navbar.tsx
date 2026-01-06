@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/kohteet', label: 'Kohteet', isHash: false },
-    { href: '/miksi-hietakoski', label: 'Miksi Hietakoski', isHash: false },
+    { href: '/rakentaminen', label: 'Rakentaminen', isHash: false },
     { href: '/yhteystiedot', label: 'Ota yhteyttä', isHash: false },
   ]
 

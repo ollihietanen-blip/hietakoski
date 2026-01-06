@@ -42,11 +42,11 @@ export default function Footer() {
               Kohteet
             </motion.a>
             <motion.a
-              href="/miksi-hietakoski"
+              href="/rakentaminen"
               whileHover={{ x: 5 }}
               className="text-white/80 hover:text-white transition-colors"
             >
-              Miksi Hietakoski
+              Rakentaminen
             </motion.a>
             <motion.a
               href="/yhteystiedot"
