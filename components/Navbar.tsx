@@ -84,7 +84,7 @@ export default function Navbar() {
             ))}
             
             {/* CTA Button */}
-            <Link href="/kohteet?status=Myynnissa">
+            <Link href="/yhteystiedot#elma">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.98 }}
                 className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
-                Myynnissä
+                Ota yhteyttä
               </motion.div>
             </Link>
           </div>
@@ -140,7 +140,7 @@ export default function Navbar() {
               ))}
               
               {/* Mobile CTA Button */}
-              <Link href="/kohteet">
+              <Link href="/yhteystiedot#elma">
                 <motion.div
                   onClick={handleLinkClick}
                   initial={{ opacity: 0, x: -10 }}
@@ -148,7 +148,7 @@ export default function Navbar() {
                   transition={{ delay: navLinks.length * 0.05 }}
                   className="block mt-4 py-3 px-6 bg-aged-copper text-white font-semibold text-base rounded-lg text-center cursor-pointer"
                 >
-                  Myynnissä olevat kohteet
+                  Ota yhteyttä
                 </motion.div>
               </Link>
             </div>

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { Suspense, useState, useMemo, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -8,11 +9,30 @@ import ProjectCard from '@/components/ProjectCard'
 import ProjectFilter from '@/components/ProjectFilter'
 import { projects, getUniqueLocations, getUniqueKohdetyypit, getUniqueKaytto, ProjectStatus, Kohdetyyppi, Kaytto } from '@/lib/data'
 
-export default function KohteetPage() {
-  const [selectedStatus, setSelectedStatus] = useState<ProjectStatus | 'Kaikki' | 'Valmis / Myyty / Vuokrattu'>('Kaikki')
+function KohteetContent() {
+  const searchParams = useSearchParams()
+  const statusParam = searchParams.get('status')
+  
+  // Aseta oletusarvo URL-parametrista jos saatavilla
+  const getInitialStatus = (): ProjectStatus | 'Kaikki' | 'Valmis / Myyty / Vuokrattu' => {
+    if (statusParam === 'Myynnissa') return 'Myynnissä'
+    if (statusParam === 'Vuokrattavana') return 'Vuokrattavana'
+    return 'Kaikki'
+  }
+
+  const [selectedStatus, setSelectedStatus] = useState<ProjectStatus | 'Kaikki' | 'Valmis / Myyty / Vuokrattu'>(getInitialStatus)
   const [selectedKohdetyyppi, setSelectedKohdetyyppi] = useState<Kohdetyyppi | 'Kaikki'>('Kaikki')
   const [selectedKaytto, setSelectedKaytto] = useState<Kaytto | 'Kaikki'>('Kaikki')
   const [selectedLocation, setSelectedLocation] = useState<string | 'Kaikki'>('Kaikki')
+
+  // Päivitä suodatus kun URL-parametri muuttuu
+  useEffect(() => {
+    if (statusParam === 'Myynnissa') {
+      setSelectedStatus('Myynnissä')
+    } else if (statusParam === 'Vuokrattavana') {
+      setSelectedStatus('Vuokrattavana')
+    }
+  }, [statusParam])
 
   const availableLocations = useMemo(() => getUniqueLocations(), [])
   const availableKohdetyypit = useMemo(() => getUniqueKohdetyypit(), [])
@@ -61,9 +81,7 @@ export default function KohteetPage() {
   }
 
   return (
-    <main className="min-h-screen bg-warm-cream">
-      <Navbar />
-      
+    <>
       {/* Hero */}
       <section className="pt-24 md:pt-32 pb-8 md:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,7 +160,23 @@ export default function KohteetPage() {
           )}
         </div>
       </section>
+    </>
+  )
+}
 
+export default function KohteetPage() {
+  return (
+    <main className="min-h-screen bg-warm-cream">
+      <Navbar />
+      <Suspense fallback={
+        <section className="pt-24 md:pt-32 pb-8 md:pb-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-deep-charcoal/70">Ladataan...</p>
+          </div>
+        </section>
+      }>
+        <KohteetContent />
+      </Suspense>
       <Footer />
     </main>
   )

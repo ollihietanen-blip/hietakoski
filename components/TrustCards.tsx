@@ -7,8 +7,8 @@ export default function TrustCards() {
   const cards = [
     {
       icon: ShieldCheck,
-      title: 'Valmis koti ilman riskiä',
-      text: 'Emme myy keskeneräisiä projekteja. Kohteet rakennetaan valmiiksi ennen myyntiä, jotta asiakas näkee mitä ostaa.',
+      title: 'Ensin valmiiksi, sitten myyntiin',
+      text: 'Keräämme kiinnostuneet jo rakentamisen aikana, mutta emme tee kauppoja keskeneräisistä kodeista. Rakennamme kohteet valmiiksi ja myymme vasta, kun lopputulos on nähtävissä.',
     },
     {
       icon: TreePine,

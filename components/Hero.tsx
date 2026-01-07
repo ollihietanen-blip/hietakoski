@@ -36,7 +36,7 @@ export default function Hero() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              Muuttovalmiit kodit – turvallisesti valmiina
+              Valmis koti – ei rakennusprojektia
             </h1>
             
             <motion.p
@@ -45,9 +45,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-white/90 text-lg md:text-xl lg:text-2xl font-light mb-12 leading-relaxed max-w-3xl"
             >
-              Hietakoski Oy rakentaa paritaloja ja pienkohteita kasvukeskuksiin.
-              Kohteet toteutetaan hallitulla ketjulla: kotimaiset puuelementit, kokenut työnjohto ja viimeistely valmiiksi ennen myyntiä.
-              Asiakas ostaa kodin – ei keskeneräistä lupausta.
+              Rakennamme kodit valmiiksi ennen myyntiä. Näet lopputuloksen ennen ostopäätöstä – ilman rakennusvaiheen epävarmuutta.
             </motion.p>
           </motion.div>
 
@@ -57,7 +55,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 md:gap-6"
           >
-            <Link href="/kohteet">
+            <Link href="/kohteet?status=Myynnissa">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -70,24 +68,18 @@ export default function Hero() {
               </motion.div>
             </Link>
             
-            <motion.a
-              href="#elma"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={(e) => {
-                e.preventDefault()
-                const element = document.getElementById('elma')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
-              className="group relative px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center"
-            >
-              Ota yhteyttä
-            </motion.a>
+            <Link href="/kohteet?status=Vuokrattavana">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center cursor-pointer"
+              >
+                Vuokrattavat asunnot
+              </motion.div>
+            </Link>
           </motion.div>
         </div>
       </div>
