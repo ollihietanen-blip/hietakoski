@@ -148,6 +148,28 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </section>
       )}
 
+      {/* Kohteen esittely */}
+      {project.presentation && (
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-8">
+                Kohteen esittely
+              </h2>
+              <div 
+                className="text-deep-charcoal/80"
+                dangerouslySetInnerHTML={{ __html: project.presentation }}
+              />
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* Myynnissä oleva asunto - nosto */}
       {featuredApartment && (
         <section id="featured" className="py-12 md:py-16 bg-warm-cream">
@@ -297,6 +319,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <div className="flex justify-between py-2 border-b border-gray-100">
                       <span className="text-deep-charcoal/60 text-sm">Pinta-alat</span>
                       <span className="text-deep-charcoal font-medium text-sm">{project.pintaAlat}</span>
+                    </div>
+                  )}
+                  {project.slug === 'levi-suvannoisenkuja-10' && (
+                    <div className="flex justify-between py-2 border-b border-gray-100">
+                      <span className="text-deep-charcoal/60 text-sm">Tontti</span>
+                      <span className="text-deep-charcoal font-medium text-sm">Oma</span>
                     </div>
                   )}
                   <div className="flex justify-between py-2">

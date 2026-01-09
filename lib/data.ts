@@ -37,6 +37,7 @@ export interface Project {
   rakennusvuosi?: number;
   valmistumisvuosi?: number;
   apartments?: Apartment[];
+  presentation?: string;
 }
 
 export const projects: Project[] = [
@@ -44,27 +45,76 @@ export const projects: Project[] = [
   {
     id: 'levi-suvannoisenkuja',
     slug: 'levi-suvannoisenkuja-10',
-    name: 'Levi – Suvannoisenkuja 10',
+    name: 'Asunto Oy Levin Atrin Atmos',
     location: 'Kittilä / Levi',
     status: 'Myynnissä',
     statusColor: 'copper',
     description: 'Kaksi 118 m² loma-asuntoa Levin parhailla paikoilla. Hietakulman suurelementeistä rakennettu kokonaisuus takaa, että loma-kotisi on terveellinen, tiivis ja energiatehokas.',
     specs: '118 m² / asunto | Paritalo | 2 asuntoa',
     tag: 'Luksus vapaa-aika',
-    imageUrl: '/AtrinAtmos_001.jpg',
+    imageUrl: '/atrin_atmos/AtrinAtmos_000.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Loma-asunto',
     asuntojenLkm: 2,
     pintaAlat: '118 m² / asunto',
-    kuvat: [
-      '/AtrinAtmos_001.jpg',
-      '/AtrinAtmos_001.jpg',
+    apartments: [
+      {
+        id: 'A',
+        name: 'Huoneisto A',
+        status: 'Myynnissä',
+        size: '118 m²',
+        rooms: '4h + k + pesutilat + sauna + wc/khh',
+      },
+      {
+        id: 'B',
+        name: 'Huoneisto B',
+        status: 'Varattu',
+        size: '118 m²',
+      },
     ],
+    kuvat: [
+      '/atrin_atmos/AtrinAtmos_000.jpg',
+      '/atrin_atmos/AtrinAtmos_001.jpg',
+      '/atrin_atmos/AtrinAtmos_002.jpg',
+      '/atrin_atmos/AtrinAtmos_003.jpg',
+      '/atrin_atmos/AtrinAtmos_004.jpg',
+      '/atrin_atmos/AtrinAtmos_005.jpg',
+      '/atrin_atmos/AtrinAtmos_006.jpg',
+      '/atrin_atmos/AtrinAtmos_007.jpg',
+      '/atrin_atmos/AtrinAtmos_008.jpg',
+      '/atrin_atmos/AtrinAtmos_009.jpg',
+      '/atrin_atmos/AtrinAtmos_010.jpg',
+      '/atrin_atmos/AtrinAtmos_011.jpg',
+      '/atrin_atmos/AtrinAtmos_012.jpg',
+      '/atrin_atmos/AtrinAtmos_013.jpg',
+      '/atrin_atmos/AtrinAtmos_014.jpg',
+      '/atrin_atmos/AtrinAtmos_015.jpg',
+      '/atrin_atmos/AtrinAtmos_016.jpg',
+      '/atrin_atmos/AtrinAtmos_017.jpg',
+      '/atrin_atmos/AtrinAtmos_018.jpg',
+      '/atrin_atmos/AtrinAtmos_019.jpg',
+    ],
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Levin palveluiden läheisyydessä, omalla tontilla, valmistuva korkeatasoinen paritalohuoneisto, jossa yhdistyvät Lapin loma-asumisen tunnelma, moderni käyttömukavuus ja hallittu rakennuslaatu. Levin Atrin Atmos on kahden huoneiston kokonaisuus, joka on toteutettu huolellisesti suunnitellulla ja testatulla rakennusratkaisulla – painottaen laatua, energiatehokkuutta ja pitkäikäisyyttä.</p>
+
+<p class="mb-6 text-base md:text-lg leading-relaxed">Huoneisto A käsittää 4h + k + pesutilat + sauna + wc/khh, ja kokonaisuuden kruunaa katettu terassi. Pohjaratkaisu on selkeä ja toimiva: avara oleskelutila, reilut makuuhuoneet ja sujuva arjen logiikka. Tunnelmaa luo takkavaraus / varaava takka, ja oma sauna viimeistelee Lapin vapaa-ajan asumisen olennaiset elementit.</p>
+
+<p class="mb-6 text-base md:text-lg leading-relaxed">Kohde on toteutettu laadukkaalla Hietakulman puuelementtimenetelmällä, jossa rakenteet valmistetaan hallituissa tehdasolosuhteissa. Elementtirakentaminen näkyy valmiissa kohteessa tasaisena laatuna, hyvänä ääneneristyksenä ja pitkäikäisinä rakenteina.</p>
+
+<p class="mb-6 text-base md:text-lg leading-relaxed">Levin Atrin Atmos on energiatehokas puuelementtikohde, jossa sekä seinärakenteet että yläpohja on toteutettu nykyaikaiset vaatimukset täyttävällä eristystasolla. Huoneistokohtainen ilmanvaihto ja moderni lämmitysratkaisu tukevat tasapainoista sisäilmaa ja tehokasta energiankäyttöä.</p>
+
+<p class="mb-4 text-base md:text-lg leading-relaxed font-semibold text-deep-charcoal">Varustelutaso</p>
+<ul class="mb-6 ml-6 list-disc space-y-2 text-base md:text-lg leading-relaxed">
+  <li>kotimaiset ikkunat ja ovet, integroidut sälekaihtimet</li>
+  <li>laadukkaat kodinkoneet ja pintamateriaalit</li>
+  <li>huoneistokohtainen talotekniikka ja nykyaikainen energiaratkaisu</li>
+</ul>
+
+<p class="text-base md:text-lg leading-relaxed">Taloyhtiörakenne on poikkeuksellisen selkeä: vain kaksi huoneistoa, oma tontti ja ei yhtiölainaa. Tämä tekee omistamisesta vaivatonta ja kustannuksista ennakoitavia.</p>`,
   },
   {
     id: 'vantaan-siira',
     slug: 'asunto-oy-vantaan-siira-siiratie-5',
-    name: 'Asunto Oy Vantaan Siira',
+    name: 'As Oy Vantaan Siira',
     location: 'Vantaa',
     status: 'Myynnissä',
     statusColor: 'copper',

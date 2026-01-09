@@ -19,8 +19,8 @@ export default function ReferenceHighlight() {
             className="relative h-80 md:h-[450px] overflow-hidden rounded-2xl shadow-2xl group"
           >
             <Image
-              src="/AtrinAtmos_001.jpg"
-              alt="Levi – Suvannoisenkuja 10"
+              src="/atrin_atmos/AtrinAtmos_001.jpg"
+              alt="Asunto Oy Levin Atrin Atmos"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -50,7 +50,7 @@ export default function ReferenceHighlight() {
                 Kittilä / Levi
               </p>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal leading-[1.1] tracking-tight">
-                Levi – Suvannoisenkuja 10
+                Asunto Oy Levin Atrin Atmos
               </h2>
             </div>
             
