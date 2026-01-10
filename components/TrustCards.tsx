@@ -8,17 +8,17 @@ export default function TrustCards() {
     {
       icon: ShieldCheck,
       title: 'Ensin valmiiksi, sitten myyntiin',
-      text: 'Keräämme kiinnostuneet jo rakentamisen aikana, mutta emme tee kauppoja keskeneräisistä kodeista. Rakennamme kohteet valmiiksi ja myymme vasta, kun lopputulos on nähtävissä.',
+      text: 'Keräämme kiinnostuneita jo rakentamisen aikana, mutta emme myy keskeneräisiä koteja. Kohteet rakennetaan valmiiksi ja myydään vasta, kun lopputulos on nähtävissä ja valmis arvioitavaksi.',
     },
     {
       icon: TreePine,
       title: 'Kotimaiset puuelementit',
-      text: 'Rakennamme kotimaisista puuelementeistä hallitulla tuotantoketjulla ja laadunvarmistuksella.',
+      text: 'Rakennamme kotimaisista puuelementeistä hallitulla ja valvotulla tuotantoketjulla. Elementit valmistetaan säältä suojassa ja laadunvarmistus kulkee mukana koko toteutuksen ajan.',
     },
     {
       icon: Users,
-      title: 'Selkeät vastuut',
-      text: 'Myynti ja asiakasasiat hoitaa Elma. Työmaiden työnjohto vastaa toteutuksesta ja laadusta.',
+      title: 'Selkeät vastuut ja kokenut toteutus',
+      text: 'Myynnistä ja asiakasasioista vastaa Elma, työmaiden työnjohto toteutuksesta ja laadusta. Rakentamisesta vastaavat kokeneet ammattilaiset, joilla on vuosikymmenten kokemus vaativista pientalo- ja asuntokohteista.',
     },
   ]
 

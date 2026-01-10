@@ -75,7 +75,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-transparent border border-deep-teal text-white font-semibold hover:bg-deep-teal/10 transition-all duration-300 shadow-sm hover:shadow-md rounded-xl text-base sm:text-lg text-center cursor-pointer"
+                className="group relative px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl text-base sm:text-lg text-center cursor-pointer"
               >
                 Vuokrattavat asunnot
               </motion.div>

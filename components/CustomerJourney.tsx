@@ -10,26 +10,26 @@ export default function CustomerJourney() {
       number: 1,
       icon: Search,
       title: 'Löydä kohde',
-      description: 'Selaa kohteita etuovi.com tai hietakoski.fi',
+      description: 'Tutustu myynnissä oleviin kohteisiin etuovi.comissa tai hietakoski.fi:ssä.',
     },
     {
       number: 2,
       icon: CheckCircle,
       title: 'Tutustu tekijään',
-      description: 'Varmista, kuka rakentaa ja vastaa laadusta',
+      description: 'Varmista, kuka kohteen rakentaa ja vastaa toteutuksesta sekä laadusta koko hankkeen ajan.',
     },
     {
       number: 3,
       icon: Calendar,
       title: 'Sovi esittely',
-      description: 'Elma ja välittäjät auttavat sopimaan esittelyn',
+      description: 'Elma ja yhteistyökumppanina toimivat välittäjät auttavat sopimaan esittelyn kohteeseen.',
       link: '/yhteystiedot#elma',
     },
     {
       number: 4,
       icon: Home,
       title: 'Osta valmis koti',
-      description: 'Muuta uuteen kotiin ilman riskejä',
+      description: 'Ostat valmiin kodin ja muutat sisään ilman rakennusvaiheen epävarmuuksia.',
     },
   ]
 
