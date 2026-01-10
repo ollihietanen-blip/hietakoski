@@ -31,7 +31,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       <main className="min-h-screen">
         <Navbar />
         <div className="pt-24 md:pt-32 pb-24 text-center">
-          <p className="text-deep-charcoal/70">Ladataan...</p>
+          <p className="text-body-text">Ladataan...</p>
         </div>
         <Footer />
       </main>
@@ -41,7 +41,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const getStatusColor = () => {
     switch (project.status) {
       case 'Myynnissä':
-        return 'bg-aged-copper'
+        return 'bg-deep-teal'
       case 'Vuokrattavana':
         return 'bg-slate-blue'
       case 'Tulossa':
@@ -49,7 +49,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       case 'Suunnittelussa':
         return 'bg-slate-blue'
       case 'Valmis':
-        return 'bg-aged-copper'
+        return 'bg-deep-teal'
       case 'Myyty':
         return 'bg-gray-500'
       case 'Vuokrattu':
@@ -90,18 +90,18 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center gap-2 text-sm text-deep-charcoal/60"
+            className="flex items-center gap-2 text-sm text-meta-text"
           >
-            <Link href="/" className="hover:text-aged-copper transition-colors flex items-center gap-1">
+            <Link href="/" className="hover:text-deep-teal transition-colors flex items-center gap-1">
               <Home size={14} />
               <span>Etusivu</span>
             </Link>
             <span>/</span>
-            <Link href="/kohteet" className="hover:text-aged-copper transition-colors">
+            <Link href="/kohteet" className="hover:text-deep-teal transition-colors">
               Kohteet
             </Link>
             <span>/</span>
-            <span className="text-deep-charcoal font-medium">{project.name}</span>
+            <span className="text-dark-muted font-medium">{project.name}</span>
           </motion.div>
         </div>
       </section>
@@ -117,14 +117,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <span className={`inline-block px-4 py-1.5 ${getStatusColor()} text-white text-xs font-semibold uppercase tracking-wide mb-4`}>
               {getStatusLabel()}
             </span>
-            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal mb-2 leading-tight">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted mb-2 leading-tight">
               {project.name}
             </h1>
-            <p className="text-deep-charcoal/60 text-lg mb-6 flex items-center gap-2">
-              <MapPin size={18} className="text-aged-copper" />
+            <p className="text-meta-text text-lg mb-6 flex items-center gap-2">
+              <MapPin size={18} className="text-deep-teal" />
               {project.location}
             </p>
-            <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed max-w-3xl">
+            <p className="text-body-text text-base md:text-lg leading-relaxed max-w-3xl">
               {project.description}
             </p>
           </motion.div>
@@ -142,7 +142,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <section className="pb-8 md:pb-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative w-full aspect-video bg-gradient-to-br from-mist-white to-gray-200 flex items-center justify-center rounded-lg">
-              <p className="text-deep-charcoal/50 text-lg">Kuvat tulossa</p>
+              <p className="text-meta-text text-lg">Kuvat tulossa</p>
             </div>
           </div>
         </section>
@@ -158,11 +158,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-8">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-8">
                 Kohteen esittely
               </h2>
               <div 
-                className="text-deep-charcoal/80"
+                className="text-body-text"
                 dangerouslySetInnerHTML={{ __html: project.presentation }}
               />
             </motion.div>
@@ -181,17 +181,17 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               transition={{ duration: 0.7 }}
             >
               <div className="text-center mb-8">
-                <span className="inline-block px-4 py-1.5 bg-aged-copper text-white text-sm font-semibold uppercase tracking-wide mb-3">
+                <span className="inline-block px-4 py-1.5 bg-deep-teal text-white text-sm font-semibold uppercase tracking-wide mb-3">
                   Myynnissä
                 </span>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-2">
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-dark-muted mb-2">
                   Asunto {featuredApartment.id}
                 </h2>
-                <p className="text-deep-charcoal/60">{featuredApartment.name}</p>
+                <p className="text-meta-text">{featuredApartment.name}</p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div className="space-y-3 text-deep-charcoal/80 text-lg">
+                <div className="space-y-3 text-body-text text-lg">
                   {featuredApartment.rooms && <p>• {featuredApartment.rooms}</p>}
                   {featuredApartment.size && <p>• {featuredApartment.size}</p>}
                   {project.rakennusvuosi && <p>• Valmistunut {project.rakennusvuosi}</p>}
@@ -200,8 +200,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 {featuredApartment.price && (
                   <div className="flex items-center justify-center bg-white p-8 rounded-lg shadow-sm">
                     <div className="text-center">
-                      <span className="text-deep-charcoal/60 text-sm font-medium uppercase tracking-wide block mb-2">Velaton hinta</span>
-                      <p className="text-aged-copper font-bold text-4xl md:text-5xl">{featuredApartment.price}</p>
+                      <span className="text-meta-text text-sm font-medium uppercase tracking-wide block mb-2">Velaton hinta</span>
+                      <p className="text-deep-teal font-bold text-4xl md:text-5xl">{featuredApartment.price}</p>
                     </div>
                   </div>
                 )}
@@ -215,7 +215,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white border-2 border-aged-copper text-aged-copper font-semibold hover:bg-aged-copper hover:text-white transition-all duration-200 text-base"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white border-2 border-deep-teal text-deep-teal font-semibold hover:bg-deep-teal hover:text-white transition-all duration-200 text-base"
                   >
                     Katso Etuovessa
                     <ArrowRight size={18} />
@@ -225,7 +225,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer"
                   >
                     Ota yhteyttä
                     <ArrowRight size={18} />
@@ -241,40 +241,40 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       {project.apartments && project.apartments.length > 0 && (
         <section className="py-12 md:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-6">Kaikki asunnot</h2>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-6">Kaikki asunnot</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.apartments.map((apt) => {
                 const getStatusDisplay = (status: string) => {
                   switch (status) {
                     case 'Myynnissä':
-                      return { label: 'Myynnissä', color: 'bg-aged-copper text-white' }
+                      return { label: 'Myynnissä', color: 'bg-deep-teal text-white' }
                     case 'Varattu':
                       return { label: 'Varattu', color: 'bg-slate-blue text-white' }
                     case 'Myyty':
                       return { label: 'Myyty', color: 'bg-gray-400 text-white' }
                     case 'Vapaa':
-                      return { label: 'Kysy saatavuus', color: 'bg-gray-100 text-deep-charcoal/70' }
+                      return { label: 'Kysy saatavuus', color: 'bg-gray-100 text-body-text' }
                     default:
-                      return { label: 'Kysy saatavuus', color: 'bg-gray-100 text-deep-charcoal/70' }
+                      return { label: 'Kysy saatavuus', color: 'bg-gray-100 text-body-text' }
                   }
                 }
                 const statusDisplay = getStatusDisplay(apt.status)
                 const isHighlight = apt.status === 'Myynnissä'
                 
                 return (
-                  <div key={apt.id} className={`p-4 border ${isHighlight ? 'border-aged-copper bg-aged-copper/5' : 'border-gray-200 bg-white'} rounded-lg`}>
+                  <div key={apt.id} className={`p-4 border ${isHighlight ? 'border-deep-teal bg-deep-teal/5' : 'border-gray-200 bg-white'} rounded-lg`}>
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-deep-charcoal">Asunto {apt.id}</h3>
+                      <h3 className="font-semibold text-dark-muted">Asunto {apt.id}</h3>
                       <span className={`text-xs px-2 py-1 rounded ${statusDisplay.color}`}>
                         {statusDisplay.label}
                       </span>
                     </div>
                     {apt.status === 'Myynnissä' ? (
-                      <a href="#featured" className="text-aged-copper text-sm hover:underline">Katso tiedot</a>
+                      <a href="#featured" className="text-deep-teal text-sm hover:underline">Katso tiedot</a>
                     ) : apt.status === 'Vapaa' ? (
-                      <Link href="/yhteystiedot#elma" className="text-aged-copper text-sm hover:underline">Kysy saatavuus</Link>
+                      <Link href="/yhteystiedot#elma" className="text-deep-teal text-sm hover:underline">Kysy saatavuus</Link>
                     ) : (
-                      <span className="text-deep-charcoal/50 text-sm">{apt.status}</span>
+                      <span className="text-meta-text text-sm">{apt.status}</span>
                     )}
                   </div>
                 )
@@ -293,43 +293,43 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-8">Kohteen tiedot</h2>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-8">Kohteen tiedot</h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Perustiedot */}
               <div className="bg-white p-6 rounded-lg border border-gray-200">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
-                    <Building2 size={20} className="text-aged-copper" />
+                  <div className="w-10 h-10 bg-deep-teal/10 rounded-lg flex items-center justify-center">
+                    <Building2 size={20} className="text-deep-teal" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-deep-charcoal">Perustiedot</h3>
+                  <h3 className="font-display font-bold text-lg text-dark-muted">Perustiedot</h3>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between py-2 border-b border-gray-100">
-                    <span className="text-deep-charcoal/60 text-sm">Kohdetyyppi</span>
-                    <span className="text-deep-charcoal font-medium text-sm">{project.kohdetyyppi}</span>
+                    <span className="text-meta-text text-sm">Kohdetyyppi</span>
+                    <span className="text-dark-muted font-medium text-sm">{project.kohdetyyppi}</span>
                   </div>
                   {project.asuntojenLkm && (
                     <div className="flex justify-between py-2 border-b border-gray-100">
-                      <span className="text-deep-charcoal/60 text-sm">Asuntoja</span>
-                      <span className="text-deep-charcoal font-medium text-sm">{project.asuntojenLkm}</span>
+                      <span className="text-meta-text text-sm">Asuntoja</span>
+                      <span className="text-dark-muted font-medium text-sm">{project.asuntojenLkm}</span>
                     </div>
                   )}
                   {project.pintaAlat && (
                     <div className="flex justify-between py-2 border-b border-gray-100">
-                      <span className="text-deep-charcoal/60 text-sm">Pinta-alat</span>
-                      <span className="text-deep-charcoal font-medium text-sm">{project.pintaAlat}</span>
+                      <span className="text-meta-text text-sm">Pinta-alat</span>
+                      <span className="text-dark-muted font-medium text-sm">{project.pintaAlat}</span>
                     </div>
                   )}
                   {project.slug === 'levi-suvannoisenkuja-10' && (
                     <div className="flex justify-between py-2 border-b border-gray-100">
-                      <span className="text-deep-charcoal/60 text-sm">Tontti</span>
-                      <span className="text-deep-charcoal font-medium text-sm">Oma</span>
+                      <span className="text-meta-text text-sm">Tontti</span>
+                      <span className="text-dark-muted font-medium text-sm">Oma</span>
                     </div>
                   )}
                   <div className="flex justify-between py-2">
-                    <span className="text-deep-charcoal/60 text-sm">Status</span>
-                    <span className="text-deep-charcoal font-medium text-sm">{project.status}</span>
+                    <span className="text-meta-text text-sm">Status</span>
+                    <span className="text-dark-muted font-medium text-sm">{project.status}</span>
                   </div>
                 </div>
               </div>
@@ -340,29 +340,29 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <div className="w-10 h-10 bg-slate-blue/10 rounded-lg flex items-center justify-center">
                     <Calendar size={20} className="text-slate-blue" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-deep-charcoal">Aikataulu</h3>
+                  <h3 className="font-display font-bold text-lg text-dark-muted">Aikataulu</h3>
                 </div>
                 <div className="space-y-3">
                   {project.rakennusvuosi && (
                     <div className="flex justify-between py-2 border-b border-gray-100">
-                      <span className="text-deep-charcoal/60 text-sm">Rakennusvuosi</span>
-                      <span className="text-deep-charcoal font-medium text-sm">{project.rakennusvuosi}</span>
+                      <span className="text-meta-text text-sm">Rakennusvuosi</span>
+                      <span className="text-dark-muted font-medium text-sm">{project.rakennusvuosi}</span>
                     </div>
                   )}
                   {project.valmistumisvuosi && (
                     <div className="flex justify-between py-2 border-b border-gray-100">
-                      <span className="text-deep-charcoal/60 text-sm">Valmistuminen</span>
-                      <span className="text-deep-charcoal font-medium text-sm">{project.valmistumisvuosi}</span>
+                      <span className="text-meta-text text-sm">Valmistuminen</span>
+                      <span className="text-dark-muted font-medium text-sm">{project.valmistumisvuosi}</span>
                     </div>
                   )}
                   {project.kaytto && (
                     <div className="flex justify-between py-2">
-                      <span className="text-deep-charcoal/60 text-sm">Käyttötarkoitus</span>
-                      <span className="text-deep-charcoal font-medium text-sm">{project.kaytto}</span>
+                      <span className="text-meta-text text-sm">Käyttötarkoitus</span>
+                      <span className="text-dark-muted font-medium text-sm">{project.kaytto}</span>
                     </div>
                   )}
                   {!project.rakennusvuosi && !project.valmistumisvuosi && !project.kaytto && (
-                    <p className="text-deep-charcoal/60 text-sm">Tiedot täydentyvät</p>
+                    <p className="text-meta-text text-sm">Tiedot täydentyvät</p>
                   )}
                 </div>
               </div>
@@ -370,15 +370,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               {/* Sijainti */}
               <div className="bg-white p-6 rounded-lg border border-gray-200">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-aged-copper/10 rounded-lg flex items-center justify-center">
-                    <MapPin size={20} className="text-aged-copper" />
+                  <div className="w-10 h-10 bg-deep-teal/10 rounded-lg flex items-center justify-center">
+                    <MapPin size={20} className="text-deep-teal" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-deep-charcoal">Sijainti</h3>
+                  <h3 className="font-display font-bold text-lg text-dark-muted">Sijainti</h3>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between py-2 border-b border-gray-100">
-                    <span className="text-deep-charcoal/60 text-sm">Paikkakunta</span>
-                    <span className="text-deep-charcoal font-medium text-sm">{project.location}</span>
+                    <span className="text-meta-text text-sm">Paikkakunta</span>
+                    <span className="text-dark-muted font-medium text-sm">{project.location}</span>
                   </div>
                 </div>
               </div>
@@ -396,7 +396,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-4">
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-4">
               {isReference 
                 ? 'Kiinnostaako vastaavanlainen kohde?'
                 : isUpcoming
@@ -404,7 +404,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   : 'Kiinnostuitko tästä kohteesta?'
               }
             </h2>
-            <p className="text-deep-charcoal/70 text-base mb-8">
+            <p className="text-body-text text-base mb-8">
               {isReference 
                 ? 'Ota yhteyttä ja kerro, millaista kotia etsit. Kerromme tulevista kohteista.'
                 : isUpcoming
@@ -418,7 +418,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 text-base cursor-pointer shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer shadow-md hover:shadow-lg"
               >
                 {isReference ? 'Kysy tulevista kohteista' : isUpcoming ? 'Ilmoittaudu kiinnostuneeksi' : 'Ota yhteyttä'}
                 <ArrowRight size={18} />

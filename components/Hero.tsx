@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section id="etusivu" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-deep-charcoal via-slate-blue to-deep-charcoal">
+    <section id="etusivu" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-dark-muted via-slate-blue to-dark-muted">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -18,14 +18,14 @@ export default function Hero() {
           quality={90}
         />
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-deep-charcoal/85 via-slate-blue/75 to-deep-charcoal/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-muted/80 via-black/70 to-dark-muted/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(168,93,44,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(31,43,43,0.15),transparent_50%)]" />
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-32 h-32 bg-aged-copper/10 rounded-full blur-3xl hidden lg:block" />
-      <div className="absolute bottom-20 left-10 w-40 h-40 bg-light-oak/10 rounded-full blur-3xl hidden lg:block" />
+      <div className="absolute top-20 right-10 w-32 h-32 bg-deep-teal/8 rounded-full blur-3xl hidden lg:block" />
+      <div className="absolute bottom-20 left-10 w-40 h-40 bg-warm-rose/8 rounded-full blur-3xl hidden lg:block" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
@@ -62,7 +62,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center cursor-pointer"
+                className="group relative px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl text-base sm:text-lg text-center cursor-pointer"
               >
                 Myytävät asunnot
               </motion.div>
@@ -75,7 +75,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 whileHover={{ y: -4, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-300 shadow-lg hover:shadow-2xl text-base sm:text-lg text-center cursor-pointer"
+                className="group relative px-8 py-4 bg-transparent border border-deep-teal text-white font-semibold hover:bg-deep-teal/10 transition-all duration-300 shadow-sm hover:shadow-md rounded-xl text-base sm:text-lg text-center cursor-pointer"
               >
                 Vuokrattavat asunnot
               </motion.div>

@@ -37,7 +37,7 @@ export default function ContactPage() {
     <main className="min-h-screen">
       <Navbar />
       
-      <section className="pt-24 md:pt-32 pb-24 bg-gradient-to-b from-white via-mist-white/30 to-white">
+      <section className="pt-24 md:pt-32 pb-24 bg-gradient-to-b from-white via-warm-rose/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <motion.div
@@ -47,13 +47,13 @@ export default function ContactPage() {
             className="mb-16 md:mb-20"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="h-px w-12 bg-aged-copper" />
-              <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Yhteystiedot</span>
+              <div className="h-px w-12 bg-deep-teal" />
+              <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">Yhteystiedot</span>
             </div>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-deep-charcoal mb-6 leading-[1.1] tracking-tight">
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-dark-muted mb-6 leading-[1.1] tracking-tight">
               Ota yhteyttä heti tänään.
             </h1>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-8">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-dark-muted mb-8">
               HIETAKOSKI Oy
             </h2>
           </motion.div>
@@ -67,14 +67,14 @@ export default function ContactPage() {
               className="space-y-8"
             >
               {/* Postiosoite */}
-              <div className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
+              <div className="bg-sand-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-aged-copper/10 flex items-center justify-center">
-                    <MapPin className="text-aged-copper" size={24} />
+                  <div className="flex-shrink-0 w-12 h-12 bg-deep-teal/10 flex items-center justify-center">
+                    <MapPin className="text-deep-teal" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-deep-charcoal mb-2">Postiosoite</h3>
-                    <p className="text-deep-charcoal/70 leading-relaxed">
+                    <h3 className="font-display font-bold text-xl text-dark-muted mb-2">Postiosoite</h3>
+                    <p className="text-dark-muted/70 leading-relaxed">
                       Kuninkaanlähteenkatu 8<br />
                       38700 Kankaanpää
                     </p>
@@ -83,45 +83,55 @@ export default function ContactPage() {
               </div>
 
               {/* Rakennustyömaat ja valvonta */}
-              <div className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
+              <div className="bg-sand-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-blue/10 flex items-center justify-center">
                     <Phone className="text-slate-blue" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-deep-charcoal mb-2">Rakennustyömaat ja valvonta</h3>
-                    <p className="text-deep-charcoal/70 leading-relaxed">
-                      Janne, <a href="tel:+358505903080" className="text-aged-copper hover:underline">+358 505903 080</a>
+                    <h3 className="font-display font-bold text-xl text-dark-muted mb-2">Rakennustyömaat ja valvonta</h3>
+                    <p className="text-dark-muted/70 leading-relaxed mb-2">
+                      Janne, <a href="tel:+358505903080" className="text-deep-teal hover:underline">+358 505903 080</a>
+                    </p>
+                    <p className="text-dark-muted/70 leading-relaxed">
+                      <a href="mailto:janne.alakoski@areagroup.fi" className="text-deep-teal hover:underline">
+                        janne.alakoski@areagroup.fi
+                      </a>
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Suunnittelu ja lupa-asiat */}
-              <div className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
+              <div className="bg-sand-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-blue/10 flex items-center justify-center">
                     <Phone className="text-slate-blue" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-deep-charcoal mb-2">Suunnittelu ja lupa-asiat</h3>
-                    <p className="text-deep-charcoal/70 leading-relaxed">
-                      Olli, <a href="tel:+358504496321" className="text-aged-copper hover:underline">+35850 4496 321</a>
+                    <h3 className="font-display font-bold text-xl text-dark-muted mb-2">Suunnittelu ja lupa-asiat</h3>
+                    <p className="text-dark-muted/70 leading-relaxed mb-2">
+                      Olli, <a href="tel:+358504496321" className="text-deep-teal hover:underline">+35850 4496 321</a>
+                    </p>
+                    <p className="text-dark-muted/70 leading-relaxed">
+                      <a href="mailto:olli.hietanen@areagroup.fi" className="text-deep-teal hover:underline">
+                        olli.hietanen@areagroup.fi
+                      </a>
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Sähköposti */}
-              <div className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
+              <div className="bg-sand-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-aged-copper/10 flex items-center justify-center">
-                    <Mail className="text-aged-copper" size={24} />
+                  <div className="flex-shrink-0 w-12 h-12 bg-deep-teal/10 flex items-center justify-center">
+                    <Mail className="text-deep-teal" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-deep-charcoal mb-2">Sähköposti</h3>
-                    <p className="text-deep-charcoal/70 leading-relaxed">
-                      <a href="mailto:hietakoski@gmail.com" className="text-aged-copper hover:underline">
+                    <h3 className="font-display font-bold text-xl text-dark-muted mb-2">Sähköposti</h3>
+                    <p className="text-dark-muted/70 leading-relaxed">
+                      <a href="mailto:hietakoski@gmail.com" className="text-deep-teal hover:underline">
                         hietakoski@gmail.com
                       </a>
                     </p>
@@ -130,19 +140,19 @@ export default function ContactPage() {
               </div>
 
               {/* Laskutusohje */}
-              <div id="laskutus" className="bg-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
+              <div id="laskutus" className="bg-sand-white/80 backdrop-blur-sm p-8 border border-gray-200/60 shadow-sm">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-blue/10 flex items-center justify-center">
                     <Building2 className="text-slate-blue" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-deep-charcoal mb-4">Laskutusohje</h3>
-                    <div className="text-deep-charcoal/70 leading-relaxed space-y-2 text-sm">
+                    <h3 className="font-display font-bold text-xl text-dark-muted mb-4">Laskutusohje</h3>
+                    <div className="text-dark-muted/70 leading-relaxed space-y-2 text-sm">
                       <p><strong>Hietakoski Oy,</strong> 3000614-7</p>
                       <p><strong>Verkkolaskuosoite:</strong> 003730006147</p>
                       <p><strong>Operaattori:</strong> Maventa (003721291126)</p>
                       <p><strong>Välittäjätunnus pankkiverkosta lähetettäessä:</strong> DABAFIHH*</p>
-                      <p className="text-xs text-deep-charcoal/60 mt-3">
+                      <p className="text-xs text-dark-muted/60 mt-3">
                         *Käyttäkää tätä välittäjätunnusta mikäli käytössänne olevasta verkkolaskutusohjelmasta ei voi lähettää laskuja suoraan Maventan välittäjätunnukselle.
                       </p>
                     </div>
@@ -157,8 +167,8 @@ export default function ContactPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <div className="bg-white/80 backdrop-blur-sm p-8 md:p-10 border border-gray-200/60 shadow-xl">
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-deep-charcoal mb-6">
+              <div className="bg-sand-white/80 backdrop-blur-sm p-8 md:p-10 border border-gray-200/60 shadow-xl">
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-6">
                   Lähetä viesti
                 </h3>
                 
@@ -166,8 +176,8 @@ export default function ContactPage() {
                   {/* Name Fields */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-deep-charcoal mb-2">
-                        Etunimi <span className="text-aged-copper">*</span>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-dark-muted mb-2">
+                        Etunimi <span className="text-deep-teal">*</span>
                       </label>
                       <input
                         type="text"
@@ -176,12 +186,12 @@ export default function ContactPage() {
                         required
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all bg-white text-deep-charcoal"
+                        className="w-full px-4 py-3 border border-gray-300 focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all bg-sand-white text-dark-muted"
                       />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-deep-charcoal mb-2">
-                        Sukunimi <span className="text-aged-copper">*</span>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-dark-muted mb-2">
+                        Sukunimi <span className="text-deep-teal">*</span>
                       </label>
                       <input
                         type="text"
@@ -190,15 +200,15 @@ export default function ContactPage() {
                         required
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all bg-white text-deep-charcoal"
+                        className="w-full px-4 py-3 border border-gray-300 focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all bg-sand-white text-dark-muted"
                       />
                     </div>
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-deep-charcoal mb-2">
-                      Sähköposti <span className="text-aged-copper">*</span>
+                    <label htmlFor="email" className="block text-sm font-medium text-dark-muted mb-2">
+                      Sähköposti <span className="text-deep-teal">*</span>
                     </label>
                     <input
                       type="email"
@@ -207,14 +217,14 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all bg-white text-deep-charcoal"
+                      className="w-full px-4 py-3 border border-gray-300 focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all bg-sand-white text-dark-muted"
                     />
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-deep-charcoal mb-2">
-                      Viesti <span className="text-aged-copper">*</span>
+                    <label htmlFor="message" className="block text-sm font-medium text-dark-muted mb-2">
+                      Viesti <span className="text-deep-teal">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -223,7 +233,7 @@ export default function ContactPage() {
                       rows={6}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all bg-white text-deep-charcoal resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all bg-sand-white text-dark-muted resize-none"
                     />
                   </div>
 
@@ -233,7 +243,7 @@ export default function ContactPage() {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full px-8 py-4 bg-aged-copper text-white font-semibold hover:bg-aged-copper/90 transition-all duration-200 shadow-lg hover:shadow-xl text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 shadow-md hover:shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Lähetetään...' : 'Lähetä'}
                   </motion.button>

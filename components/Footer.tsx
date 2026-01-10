@@ -9,7 +9,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-deep-charcoal text-white">
+    <footer className="bg-dark-muted text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-12">
           {/* Company Info */}
@@ -80,17 +80,17 @@ export default function Footer() {
                   href="tel:+358442063617"
                   className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm group"
                 >
-                  <Phone size={14} className="text-aged-copper" />
+                  <Phone size={14} className="text-deep-teal" />
                   <span>044 206 3617</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:elma.alakoski@mallirakennus.fi"
+                  href="mailto:elma.alakoski@areagroup.fi"
                   className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm group"
                 >
-                  <Mail size={14} className="text-aged-copper" />
-                  <span>elma.alakoski@mallirakennus.fi</span>
+                  <Mail size={14} className="text-deep-teal" />
+                  <span>elma.alakoski@areagroup.fi</span>
                 </a>
               </li>
             </ul>
@@ -107,7 +107,7 @@ export default function Footer() {
               Postiosoite
             </h3>
             <div className="flex items-start gap-3 text-white/70 text-sm">
-              <MapPin size={14} className="text-aged-copper mt-0.5 flex-shrink-0" />
+              <MapPin size={14} className="text-deep-teal mt-0.5 flex-shrink-0" />
               <div>
                 <p>Kuninkaanlähteenkatu 8</p>
                 <p>38700 Kankaanpää</p>
@@ -117,7 +117,7 @@ export default function Footer() {
             <Link href="/yhteystiedot#laskutus" className="mt-6 block">
               <motion.span
                 whileHover={{ x: 4 }}
-                className="text-aged-copper hover:text-aged-copper/80 text-sm inline-flex items-center gap-1 cursor-pointer"
+                className="text-deep-teal hover:text-deep-teal/80 text-sm inline-flex items-center gap-1 cursor-pointer"
               >
                 Laskutustiedot
                 <ArrowRight size={14} />

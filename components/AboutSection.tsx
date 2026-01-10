@@ -6,10 +6,10 @@ import Image from 'next/image'
 
 export default function AboutSection() {
   return (
-    <section id="yritys" className="py-24 bg-gradient-to-b from-white via-mist-white/30 to-white relative overflow-hidden">
+    <section id="yritys" className="py-24 bg-gradient-to-b from-sand-white via-warm-rose/20 to-sand-white relative overflow-hidden">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-light-oak/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-aged-copper/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-warm-rose/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-deep-teal/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -20,10 +20,10 @@ export default function AboutSection() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-6">
-            <div className="h-px w-12 bg-aged-copper" />
-            <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Tietoja meistä</span>
+            <div className="h-px w-12 bg-deep-teal" />
+            <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">Tietoja meistä</span>
           </div>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-deep-charcoal mb-6 leading-[1.1] tracking-tight max-w-3xl">
+          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-dark-muted mb-6 leading-[1.1] tracking-tight max-w-3xl">
             Kankaanpääläistä rakennusosaamista suurella sydämellä
           </h2>
         </motion.div>
@@ -38,7 +38,7 @@ export default function AboutSection() {
             className="space-y-8"
           >
             <div className="space-y-6">
-              <p className="text-deep-charcoal/80 text-lg md:text-xl leading-relaxed font-light">
+              <p className="text-body-text text-lg md:text-xl leading-relaxed font-light">
                 Hietakoski Oy on vuonna 2019 perustettu kankaanpääläinen rakennusliike. Toimintamme ydin on yksinkertainen mutta harvinainen: rakennamme laadukkaat puutalokodit täysin valmiiksi omalla rahoituksellamme, jotta sinä voit tehdä ostopäätöksen ilman riskiä. Vahva kasvu ja vakaa talous ovat osoitus siitä, että konseptimme toimii.
               </p>
             </div>
@@ -46,14 +46,14 @@ export default function AboutSection() {
             {/* Stats or Features - more refined */}
             <div className="grid grid-cols-2 gap-4 pt-8">
               <div className="p-5 bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-sm hover:shadow-md transition-shadow">
-                <Award className="text-aged-copper mb-3" size={28} />
-                <p className="text-xl font-bold text-deep-charcoal mb-1">Laatu</p>
-                <p className="text-xs text-deep-charcoal/50 uppercase tracking-wider">Tinkimätön</p>
+                <Award className="text-deep-teal mb-3" size={28} />
+                <p className="text-xl font-bold text-dark-muted mb-1">Laatu</p>
+                <p className="text-xs text-meta-text uppercase tracking-wider">Tinkimätön</p>
               </div>
               <div className="p-5 bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-sm hover:shadow-md transition-shadow">
-                <Users className="text-aged-copper mb-3" size={28} />
-                <p className="text-xl font-bold text-deep-charcoal mb-1">Kokemus</p>
-                <p className="text-xs text-deep-charcoal/50 uppercase tracking-wider">Vankka</p>
+                <Users className="text-deep-teal mb-3" size={28} />
+                <p className="text-xl font-bold text-dark-muted mb-1">Kokemus</p>
+                <p className="text-xs text-meta-text uppercase tracking-wider">Vankka</p>
               </div>
             </div>
           </motion.div>
@@ -93,14 +93,14 @@ export default function AboutSection() {
             className="group relative bg-white/70 backdrop-blur-md p-8 border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300"
           >
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-aged-copper to-aged-copper/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-deep-teal to-deep-teal/80 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                 <Building2 className="text-white" size={32} />
               </div>
               <div className="flex-1">
-                <h3 className="font-display font-bold text-xl text-deep-charcoal mb-3 group-hover:text-aged-copper transition-colors">
+                <h3 className="font-display font-bold text-xl text-dark-muted mb-3 group-hover:text-deep-teal transition-colors">
                   Hietakulma Oy – Turvallinen rakenne
                 </h3>
-                <p className="text-deep-charcoal/70 leading-relaxed text-sm">
+                <p className="text-body-text leading-relaxed text-sm">
                   Hietakulma vastaa lupaprosesseista ja teknisestä suunnittelusta, me toteutuksesta. Yhdessä varmistamme, että kotisi on terveellinen, ekologinen ja energiatehokas. Laadun ketju on katkeamaton suunnittelupöydältä avainten luovutukseen.
                 </p>
               </div>
@@ -113,14 +113,14 @@ export default function AboutSection() {
             className="group relative bg-white/70 backdrop-blur-md p-8 border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300"
           >
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-slate-blue to-slate-blue/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-deep-teal to-deep-teal/80 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                 <Handshake className="text-white" size={32} />
               </div>
               <div className="flex-1">
-                <h3 className="font-display font-bold text-xl text-deep-charcoal mb-3 group-hover:text-aged-copper transition-colors">
+                <h3 className="font-display font-bold text-xl text-dark-muted mb-3 group-hover:text-deep-teal transition-colors">
                   Mallirakennus Oy – Arjessa toimivat kodit
                 </h3>
-                <p className="text-deep-charcoal/70 leading-relaxed text-sm">
+                <p className="text-body-text leading-relaxed text-sm">
                   Mallirakennus Oy:n pitkä kokemus pientaloista takaa, että pohjaratkaisut ovat aidosti toimivia. Kokenut suunnittelu varmistaa, että neliöt ovat hyötykäytössä ja koti palvelee asukkaiden tarpeita vuosikymmeniä.
                 </p>
               </div>

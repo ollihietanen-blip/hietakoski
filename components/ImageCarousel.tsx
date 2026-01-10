@@ -66,14 +66,14 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
                 aria-label="Edellinen kuva"
               >
-                <ChevronLeft size={24} className="text-deep-charcoal" />
+                <ChevronLeft size={24} className="text-dark-muted" />
               </button>
               <button
                 onClick={goToNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
                 aria-label="Seuraava kuva"
               >
-                <ChevronRight size={24} className="text-deep-charcoal" />
+                <ChevronRight size={24} className="text-dark-muted" />
               </button>
             </>
           )}
@@ -95,7 +95,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
                 onClick={() => setCurrentIndex(index)}
                 className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all ${
                   currentIndex === index
-                    ? 'border-aged-copper scale-105'
+                    ? 'border-deep-teal scale-105'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >

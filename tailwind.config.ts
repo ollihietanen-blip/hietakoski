@@ -9,12 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'slate-blue': '#4A5C66',
-        'mist-white': '#F5F7F9',
-        'aged-copper': '#A85D2C',
-        'light-oak': '#C9A87A',
-        'deep-charcoal': '#2C3A42',
-        'warm-cream': '#F8F6F2',
+        'sand-white': '#F9EBD9',
+        'warm-rose': '#EBD6D7',
+        'deep-teal': '#439093',
+        'coral': '#F09B93',
+        'soft-yellow': '#E9DD8A',
+        'dark-muted': '#1F2B2B',
+        'body-text': '#3E4A4A',
+        'meta-text': '#6B7C7C',
+        // Legacy colors kept for gradual migration - map to new palette
+        'slate-blue': '#439093',
+        'mist-white': '#F9EBD9',
+        'aged-copper': '#439093',
+        'light-oak': '#EBD6D7',
+        'deep-charcoal': '#1F2B2B',
+        'warm-cream': '#F9EBD9',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

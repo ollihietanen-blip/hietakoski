@@ -23,7 +23,7 @@ export default function TrustCards() {
   ]
 
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-sand-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <motion.div
@@ -33,10 +33,10 @@ export default function TrustCards() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-charcoal mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-dark-muted mb-4">
             Miksi valita Hietakoski?
           </h2>
-          <p className="text-deep-charcoal/70 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-body-text text-base md:text-lg max-w-2xl mx-auto">
             Rakennamme kodit valmiiksi asti – turvallisesti ja läpinäkyvästi.
           </p>
         </motion.div>
@@ -51,16 +51,16 @@ export default function TrustCards() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)' }}
-                className="group bg-white p-8 md:p-10 border border-gray-200 rounded-xl shadow-sm hover:border-aged-copper/30 transition-all duration-300"
+                whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)' }}
+                className="group bg-white p-8 md:p-10 border border-gray-200 rounded-xl shadow-sm hover:border-deep-teal/30 transition-all duration-300"
               >
-                <div className="w-14 h-14 bg-aged-copper/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-aged-copper group-hover:scale-110 transition-all duration-300">
-                  <Icon className="text-aged-copper group-hover:text-white transition-colors duration-300" size={28} />
+                <div className="w-14 h-14 bg-deep-teal/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-deep-teal group-hover:scale-110 transition-all duration-300">
+                  <Icon className="text-deep-teal group-hover:text-white transition-colors duration-300" size={28} />
                 </div>
-                <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal mb-3 group-hover:text-aged-copper transition-colors duration-300">
+                <h3 className="font-display text-xl md:text-2xl font-bold text-dark-muted mb-3 group-hover:text-deep-teal transition-colors duration-300">
                   {card.title}
                 </h3>
-                <p className="text-deep-charcoal/70 text-base leading-relaxed">
+                <p className="text-body-text text-base leading-relaxed">
                   {card.text}
                 </p>
               </motion.div>

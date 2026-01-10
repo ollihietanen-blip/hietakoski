@@ -20,7 +20,7 @@ export default function TrustBar() {
   ]
 
   return (
-    <section className="bg-white py-20 md:py-28 border-y border-gray-100/50">
+    <section className="bg-sand-white py-20 md:py-28 border-y border-gray-100/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -30,7 +30,7 @@ export default function TrustBar() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 md:mb-20"
         >
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal mb-4">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted mb-4">
             Laadun ketju
           </h2>
           <p className="text-slate-blue/70 text-lg md:text-xl font-light max-w-2xl mx-auto">
@@ -60,7 +60,7 @@ export default function TrustBar() {
               </div>
 
               {/* Description */}
-              <p className="text-deep-charcoal/80 text-base md:text-lg leading-relaxed mb-6">
+              <p className="text-body-text text-base md:text-lg leading-relaxed mb-6">
                 {partner.description}
               </p>
 
@@ -69,7 +69,7 @@ export default function TrustBar() {
                 {partner.highlights.map((highlight, i) => (
                   <span
                     key={i}
-                    className="inline-block px-4 py-2 bg-mist-white text-slate-blue text-sm font-medium"
+                    className="inline-block px-4 py-2 bg-sand-white text-slate-blue text-sm font-medium"
                   >
                     {highlight}
                   </span>

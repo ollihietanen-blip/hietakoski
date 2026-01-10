@@ -47,7 +47,7 @@ export default function ProjectFilter({
     <div className="mb-12 md:mb-16">
       {/* Pääsuodatus - Status */}
       <div className="mb-8">
-        <h3 className="text-sm font-semibold text-deep-charcoal/70 mb-4 uppercase tracking-wide">
+        <h3 className="text-sm font-semibold text-meta-text mb-4 uppercase tracking-wide">
           Tila
         </h3>
         <div className="flex flex-wrap gap-3">
@@ -57,10 +57,10 @@ export default function ProjectFilter({
               onClick={() => onStatusChange(status)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
+              className={`px-6 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 ${
                 selectedStatus === status
-                  ? 'bg-aged-copper text-white shadow-md'
-                  : 'bg-white border-2 border-gray-200 text-deep-charcoal hover:border-aged-copper hover:text-aged-copper'
+                  ? 'bg-deep-teal text-white shadow-md'
+                  : 'bg-white border-2 border-gray-200 text-dark-muted hover:border-deep-teal hover:text-deep-teal'
               }`}
             >
               {status}
@@ -73,13 +73,13 @@ export default function ProjectFilter({
       <div className="grid md:grid-cols-3 gap-6 mb-6">
         {/* Kohdetyyppi */}
         <div>
-          <label className="block text-sm font-semibold text-deep-charcoal/70 mb-3 uppercase tracking-wide">
+          <label className="block text-sm font-semibold text-meta-text mb-3 uppercase tracking-wide">
             Kohdetyyppi
           </label>
           <select
             value={selectedKohdetyyppi}
             onChange={(e) => onKohdetyyppiChange(e.target.value as Kohdetyyppi | 'Kaikki')}
-            className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-lg text-deep-charcoal focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all"
+            className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-dark-muted focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all"
           >
             <option value="Kaikki">Kaikki</option>
             {availableKohdetyypit.map((type) => (
@@ -92,13 +92,13 @@ export default function ProjectFilter({
 
         {/* Käyttö */}
         <div>
-          <label className="block text-sm font-semibold text-deep-charcoal/70 mb-3 uppercase tracking-wide">
+          <label className="block text-sm font-semibold text-meta-text mb-3 uppercase tracking-wide">
             Käyttö
           </label>
           <select
             value={selectedKaytto}
             onChange={(e) => onKayttoChange(e.target.value as Kaytto | 'Kaikki')}
-            className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-lg text-deep-charcoal focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all"
+            className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-dark-muted focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all"
           >
             <option value="Kaikki">Kaikki</option>
             {availableKaytto.map((kaytto) => (
@@ -111,13 +111,13 @@ export default function ProjectFilter({
 
         {/* Paikkakunta */}
         <div>
-          <label className="block text-sm font-semibold text-deep-charcoal/70 mb-3 uppercase tracking-wide">
+          <label className="block text-sm font-semibold text-meta-text mb-3 uppercase tracking-wide">
             Paikkakunta
           </label>
           <select
             value={selectedLocation}
             onChange={(e) => onLocationChange(e.target.value as string | 'Kaikki')}
-            className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-lg text-deep-charcoal focus:border-aged-copper focus:ring-2 focus:ring-aged-copper/20 outline-none transition-all"
+            className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-dark-muted focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all"
           >
             <option value="Kaikki">Kaikki</option>
             {availableLocations.map((location) => (
@@ -135,7 +135,7 @@ export default function ProjectFilter({
           onClick={onClearFilters}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm text-deep-charcoal/70 hover:text-deep-charcoal transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm text-meta-text hover:text-dark-muted transition-colors"
         >
           <X size={16} />
           <span>Tyhjennä suodattimet ({activeFilterCount})</span>

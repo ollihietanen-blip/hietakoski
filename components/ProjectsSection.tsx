@@ -15,7 +15,7 @@ export default function ProjectsSection() {
   )
 
   return (
-    <section id="kohteet" className="py-20 md:py-28 bg-warm-cream relative overflow-hidden">
+    <section id="kohteet" className="py-20 md:py-28 bg-sand-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_2px_2px,#000_1px,transparent_0)] bg-[length:40px_40px]" />
@@ -30,13 +30,13 @@ export default function ProjectsSection() {
           className="mb-10 md:mb-14"
         >
           <div className="flex items-center gap-4 mb-4">
-            <div className="h-px w-12 bg-aged-copper" />
-            <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Kohteet</span>
+            <div className="h-px w-12 bg-deep-teal" />
+            <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">Kohteet</span>
           </div>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted mb-4 leading-[1.1] tracking-tight">
             Ajankohtaiset kohteet
           </h2>
-          <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed max-w-3xl">
+          <p className="text-body-text text-base md:text-lg leading-relaxed max-w-3xl">
             Hietakosken toteuttamat kohteet ovat myynnissä Etuovessa eri välityskumppaneiden kautta. Toteutus, laatu ja vastuut ovat aina Hietakosken.
           </p>
         </motion.div>
@@ -58,7 +58,7 @@ export default function ProjectsSection() {
           <Link href="/kohteet">
             <motion.div
               whileHover={{ x: 5 }}
-              className="inline-flex items-center gap-2 text-aged-copper font-semibold text-base hover:underline cursor-pointer"
+              className="inline-flex items-center gap-2 text-deep-teal font-semibold text-base hover:underline cursor-pointer"
             >
               Katso kaikki kohteet
               <ArrowRight size={18} />

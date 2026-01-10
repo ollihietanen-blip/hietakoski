@@ -102,7 +102,7 @@ export const projects: Project[] = [
 
 <p class="mb-6 text-base md:text-lg leading-relaxed">Levin Atrin Atmos on energiatehokas puuelementtikohde, jossa sekä seinärakenteet että yläpohja on toteutettu nykyaikaiset vaatimukset täyttävällä eristystasolla. Huoneistokohtainen ilmanvaihto ja moderni lämmitysratkaisu tukevat tasapainoista sisäilmaa ja tehokasta energiankäyttöä.</p>
 
-<p class="mb-4 text-base md:text-lg leading-relaxed font-semibold text-deep-charcoal">Varustelutaso</p>
+<p class="mb-4 text-base md:text-lg leading-relaxed font-semibold text-dark-muted">Varustelutaso</p>
 <ul class="mb-6 ml-6 list-disc space-y-2 text-base md:text-lg leading-relaxed">
   <li>kotimaiset ikkunat ja ovet, integroidut sälekaihtimet</li>
   <li>laadukkaat kodinkoneet ja pintamateriaalit</li>

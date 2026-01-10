@@ -9,8 +9,8 @@
   }
   
   body {
-    background-color: #F8F6F2;
-    color: #2C3A42;
+    background-color: #F9EBD9;
+    color: #3E4A4A;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'kern' 1, 'liga' 1;
@@ -33,6 +33,13 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
     letter-spacing: -0.02em;
+    color: #1F2B2B;
+    font-weight: 500;
+  }
+  
+  p {
+    line-height: 1.65;
+    color: #3E4A4A;
   }
 }
 

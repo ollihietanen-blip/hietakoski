@@ -19,21 +19,21 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const getStatusColor = () => {
     switch (project.status) {
       case 'Myynnissä':
-        return 'bg-aged-copper'
+        return 'bg-deep-teal'
       case 'Vuokrattavana':
-        return 'bg-slate-blue'
+        return 'bg-deep-teal'
       case 'Tulossa':
-        return 'bg-slate-blue'
+        return 'bg-deep-teal'
       case 'Suunnittelussa':
-        return 'bg-slate-blue'
+        return 'bg-deep-teal'
       case 'Valmis':
-        return 'bg-gray-500'
+        return 'bg-meta-text'
       case 'Myyty':
-        return 'bg-gray-500'
+        return 'bg-meta-text'
       case 'Vuokrattu':
-        return 'bg-gray-500'
+        return 'bg-meta-text'
       default:
-        return 'bg-slate-blue'
+        return 'bg-deep-teal'
     }
   }
 
@@ -71,7 +71,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
         {/* Tag */}
         <div className="absolute top-4 right-4 z-10">
-          <span className="inline-block px-3 py-1.5 bg-white/95 backdrop-blur-sm text-deep-charcoal text-xs font-medium rounded-lg shadow-md">
+          <span className="inline-block px-3 py-1.5 bg-white/95 backdrop-blur-sm text-dark-muted text-xs font-medium rounded-lg shadow-md">
             {project.kohdetyyppi}
           </span>
         </div>
@@ -80,23 +80,23 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       <div className="p-6">
         {/* Name and Location */}
         <div className="mb-3">
-          <h3 className="font-display text-xl md:text-2xl font-bold text-deep-charcoal mb-1 group-hover:text-aged-copper transition-colors duration-300 leading-tight">
+          <h3 className="font-display text-xl md:text-2xl font-bold text-dark-muted mb-1 group-hover:text-deep-teal transition-colors duration-300 leading-tight">
             {project.name}
           </h3>
-          <p className="text-deep-charcoal/60 text-sm flex items-center gap-1">
-            <MapPin size={14} className="text-aged-copper" />
+          <p className="text-meta-text text-sm flex items-center gap-1">
+            <MapPin size={14} className="text-deep-teal" />
             {project.location}
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-deep-charcoal/70 text-sm mb-4 line-clamp-2 leading-relaxed">
+        <p className="text-body-text text-sm mb-4 line-clamp-2 leading-relaxed">
           {project.description}
         </p>
 
         {/* Specs */}
         {project.specs && (
-          <p className="text-deep-charcoal/60 text-xs font-medium mb-4 pb-4 border-b border-gray-100">
+          <p className="text-meta-text text-xs font-medium mb-4 pb-4 border-b border-gray-100">
             {project.specs}
           </p>
         )}
@@ -106,7 +106,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           <motion.div
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.98 }}
-            className="group/btn inline-flex items-center gap-2 text-aged-copper font-semibold text-sm cursor-pointer"
+            className="group/btn inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer"
           >
             <span>Katso kohde</span>
             <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />

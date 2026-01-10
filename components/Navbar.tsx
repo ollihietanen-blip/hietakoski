@@ -54,7 +54,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Logo className="group-hover:[&_svg]:text-aged-copper group-hover:[&_span]:text-aged-copper transition-colors duration-300" />
+              <Logo className="group-hover:[&_svg]:text-deep-teal group-hover:[&_span]:text-deep-teal transition-colors duration-300" />
             </motion.div>
           </Link>
 
@@ -68,15 +68,15 @@ export default function Navbar() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`relative px-4 py-2 font-medium text-sm transition-colors duration-200 cursor-pointer ${
                     isActive(link.href) 
-                      ? 'text-aged-copper' 
-                      : 'text-deep-charcoal hover:text-aged-copper'
+                      ? 'text-deep-teal' 
+                      : 'text-dark-muted hover:text-deep-teal'
                   }`}
                 >
                   {link.label}
                   {isActive(link.href) && (
                     <motion.span
                       layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-aged-copper"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-deep-teal"
                     />
                   )}
                 </motion.div>
@@ -91,7 +91,7 @@ export default function Navbar() {
                 transition={{ duration: 0.5, delay: navLinks.length * 0.1 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="ml-4 px-6 py-2.5 bg-aged-copper text-white font-semibold text-sm rounded-lg hover:bg-aged-copper/90 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+                className="ml-4 px-6 py-2.5 bg-deep-teal text-white font-semibold text-sm rounded-xl hover:bg-deep-teal/90 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
                 Ota yhteyttä
               </motion.div>
@@ -100,7 +100,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-deep-charcoal p-2 rounded-lg hover:bg-mist-white transition-colors"
+            className="md:hidden text-dark-muted p-2 rounded-lg hover:bg-sand-white transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
             aria-label="Toggle menu"
@@ -130,8 +130,8 @@ export default function Navbar() {
                     transition={{ delay: index * 0.05 }}
                     className={`block py-3 px-4 font-medium text-base rounded-lg transition-colors cursor-pointer ${
                       isActive(link.href)
-                        ? 'text-aged-copper bg-aged-copper/5'
-                        : 'text-deep-charcoal hover:text-aged-copper hover:bg-mist-white'
+                        ? 'text-deep-teal bg-deep-teal/5'
+                        : 'text-dark-muted hover:text-deep-teal hover:bg-sand-white'
                     }`}
                   >
                     {link.label}
@@ -146,7 +146,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.05 }}
-                  className="block mt-4 py-3 px-6 bg-aged-copper text-white font-semibold text-base rounded-lg text-center cursor-pointer"
+                  className="block mt-4 py-3 px-6 bg-deep-teal text-white font-semibold text-base rounded-xl text-center cursor-pointer"
                 >
                   Ota yhteyttä
                 </motion.div>

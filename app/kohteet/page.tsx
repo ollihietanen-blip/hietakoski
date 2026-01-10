@@ -91,13 +91,13 @@ function KohteetContent() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="h-px w-12 bg-aged-copper" />
-              <span className="text-aged-copper text-sm font-medium tracking-wider uppercase">Kohteet</span>
+              <div className="h-px w-12 bg-deep-teal" />
+              <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">Kohteet</span>
             </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-deep-charcoal mb-4 leading-[1.1] tracking-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-dark-muted mb-4 leading-[1.1] tracking-tight">
               Kaikki kohteet
             </h1>
-            <p className="text-deep-charcoal/70 text-base md:text-lg leading-relaxed max-w-3xl">
+            <p className="text-body-text text-base md:text-lg leading-relaxed max-w-3xl">
               Hietakoski toteuttaa paritaloja ja pienempiä asuinkohteita kasvukeskuksiin. 
               Alta löydät myynnissä, tulossa ja valmiit kohteet.
             </p>
@@ -129,7 +129,7 @@ function KohteetContent() {
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-deep-charcoal/60 text-sm mb-6"
+            className="text-meta-text text-sm mb-6"
           >
             {filteredProjects.length} kohdetta
           </motion.p>
@@ -147,12 +147,12 @@ function KohteetContent() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16 bg-white rounded-xl border border-gray-100"
             >
-              <p className="text-deep-charcoal/70 text-lg mb-4">
+              <p className="text-body-text text-lg mb-4">
                 Ei kohteita valittujen suodattimien mukaan.
               </p>
               <button
                 onClick={handleClearFilters}
-                className="text-aged-copper hover:text-aged-copper/80 font-medium underline"
+                className="text-deep-teal hover:text-deep-teal/80 font-medium underline"
               >
                 Tyhjennä suodattimet
               </button>
@@ -166,12 +166,12 @@ function KohteetContent() {
 
 export default function KohteetPage() {
   return (
-    <main className="min-h-screen bg-warm-cream">
+    <main className="min-h-screen bg-sand-white">
       <Navbar />
       <Suspense fallback={
         <section className="pt-24 md:pt-32 pb-8 md:pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-deep-charcoal/70">Ladataan...</p>
+            <p className="text-body-text">Ladataan...</p>
           </div>
         </section>
       }>
