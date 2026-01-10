@@ -18,13 +18,15 @@ interface ProjectPageProps {
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const router = useRouter()
-  const project = getProjectBySlug(params.slug)
+  const slug = params.slug || ''
+  const project = getProjectBySlug(slug)
 
   useEffect(() => {
-    if (!project) {
+    if (slug && !project) {
+      // If project not found, redirect to projects page
       router.push('/kohteet')
     }
-  }, [project, router])
+  }, [project, router, slug])
 
   if (!project) {
     return (
