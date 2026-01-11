@@ -3,33 +3,36 @@
 import { motion } from 'framer-motion'
 import { Search, CheckCircle, Calendar, Home } from 'lucide-react'
 import Link from 'next/link'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function CustomerJourney() {
+  const { t } = useI18n()
+  
   const steps = [
     {
       number: 1,
       icon: Search,
-      title: 'Löydä kohde',
-      description: 'Tutustu myynnissä oleviin kohteisiin etuovi.comissa tai hietakoski.fi:ssä.',
+      title: t.customerJourney.step1.title,
+      description: t.customerJourney.step1.description,
     },
     {
       number: 2,
       icon: CheckCircle,
-      title: 'Tutustu tekijään',
-      description: 'Varmista, kuka kohteen rakentaa ja vastaa toteutuksesta sekä laadusta koko hankkeen ajan.',
+      title: t.customerJourney.step2.title,
+      description: t.customerJourney.step2.description,
     },
     {
       number: 3,
       icon: Calendar,
-      title: 'Sovi esittely',
-      description: 'Elma ja yhteistyökumppanina toimivat välittäjät auttavat sopimaan esittelyn kohteeseen.',
+      title: t.customerJourney.step3.title,
+      description: t.customerJourney.step3.description,
       link: 'mailto:elma.alakoski@areagroup.fi?subject=Esittelypyyntö&body=Hei,%0D%0A%0D%0AHaluaisin ehdottaa esittelyä seuraavaan aikaan:%0D%0A%0D%0APäivämäärä ja kellonaika:%0D%0A%0D%0AKohteeseen liittyen:%0D%0A%0D%0ATerveisin,',
     },
     {
       number: 4,
       icon: Home,
-      title: 'Osta valmis koti',
-      description: 'Ostat valmiin kodin ja muutat sisään ilman rakennusvaiheen epävarmuuksia.',
+      title: t.customerJourney.step4.title,
+      description: t.customerJourney.step4.description,
     },
   ]
 
@@ -45,7 +48,7 @@ export default function CustomerJourney() {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold text-dark-muted mb-4">
-            Näin etenet kohti uutta kotia
+            {t.customerJourney.title}
           </h2>
         </motion.div>
 

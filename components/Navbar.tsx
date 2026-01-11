@@ -6,17 +6,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from './Logo'
+import LanguageSwitcher from './LanguageSwitcher'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const { t } = useI18n()
 
   const navLinks = [
-    { href: '/', label: 'Etusivu' },
-    { href: '/kohteet', label: 'Kohteet' },
-    { href: '/rakentaminen', label: 'Rakentaminen' },
-    { href: '/yhteystiedot', label: 'Yhteystiedot' },
+    { href: '/', label: t.nav.home },
+    { href: '/kohteet', label: t.nav.projects },
+    { href: '/rakentaminen', label: t.nav.construction },
+    { href: '/yhteystiedot', label: t.nav.contact },
   ]
 
   useEffect(() => {
@@ -84,6 +87,9 @@ export default function Navbar() {
               </Link>
             ))}
             
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+            
             {/* CTA Button */}
             <Link href="/yhteystiedot#elma">
               <motion.div
@@ -94,7 +100,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.98 }}
                 className="ml-4 px-6 py-2.5 bg-deep-teal text-white font-semibold text-sm rounded-xl hover:bg-deep-teal/90 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
               >
-                Ota yhteyttä
+                {t.nav.contactButton}
               </motion.div>
             </Link>
           </div>
@@ -140,6 +146,11 @@ export default function Navbar() {
                 </Link>
               ))}
               
+              {/* Mobile Language Switcher */}
+              <div className="mt-4 px-4">
+                <LanguageSwitcher />
+              </div>
+              
               {/* Mobile CTA Button */}
               <Link href="/yhteystiedot#elma">
                 <motion.div
@@ -149,7 +160,7 @@ export default function Navbar() {
                   transition={{ delay: navLinks.length * 0.05 }}
                   className="block mt-4 py-3 px-6 bg-deep-teal text-white font-semibold text-base rounded-xl text-center cursor-pointer"
                 >
-                  Ota yhteyttä
+                  {t.nav.contactButton}
                 </motion.div>
               </Link>
             </div>

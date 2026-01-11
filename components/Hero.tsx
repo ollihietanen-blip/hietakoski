@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function Hero() {
+  const { t } = useI18n()
+  
   return (
     <section id="etusivu" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-dark-muted via-slate-blue to-dark-muted">
       {/* Background Image */}
@@ -36,7 +39,7 @@ export default function Hero() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              Valmis koti – ei rakennusprojektia
+              {t.hero.title}
             </h1>
             
             <motion.p
@@ -45,7 +48,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-white/90 text-lg md:text-xl lg:text-2xl font-light mb-12 leading-relaxed max-w-3xl"
             >
-              Rakennamme kodit valmiiksi ennen myyntiä. Näet lopputuloksen ennen ostopäätöstä – ilman rakennusvaiheen epävarmuutta.
+              {t.hero.subtitle}
             </motion.p>
           </motion.div>
 
@@ -64,7 +67,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="group relative px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl text-base sm:text-lg text-center cursor-pointer"
               >
-                Myytävät asunnot
+                {t.hero.ctaForSale}
               </motion.div>
             </Link>
             
@@ -77,7 +80,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="group relative px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl text-base sm:text-lg text-center cursor-pointer"
               >
-                Vuokrattavat asunnot
+                {t.hero.ctaForRent}
               </motion.div>
             </Link>
           </motion.div>

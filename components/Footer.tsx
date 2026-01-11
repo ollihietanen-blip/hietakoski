@@ -4,8 +4,10 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Logo from './Logo'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function Footer() {
+  const { t } = useI18n()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -24,7 +26,7 @@ export default function Footer() {
               <Logo variant="light" />
             </div>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              Rakennamme muuttovalmiit kodit kasvukeskuksiin. Kotimaiset puuelementit, hallittu toteutus ja selkeät vastuut.
+              {t.footer.description}
             </p>
             <p className="text-white/50 text-xs">
               Y-tunnus 3000614-7
@@ -39,13 +41,13 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h3 className="font-display font-bold text-base mb-6 text-white">
-              Sivusto
+              {t.footer.site}
             </h3>
             <ul className="space-y-3">
               {[
-                { href: '/kohteet', label: 'Kohteet' },
-                { href: '/rakentaminen', label: 'Rakentaminen' },
-                { href: '/yhteystiedot', label: 'Yhteystiedot' },
+                { href: '/kohteet', label: t.nav.projects },
+                { href: '/rakentaminen', label: t.nav.construction },
+                { href: '/yhteystiedot', label: t.nav.contact },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
@@ -69,7 +71,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="font-display font-bold text-base mb-6 text-white">
-              Myynti
+              {t.footer.sales}
             </h3>
             <ul className="space-y-4">
               <li>
@@ -104,7 +106,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h3 className="font-display font-bold text-base mb-6 text-white">
-              Postiosoite
+              {t.footer.address}
             </h3>
             <div className="flex items-start gap-3 text-white/70 text-sm">
               <MapPin size={14} className="text-deep-teal mt-0.5 flex-shrink-0" />
@@ -119,7 +121,7 @@ export default function Footer() {
                 whileHover={{ x: 4 }}
                 className="text-deep-teal hover:text-deep-teal/80 text-sm inline-flex items-center gap-1 cursor-pointer"
               >
-                Laskutustiedot
+                {t.footer.billingInfo}
                 <ArrowRight size={14} />
               </motion.span>
             </Link>
@@ -135,7 +137,7 @@ export default function Footer() {
           className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-white/50 text-xs">
-            © {currentYear} Hietakoski Oy. Kaikki oikeudet pidätetään.
+            © {currentYear} Hietakoski Oy. {t.footer.allRightsReserved}.
           </p>
         </motion.div>
       </div>

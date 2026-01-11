@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Project } from '@/lib/data'
+import { useI18n } from '@/lib/i18n-context'
 
 interface ProjectCardProps {
   project: Project
@@ -14,6 +15,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const { t } = useI18n()
   
   // Status-värikoodaus
   const getStatusColor = () => {
@@ -108,7 +110,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             whileTap={{ scale: 0.98 }}
             className="group/btn inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer"
           >
-            <span>Katso kohde</span>
+            <span>{t.projects.viewProject}</span>
             <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
           </motion.div>
         </Link>

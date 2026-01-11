@@ -10,6 +10,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ImageCarousel from '@/components/ImageCarousel'
 import { getProjectBySlug, projects } from '@/lib/data'
+import { useI18n } from '@/lib/i18n-context'
 
 interface ProjectPageProps {
   params: {
@@ -19,6 +20,7 @@ interface ProjectPageProps {
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const router = useRouter()
+  const { t } = useI18n()
   const slug = params.slug || ''
   const project = getProjectBySlug(slug)
 
@@ -118,11 +120,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           >
             <Link href="/" className="hover:text-deep-teal transition-colors flex items-center gap-1">
               <Home size={14} />
-              <span>Etusivu</span>
+              <span>{t.nav.home}</span>
             </Link>
             <span>/</span>
             <Link href="/kohteet" className="hover:text-deep-teal transition-colors">
-              Kohteet
+              {t.nav.projects}
             </Link>
             <span>/</span>
             <span className="text-dark-muted font-medium">{project.name}</span>
@@ -155,19 +157,19 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <div className="flex flex-col gap-4">
               <div className="flex flex-col sm:flex-row md:flex-col gap-3">
                 <Link href="/yhteystiedot#elma">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer shadow-md hover:shadow-lg whitespace-nowrap"
-                  >
-                    Ota yhteyttä
-                    <ArrowRight size={18} />
-                  </motion.div>
-                </Link>
-                <a href="#muut-kohteet" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-deep-teal text-deep-teal font-semibold hover:bg-deep-teal/5 transition-all duration-200 text-base whitespace-nowrap">
-                  Katso muut kohteet
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer shadow-md hover:shadow-lg whitespace-nowrap"
+                >
+                  {t.projects.contact}
                   <ArrowRight size={18} />
-                </a>
+                </motion.div>
+                </Link>
+              <a href="#muut-kohteet" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-deep-teal text-deep-teal font-semibold hover:bg-deep-teal/5 transition-all duration-200 text-base whitespace-nowrap">
+                {t.projects.seeOtherProjects}
+                <ArrowRight size={18} />
+              </a>
               </div>
               
               {/* Myyntihenkilö ja Kiinteistömaailma-linkki */}
@@ -224,7 +226,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               transition={{ duration: 0.7 }}
             >
               <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-6">
-                Kohteen ydin
+                {t.projects.projectEssence}
               </h2>
               <div className="text-body-text text-base md:text-lg leading-relaxed space-y-4">
                 {project.presentation ? (
@@ -268,7 +270,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <div className="bg-white p-5 rounded-lg border border-gray-200">
                 <div className="flex items-center gap-3 mb-2">
                   <Building2 size={20} className="text-deep-teal" />
-                  <h3 className="font-semibold text-dark-muted">Kohdetyyppi</h3>
+                  <h3 className="font-semibold text-dark-muted">{t.common.type}</h3>
                 </div>
                 <p className="text-body-text">{project.kohdetyyppi}</p>
               </div>
@@ -276,7 +278,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Users size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Asuntoja</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.apartments}</h3>
                   </div>
                   <p className="text-body-text">{project.asuntojenLkm}</p>
                 </div>
@@ -294,7 +296,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Home size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Käyttötarkoitus</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.usage}</h3>
                   </div>
                   <p className="text-body-text">{project.kaytto}</p>
                 </div>
@@ -303,7 +305,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <MapPin size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Tontin omistus</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.lot}</h3>
                   </div>
                   <p className="text-body-text">{project.tontinOmistus || 'Oma'}</p>
                 </div>
@@ -312,7 +314,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Flame size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Lämmitys</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.heating}</h3>
                   </div>
                   <p className="text-body-text">{project.lämmitys}</p>
                 </div>
@@ -321,7 +323,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Car size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Autopaikat</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.parking}</h3>
                   </div>
                   <p className="text-body-text">{project.autopaikat}</p>
                 </div>
@@ -330,7 +332,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Home size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Terassit</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.terraces}</h3>
                   </div>
                   <p className="text-body-text">{project.terassit}</p>
                 </div>
@@ -375,7 +377,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Calendar size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Status</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.common.status}</h3>
                   </div>
                   <p className="text-body-text">
                     {project.status === 'Vuokrattu' ? 'Valmistunut (vuokrattu / referenssikohde)' : 'Valmistunut'}
@@ -407,7 +409,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               transition={{ duration: 0.7 }}
             >
               <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-8">
-                Huoneistot
+                {t.projects.apartments}
               </h2>
               <div className="grid sm:grid-cols-2 gap-6">
                 {project.apartments.map((apt) => {
@@ -472,7 +474,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                             whileTap={{ scale: 0.98 }}
                             className="inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer hover:underline"
                           >
-                            {apt.status === 'Myynnissä' ? 'Ota yhteyttä asunnosta' : 'Kysy saatavuus'}
+                            {apt.status === 'Myynnissä' ? t.projects.contactAboutApartment : t.projects.askAvailability}
                             <ArrowRight size={16} />
                           </motion.div>
                         </Link>
@@ -483,7 +485,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                             whileTap={{ scale: 0.98 }}
                             className="inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer hover:underline"
                           >
-                            Ota yhteyttä asunnosta
+                            {t.projects.contactAboutApartment}
                             <ArrowRight size={16} />
                           </motion.div>
                         </Link>

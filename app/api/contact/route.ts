@@ -40,22 +40,24 @@ Tämä viesti lähetettiin Hietakoski Oy:n verkkosivuston yhteydenottolomakkeest
 
     // Konfiguroi sähköpostin lähetys
     // Käytä ympäristömuuttujia tuotannossa (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS)
-    // Kehitysympäristössä voi käyttää testi-tilaa tai Gmailin SMTP:ta
+    // Jos SMTP ei ole konfiguroitu, käytetään default-asetuksia
+    const smtpUser = process.env.SMTP_USER || 'hietakoski@gmail.com'
+    const smtpPass = process.env.SMTP_PASS || ''
     
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT || '587'),
       secure: false, // true for 465, false for other ports
-      auth: process.env.SMTP_USER && process.env.SMTP_PASS ? {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+      auth: smtpUser && smtpPass ? {
+        user: smtpUser,
+        pass: smtpPass,
       } : undefined,
     })
 
     // Lähetä sähköposti
     try {
       await transporter.sendMail({
-        from: process.env.SMTP_FROM || `"Hietakoski Verkkosivu" <${process.env.SMTP_USER || email}>`,
+        from: process.env.SMTP_FROM || `"Hietakoski Verkkosivu" <${smtpUser}>`,
         to: 'hietakoski@gmail.com',
         replyTo: email,
         subject: emailSubject,
@@ -82,22 +84,22 @@ Tämä viesti lähetettiin Hietakoski Oy:n verkkosivuston yhteydenottolomakkeest
         { status: 200 }
       )
     } catch (emailError) {
-      // Jos SMTP ei ole konfiguroitu, loggataan viesti ja palautetaan onnistunut vastaus
-      // (tämä mahdollistaa kehityksen ilman SMTP-konfiguraatiota)
-      console.log('Email sending failed (SMTP not configured), logging instead:', {
+      // Logitaan virhe yksityiskohtaisesti
+      console.error('Email sending failed:', emailError)
+      console.log('Email details:', {
         to: 'hietakoski@gmail.com',
         from: email,
         subject: emailSubject,
         body: emailBody
       })
       
-      // Palautetaan silti onnistunut vastaus, jotta lomake toimii myös ilman SMTP:ta
+      // Palautetaan virhe, jos SMTP-konfiguraatio puuttuu
+      // Tuotannossa SMTP pitää olla konfiguroitu oikein
       return NextResponse.json(
         { 
-          success: true,
-          message: 'Viesti vastaanotettu. Otamme sinuun yhteyttä mahdollisimman pian.'
+          error: 'Sähköpostin lähetys epäonnistui. Tarkista SMTP-konfiguraatio tai ota yhteyttä suoraan hietakoski@gmail.com'
         },
-        { status: 200 }
+        { status: 500 }
       )
     }
   } catch (error) {

@@ -5,8 +5,11 @@ import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import ProjectCard from './ProjectCard'
 import { projects } from '@/lib/data'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function ProjectsSection() {
+  const { t } = useI18n()
+  
   // Näytä Vantaan Siira ja Liittokallionkatu (tulossa)
   const featuredProjects = projects.filter(p => 
     p.id === 'vantaan-siira' || 
@@ -31,13 +34,13 @@ export default function ProjectsSection() {
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="h-px w-12 bg-deep-teal" />
-            <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">Kohteet</span>
+            <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">{t.nav.projects}</span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted mb-4 leading-[1.1] tracking-tight">
-            Ajankohtaiset kohteet
+            {t.projects.title}
           </h2>
           <p className="text-body-text text-base md:text-lg leading-relaxed max-w-3xl">
-            Hietakosken toteuttamat kohteet ovat myynnissä Etuovessa eri välityskumppaneiden kautta. Toteutus, laatu ja vastuut ovat aina Hietakosken.
+            {t.projects.description}
           </p>
         </motion.div>
 
@@ -60,7 +63,7 @@ export default function ProjectsSection() {
               whileHover={{ x: 5 }}
               className="inline-flex items-center gap-2 text-deep-teal font-semibold text-base hover:underline cursor-pointer"
             >
-              Katso kaikki kohteet
+              {t.projects.viewAll}
               <ArrowRight size={18} />
             </motion.div>
           </Link>

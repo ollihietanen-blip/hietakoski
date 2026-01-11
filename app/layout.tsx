@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import Script from 'next/script'
+import { I18nProvider } from '@/lib/i18n-context'
 import './globals.css'
 
 const inter = Inter({ 
@@ -41,7 +42,9 @@ export default function RootLayout({
             gtag('config', 'G-B0D76PNX4D');
           `}
         </Script>
-        {children}
+        <I18nProvider>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   )
