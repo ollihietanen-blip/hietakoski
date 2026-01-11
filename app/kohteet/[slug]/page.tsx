@@ -440,16 +440,54 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                           <p className="text-deep-teal font-semibold mt-3">{apt.price}</p>
                         )}
                       </div>
-                      <Link href="/yhteystiedot#elma">
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer hover:underline"
-                        >
-                          {apt.status === 'Myynnissä' ? 'Ota yhteyttä asunnosta' : 'Kysy saatavuus'}
-                          <ArrowRight size={16} />
-                        </motion.div>
-                      </Link>
+                      {project.myyntihenkilo && apt.status === 'Myynnissä' && (
+                        <div className="mb-3 pt-3 border-t border-gray-100">
+                          <p className="text-xs text-meta-text mb-1">Myynti</p>
+                          <p className="text-sm font-semibold text-dark-muted mb-1">{project.myyntihenkilo.nimi}</p>
+                          <div className="flex flex-col gap-1 text-xs text-body-text">
+                            <a href={`mailto:${project.myyntihenkilo.email}`} className="hover:text-deep-teal transition-colors">
+                              {project.myyntihenkilo.email}
+                            </a>
+                            <a href={`tel:${project.myyntihenkilo.puhelin}`} className="hover:text-deep-teal transition-colors">
+                              {project.myyntihenkilo.puhelin}
+                            </a>
+                          </div>
+                          {apt.etuoviUrl && (
+                            <a 
+                              href={apt.etuoviUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 mt-2 text-xs text-deep-teal font-semibold hover:underline"
+                            >
+                              Katso Kiinteistömaailmassa
+                              <ArrowRight size={12} />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                      {(project.myyntihenkilo && apt.status !== 'Myynnissä') || !project.myyntihenkilo ? (
+                        <Link href="/yhteystiedot#elma">
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer hover:underline"
+                          >
+                            {apt.status === 'Myynnissä' ? 'Ota yhteyttä asunnosta' : 'Kysy saatavuus'}
+                            <ArrowRight size={16} />
+                          </motion.div>
+                        </Link>
+                      ) : (
+                        <Link href={`mailto:${project.myyntihenkilo.email}`}>
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-2 text-deep-teal font-semibold text-sm cursor-pointer hover:underline"
+                          >
+                            Ota yhteyttä asunnosta
+                            <ArrowRight size={16} />
+                          </motion.div>
+                        </Link>
+                      )}
                     </div>
                   )
                 })}
