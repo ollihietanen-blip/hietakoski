@@ -329,6 +329,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       <span className="text-dark-muted font-medium text-sm">Oma</span>
                     </div>
                   )}
+                  {project.kaytto && (
+                    <div className="flex justify-between py-2 border-b border-gray-100">
+                      <span className="text-meta-text text-sm">Käyttötarkoitus</span>
+                      <span className="text-dark-muted font-medium text-sm">{project.kaytto}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between py-2">
                     <span className="text-meta-text text-sm">Status</span>
                     <span className="text-dark-muted font-medium text-sm">{project.status}</span>
@@ -351,19 +357,24 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       <span className="text-dark-muted font-medium text-sm">{project.rakennusvuosi}</span>
                     </div>
                   )}
-                  {project.valmistumisvuosi && (
+                  {project.valmistumisvuosi ? (
                     <div className="flex justify-between py-2 border-b border-gray-100">
                       <span className="text-meta-text text-sm">Valmistuminen</span>
                       <span className="text-dark-muted font-medium text-sm">{project.valmistumisvuosi}</span>
                     </div>
-                  )}
-                  {project.kaytto && (
+                  ) : project.slug === 'levi-suvannoisenkuja-10' ? (
+                    <div className="flex justify-between py-2 border-b border-gray-100">
+                      <span className="text-meta-text text-sm">Valmistuminen</span>
+                      <span className="text-dark-muted font-medium text-sm">Maaliskuu 2026</span>
+                    </div>
+                  ) : null}
+                  {project.slug === 'levi-suvannoisenkuja-10' && (
                     <div className="flex justify-between py-2">
-                      <span className="text-meta-text text-sm">Käyttötarkoitus</span>
-                      <span className="text-dark-muted font-medium text-sm">{project.kaytto}</span>
+                      <span className="text-meta-text text-sm">Varaus</span>
+                      <span className="text-deep-teal font-medium text-sm">Varattavissa heti</span>
                     </div>
                   )}
-                  {!project.rakennusvuosi && !project.valmistumisvuosi && !project.kaytto && (
+                  {!project.rakennusvuosi && !project.valmistumisvuosi && project.slug !== 'levi-suvannoisenkuja-10' && (
                     <p className="text-meta-text text-sm">Tiedot täydentyvät</p>
                   )}
                 </div>
@@ -382,6 +393,24 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <span className="text-meta-text text-sm">Paikkakunta</span>
                     <span className="text-dark-muted font-medium text-sm">{project.location}</span>
                   </div>
+                  {project.slug === 'levi-suvannoisenkuja-10' && (
+                    <div className="mt-4">
+                      <div className="relative w-full h-48 md:h-64 rounded-lg overflow-hidden border border-deep-teal/20 shadow-sm bg-sand-white/30">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034.5!2d24.801!3d67.804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSuvannoisenkuja%2010%2C%2099130%20Kittil%C3%A4!5e0!3m2!1sfi!2sfi!4v1234567890123!5m2!1sfi!2sfi&z=14"
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          className="w-full h-full rounded-lg"
+                          title="Suvannoisenkuja 10, Kittilä"
+                        />
+                      </div>
+                      <p className="text-meta-text text-xs mt-2 text-center">Suvannoisenkuja 10, Kittilä</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

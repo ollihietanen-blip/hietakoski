@@ -13,7 +13,7 @@ export default function TrustCards() {
     {
       icon: TreePine,
       title: 'Kotimaiset puuelementit',
-      text: 'Rakennamme kotimaisista puuelementeistä hallitulla ja valvotulla tuotantoketjulla. Elementit valmistetaan säältä suojassa ja laadunvarmistus kulkee mukana koko toteutuksen ajan.',
+      text: 'Rakennamme kotimaisista puuelementeistä hallitulla ja valvotulla tuotantoketjulla. Käytämme Hietakulma Oy:n puuelementtejä ja kattoristikoita. Elementit valmistetaan säältä suojassa ja laadunvarmistus kulkee mukana koko toteutuksen ajan.',
     },
     {
       icon: Users,

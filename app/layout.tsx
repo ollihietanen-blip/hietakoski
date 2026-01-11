@@ -15,8 +15,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Hietakoski Oy - Ekologisia koteja ja vapaa-ajan asuntoja',
-  description: 'Hietakoski Oy rakentaa ekologisia koteja ja vapaa-ajan asuntoja Suomen parhaille paikoille. Uusimaa – Pirkanmaa – Lappi.',
+  title: 'Hietakoski Oy – Muuttovalmiit kodit ja loma-asunnot',
+  description: 'Hietakoski Oy rakentaa muuttovalmiit kodit ja loma-asunnot Suomen parhaille paikoille. Uusimaa – Pirkanmaa – Lappi.',
 }
 
 export default function RootLayout({

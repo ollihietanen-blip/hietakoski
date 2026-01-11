@@ -23,7 +23,7 @@ export default function CustomerJourney() {
       icon: Calendar,
       title: 'Sovi esittely',
       description: 'Elma ja yhteistyökumppanina toimivat välittäjät auttavat sopimaan esittelyn kohteeseen.',
-      link: '/yhteystiedot#elma',
+      link: 'mailto:elma.alakoski@areagroup.fi?subject=Esittelypyyntö&body=Hei,%0D%0A%0D%0AHaluaisin ehdottaa esittelyä seuraavaan aikaan:%0D%0A%0D%0APäivämäärä ja kellonaika:%0D%0A%0D%0AKohteeseen liittyen:%0D%0A%0D%0ATerveisin,',
     },
     {
       number: 4,
