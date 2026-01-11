@@ -1,6 +1,6 @@
 export type ProjectStatus = 'Myynnissä' | 'Vuokrattavana' | 'Tulossa' | 'Suunnittelussa' | 'Valmis' | 'Myyty' | 'Vuokrattu';
 
-export type Kohdetyyppi = 'Paritalo' | 'Rivitalo' | 'Asuinkohde';
+export type Kohdetyyppi = 'Paritalo' | 'Paritalo - kiinteistö' | 'Rivitalo' | 'Asuinkohde';
 
 export type Kaytto = 'Asuminen' | 'Loma-asunto';
 
