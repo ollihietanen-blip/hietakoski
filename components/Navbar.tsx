@@ -13,6 +13,7 @@ export default function Navbar() {
   const pathname = usePathname()
 
   const navLinks = [
+    { href: '/', label: 'Etusivu' },
     { href: '/kohteet', label: 'Kohteet' },
     { href: '/rakentaminen', label: 'Rakentaminen' },
     { href: '/yhteystiedot', label: 'Yhteystiedot' },

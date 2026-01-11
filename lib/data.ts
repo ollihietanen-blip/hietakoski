@@ -30,6 +30,13 @@ export interface Project {
   kohdetyyppi: Kohdetyyppi;
   kaytto?: Kaytto;
   etuoviUrl?: string;
+  kiinteistomaailmaUrl?: string;
+  myyntihenkilo?: {
+    nimi: string;
+    email: string;
+    puhelin: string;
+    yritys?: string;
+  };
   kuvat?: string[];
   pohjat?: string[];
   asuntojenLkm?: number;
@@ -38,6 +45,15 @@ export interface Project {
   valmistumisvuosi?: number;
   apartments?: Apartment[];
   presentation?: string;
+  tontinOmistus?: string;
+  lämmitys?: string;
+  autopaikat?: string;
+  terassit?: string;
+  toteutusmuoto?: string;
+  rakennustapa?: string;
+  rakennustyyppi?: string;
+  asuntotyyppi?: string;
+  erityista?: string;
 }
 
 export const projects: Project[] = [
@@ -71,6 +87,7 @@ export const projects: Project[] = [
         name: 'Huoneisto B',
         status: 'Varattu',
         size: '118 m²',
+        rooms: '4h + k + pesutilat + sauna + wc/khh',
       },
     ],
     kuvat: [
@@ -127,6 +144,16 @@ export const projects: Project[] = [
     kaytto: 'Asuminen',
     asuntojenLkm: 6,
     rakennusvuosi: 2024,
+    tontinOmistus: 'Vuokratontti - lunastusmahdollisuudella',
+    lämmitys: 'PILP - viilennyksellä',
+    autopaikat: '2 autopaikkaa / asunto',
+    kiinteistomaailmaUrl: 'https://www.kiinteistomaailma.fi/vantaa_myytavat_rivitalot-paritalot/1372606',
+    myyntihenkilo: {
+      nimi: 'Ira Saxholm',
+      email: 'ira.saxholm@kiinteistomaailma.fi',
+      puhelin: '040 647 7267',
+      yritys: 'Kiinteistömaailma',
+    },
     kuvat: [
       '/as_oy_vantaan_siira/Siiratie5_001.jpg',
       '/as_oy_vantaan_siira/Siira1.jpg',
@@ -149,7 +176,7 @@ export const projects: Project[] = [
         rooms: '4h, kt, kh, s, lämmin varasto',
         size: '78,5 m²',
         price: '270 000 €',
-        etuoviUrl: 'https://www.etuovi.com/kohde/34567890',
+        etuoviUrl: 'https://www.kiinteistomaailma.fi/vantaa_myytavat_rivitalot-paritalot/1372606',
       },
       {
         id: 'A2',
@@ -183,7 +210,7 @@ export const projects: Project[] = [
   {
     id: 'liittokallionkatu-5',
     slug: 'liittokallionkatu-5-tampere',
-    name: 'Liittokallionkatu 5',
+    name: 'Asunto Oy Tampereen Liittokallionkatu 5',
     location: 'Tampere',
     status: 'Tulossa',
     statusColor: 'slate-blue',
@@ -194,6 +221,11 @@ export const projects: Project[] = [
     kohdetyyppi: 'Asuinkohde',
     kaytto: 'Asuminen',
     asuntojenLkm: 5,
+    lämmitys: 'Maalämpö',
+    autopaikat: '2 autopaikkaa / asunto',
+    terassit: 'Lasitetut terassit',
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Liittokallionkatu on ennakkomarkkinointiin tuleva, viidestä perheasunnosta koostuva asuinkohde rauhallisella ja arvostetulla Kaarilan pientaloalueella. Alueella arki on sujuvaa: lähikauppa, päiväkoti, koulu ja bussiyhteydet sijaitsevat kävelyetäisyydellä, ja palvelut ovat helposti saavutettavissa.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Asunnot on suunniteltu toimivaan perheasumiseen ja viimeistelty ajattomalla ilmeellä. Rapatut julkisivut ja panelointi luovat rauhallisen kokonaisuuden, lasitetut terassit laajentavat oleskelutiloja ja jokaiselle asunnolle kuuluu kaksi autopaikkaa. Luonto ja ulkoilumahdollisuudet alkavat lähes kotiovelta, mikä tekee alueesta erityisen pidetyn.</p>`,
     kuvat: [
       '/liittokallionkatu/liittokallionkatu_001.jpg',
       '/liittokallionkatu/liittokallionkatu_002.jpg',
@@ -204,16 +236,21 @@ export const projects: Project[] = [
   {
     id: 'sankimaankuja',
     slug: 'sankimaankuja-tuusula',
-    name: 'Sänkimaankuja',
+    name: 'PT Sänkimaankuja',
     location: 'Tuusula',
     status: 'Tulossa',
     statusColor: 'slate-blue',
-    description: 'Uusi paritalokohde Tuusulassa. Rakentamislupavaiheessa.',
+    description: 'Ennakkomarkkinointiin tuleva paritalokohde rauhallisella pientaloalueella Tuusulassa. Kohde koostuu kahdesta kiinteistömuotoisesta asunnosta ja tarjoaa huolettoman vaihtoehdon omakotitalomaiselle asumiselle.',
     specs: 'Paritalo',
     tag: 'Uusimaa',
     imageUrl: '/sankimaankuja/sankimaankuja_001.jpg',
-    kohdetyyppi: 'Paritalo',
+    kohdetyyppi: 'Paritalo - kiinteistö',
     kaytto: 'Asuminen',
+    lämmitys: 'PILP - viilennyksellä',
+    autopaikat: '2 autopaikkaa / asunto',
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Sänkimaankuja on ennakkomarkkinointiin tuleva, kahden asunnon paritalokohde Tuusulassa. Kiinteistömuotoinen toteutus ja hallinnanjakosopimus tarjoavat selkeän omistusrakenteen ja omakotitalomaisen asumisen edut. Suunnittelu on käynnissä.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Asuntojen lämmitys toteutetaan poistoilmalämpöpumpulla viilennyksellä, mikä mahdollistaa energiatehokkaan ja miellyttävän asumisen ympäri vuoden. Jokaiselle asunnolle kuuluu kaksi autopaikkaa. Kohde on suunniteltu toimivaan arkeen ja viimeistellään muuttovalmiiksi.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Kohteen arvioitu valmistuminen on kesällä 2026.</p>`,
     kuvat: [
       '/sankimaankuja/sankimaankuja_001.jpg',
       '/sankimaankuja/sankimaankuja_003.jpg',
@@ -223,16 +260,23 @@ export const projects: Project[] = [
   {
     id: 'ojala',
     slug: 'ojala-tampere',
-    name: 'Ojala',
+    name: 'Asunto Oy Tampereen Ojalanpuisto',
     location: 'Tampere',
     status: 'Suunnittelussa',
     statusColor: 'slate-blue',
-    description: 'Aluerakennushanke puurakenteisilla rivitaloilla. Hietakulma Oy:n elementtiratkaisut keskiössä.',
+    description: 'Laajempi aluerakennushanke Ojalassa, jossa toteutetaan puurakenteisia rivitaloja viihtyisään ja kehittyvään asuinympäristöön. Kohde on suunnitteluvaiheessa.',
     specs: 'Rivitalo / asuinkokonaisuus',
     tag: 'Kaupunkikoti',
     imageUrl: '/ojala/ojala_001.jpg',
     kohdetyyppi: 'Rivitalo',
     kaytto: 'Asuminen',
+    toteutusmuoto: 'Aluerakennushanke, vaiheittain toteutettava',
+    rakennustapa: 'Puurakenteinen',
+    asuntotyyppi: 'Perheasunnot',
+    lämmitys: 'Maalämpö',
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Ojala on suunnitteilla oleva aluerakennushanke Tampereella, jossa toteutetaan useista rakennuksista koostuva rivitalokokonaisuus. Kohde sijoittuu rauhalliselle alueelle, joka kehittyy vaiheittain moderniksi ja toimivaksi asuinympäristöksi.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Suunnitelmissa on puurakenteisia rivitaloasuntoja, joissa korostuvat selkeät pihapiirit, toimivat pohjaratkaisut ja arkeen sopiva asuminen. Alueen toteutus perustuu kokonaisuuden hallintaan: asunnot, pihat, pysäköinti ja yhteiset alueet muodostavat yhtenäisen ja viihtyisän kokonaisuuden.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Hanke etenee vaiheittain suunnittelusta toteutukseen, ja kohteesta tiedotetaan lisää hankkeen edetessä.</p>`,
     kuvat: [
       '/ojala/ojala_001.jpg',
       '/ojala/ojala_002.jpg',
@@ -249,13 +293,16 @@ export const projects: Project[] = [
     location: 'Tuusula',
     status: 'Myyty',
     statusColor: 'copper',
-    description: 'Esimerkki Hietakosken viimeistellystä toteutuksesta ja materiaaliosaamisesta. Referenssi näyttää, miten suunnittelu ja toteutus viimeistellään kokonaisuudeksi.',
+    description: 'Valmistunut paritalokohde Tuusulassa. Puustellin Helmi toimi Tuusulan asuntomessukohteena ja edustaa Hietakosken viimeisteltyä toteutusta ja materiaaliosaamista – kokonaisuutta, jossa suunnittelu ja toteutus kohtaavat poikkeuksellisen huolellisella tasolla.',
     specs: '1 paritalo / 2 asuntoa | Asuinparitalo',
     tag: 'Referenssi',
     imageUrl: '/puustellin_helmi/puustellin_helmi_001.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Asuminen',
     asuntojenLkm: 2,
+    erityista: 'Tuusulan asuntomessukohde',
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Asunto Oy Puustellin Helmi on Hietakosken toteuttama paritalokohde Tuusulassa ja Tuusulan asuntomessuilla esitelty referenssikohde. Kohde havainnollistaa, miten harkittu suunnittelu, laadukkaat materiaalivalinnat ja viimeistelty toteutus muodostavat yhtenäisen ja ajattoman kokonaisuuden.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Messukohteena Puustellin Helmi toimi esimerkkinä siitä, miten asumisen laatu, toimivat pohjaratkaisut ja yksityiskohtiin panostaminen näkyvät valmiissa lopputuloksessa. Kohde on suunniteltu arkeen ja pitkäaikaiseen asumiseen ilman kompromisseja.</p>`,
     kuvat: [
       '/puustellin_helmi/puustellin_helmi_001.jpg',
       '/puustellin_helmi/puustellin_helmi_002.jpg',
@@ -273,17 +320,19 @@ export const projects: Project[] = [
   {
     id: 'maitiaisentie-9',
     slug: 'maitiaisentie-9-tuusula',
-    name: 'Maitiaisentie 9',
+    name: 'Asunto Oy Tuusulan Maitiaisentie 9',
     location: 'Tuusula',
     status: 'Myyty',
     statusColor: 'copper',
-    description: 'Valmistunut paritalokokonaisuus Tuusulassa.',
+    description: 'Valmistunut paritalokokonaisuus Tuusulassa. Kohde toimii referenssinä Hietakosken toteuttamasta, huolellisesti viimeistellystä asuinrakentamisesta rauhallisella pientaloalueella.',
     specs: '2 paritaloa / 4 asuntoa | Paritalo',
     tag: 'Valmis',
     imageUrl: '/maitiaisentie/maitiaisentie_000.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Asuminen',
     asuntojenLkm: 4,
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Maitiaisentie 9 on Hietakosken toteuttama ja valmistunut paritalokokonaisuus Tuusulassa. Kohde koostuu neljästä asunnosta ja edustaa selkeää, toimivaa ja pitkäikäistä pientaloasumista.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Kohde on toteutettu hallitulla kokonaisuudella, jossa suunnittelu, rakentaminen ja viimeistely on viety loppuun huolellisesti. Lopputulos on rauhallinen ja ajaton – valmis asumiseen ilman kompromisseja.</p>`,
     kuvat: [
       '/maitiaisentie/maitiaisentie_000.jpg',
       '/maitiaisentie/maitiaisentie_001.jpg',
@@ -299,17 +348,19 @@ export const projects: Project[] = [
   {
     id: 'hietarinteentie-6',
     slug: 'hietarinteentie-6-tuusula',
-    name: 'Hietarinteentie 6',
+    name: 'PT Hietarinteentie 6',
     location: 'Tuusula',
     status: 'Myyty',
     statusColor: 'copper',
-    description: 'Valmistunut paritalo Tuusulassa.',
+    description: 'Kompakti ja huolella toteutettu paritalokohde Tuusulassa. Hietarinteentie 6 edustaa selkeää ja mutkatonta pientaloasumista, jossa painopiste on toimivissa tilaratkaisuissa ja valmiissa lopputuloksessa.',
     specs: '1 paritalo / 2 asuntoa | Paritalo',
     tag: 'Valmis',
     imageUrl: '/hietarinteentie/Ulkokuva.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Asuminen',
     asuntojenLkm: 2,
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Hietarinteentie 6 on valmistunut paritalokohde Tuusulassa, jossa arjen toimivuus ja tilojen valoisuus ovat keskiössä. Olohuoneesta avautuvat suuret liukulasiovet johtavat suoraan terassille ja tuovat oleskelutiloihin runsaasti luonnonvaloa sekä sujuvan yhteyden ulkotilaan.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Pohjaratkaisut on suunniteltu käytännölliseen asumiseen, ja tilojen selkeys tekee kodista helposti muunneltavan eri elämäntilanteisiin. Kokonaisuus on rauhallinen ja ajaton – valmis koti, jossa sisä- ja ulkotilat muodostavat yhtenäisen kokonaisuuden.</p>`,
     kuvat: [
       '/hietarinteentie/Ulkokuva.jpg',
       '/hietarinteentie/Olohuone_2.jpg',
@@ -326,17 +377,19 @@ export const projects: Project[] = [
   {
     id: 'kiekontie-5',
     slug: 'kiekontie-5-tuusula',
-    name: 'Kiekontie 5',
+    name: 'PT Kiekontie 5',
     location: 'Tuusula',
     status: 'Myyty',
     statusColor: 'copper',
-    description: 'Valmistunut paritalo Tuusulassa.',
+    description: 'Valmistunut paritalokokonaisuus rauhallisella pientaloalueella Tuusulassa. Kiekontie 5 muodostuu kahdesta paritalosta, joissa tyylikäs ja harkittu väriyhdistelmä antaa kohteelle ajattoman ja viimeistellyn ilmeen.',
     specs: '1 paritalo / 2 asuntoa | Paritalo',
     tag: 'Valmis',
     imageUrl: '/kiekontie/Kiekontie_001.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Asuminen',
     asuntojenLkm: 2,
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">Kiekontie 5 on valmistunut paritalokokonaisuus rauhallisella pientaloalueella Tuusulassa. Kohde koostuu kahdesta paritalosta, jotka muodostavat yhtenäisen ja harkitun kokonaisuuden niin arkkitehtuuriltaan kuin piharatkaisuiltaan.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Asuntojen oleskelutilat avautuvat terasseille suurten lasipintojen kautta, mikä tuo sisätiloihin valoa ja tekee piha-alueista luontevan osan asumista. Julkisivujen hillitty ja tyylikäs väriyhdistelmä viimeistelee kokonaisuuden ja antaa kohteelle ajattoman ilmeen.</p>`,
     kuvat: [
       '/kiekontie/Kiekontie_001.jpg',
       '/kiekontie/Olohuone_1.jpg',
@@ -349,17 +402,21 @@ export const projects: Project[] = [
   {
     id: 'laurintie',
     slug: 'laurintie-vantaa',
-    name: 'Laurintie',
+    name: 'As Oy Vantaan Laurintie 37',
     location: 'Vantaa',
     status: 'Vuokrattu',
     statusColor: 'slate-blue',
-    description: 'Valmistunut paritalokokonaisuus Vantaalla. Tällä hetkellä vuokrattu.',
+    description: 'Valmistunut paritalokokonaisuus Vantaalla modernilla otteella, toteutettu kaksikerroksisena ja korkealla olohuoneella. Kohde on tällä hetkellä vuokrattu ja toimii referenssinä toimivasta ja nykyaikaisesta pientaloasumisesta.',
     specs: '2 paritaloa / 4 asuntoa | Paritalo',
     tag: 'Vuokrattu',
     imageUrl: '/laurintie/laurintie_001.jpg',
     kohdetyyppi: 'Paritalo',
     kaytto: 'Asuminen',
     asuntojenLkm: 4,
+    rakennustyyppi: 'Kaksikerroksinen paritalo',
+    lämmitys: 'PILP - viilennyksellä',
+    presentation: `<p class="mb-6 text-base md:text-lg leading-relaxed">As Oy Vantaan Laurintie 37 on valmistunut paritalokokonaisuus Vantaalla, jossa moderni arkkitehtuuri ja asumismukavuus ovat keskiössä. Kohde on toteutettu kaksikerroksisena, ja korkea olohuone tuo oleskelutiloihin avaruutta sekä runsaasti luonnonvaloa.</p>
+<p class="mb-6 text-base md:text-lg leading-relaxed">Asumismukavuudesta vastaa poistoilmalämpöpumppu viilennyksellä, joka mahdollistaa miellyttävän sisäilmaston ympäri vuoden. Kokonaisuus edustaa nykyaikaista ja selkeää pientaloasumista, joka soveltuu hyvin sekä omaan käyttöön että vuokrauskäyttöön. Kohde on tällä hetkellä vuokrattu ja toimii referenssinä toimivasta kokonaisratkaisusta.</p>`,
     kuvat: [
       '/laurintie/laurintie_001.jpg',
       '/laurintie/laurintie_002.jpg',

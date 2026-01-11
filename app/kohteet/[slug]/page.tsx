@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Home, Droplets, Zap, Wifi, Car, MapPin, Building2, Calendar, Users } from 'lucide-react'
+import { ArrowRight, Home, Droplets, Zap, Wifi, Car, MapPin, Building2, Calendar, Users, Flame } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ImageCarousel from '@/components/ImageCarousel'
@@ -152,21 +152,53 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
             
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row md:flex-col gap-3">
-              <Link href="/yhteystiedot#elma">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer shadow-md hover:shadow-lg whitespace-nowrap"
-                >
-                  Ota yhteyttä
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col sm:flex-row md:flex-col gap-3">
+                <Link href="/yhteystiedot#elma">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer shadow-md hover:shadow-lg whitespace-nowrap"
+                  >
+                    Ota yhteyttä
+                    <ArrowRight size={18} />
+                  </motion.div>
+                </Link>
+                <a href="#muut-kohteet" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-deep-teal text-deep-teal font-semibold hover:bg-deep-teal/5 transition-all duration-200 text-base whitespace-nowrap">
+                  Katso muut kohteet
                   <ArrowRight size={18} />
-                </motion.div>
-              </Link>
-              <a href="#muut-kohteet" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-deep-teal text-deep-teal font-semibold hover:bg-deep-teal/5 transition-all duration-200 text-base whitespace-nowrap">
-                Katso muut kohteet
-                <ArrowRight size={18} />
-              </a>
+                </a>
+              </div>
+              
+              {/* Myyntihenkilö ja Kiinteistömaailma-linkki */}
+              {project.myyntihenkilo && (
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="text-sm text-meta-text mb-2">Myynti</p>
+                  <p className="font-semibold text-dark-muted mb-1">{project.myyntihenkilo.nimi}</p>
+                  {project.myyntihenkilo.yritys && (
+                    <p className="text-sm text-body-text mb-2">{project.myyntihenkilo.yritys}</p>
+                  )}
+                  <div className="flex flex-col gap-1 text-sm text-body-text">
+                    <a href={`mailto:${project.myyntihenkilo.email}`} className="hover:text-deep-teal transition-colors">
+                      {project.myyntihenkilo.email}
+                    </a>
+                    <a href={`tel:${project.myyntihenkilo.puhelin}`} className="hover:text-deep-teal transition-colors">
+                      {project.myyntihenkilo.puhelin}
+                    </a>
+                  </div>
+                  {project.kiinteistomaailmaUrl && (
+                    <a 
+                      href={project.kiinteistomaailmaUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-3 text-sm text-deep-teal font-semibold hover:underline"
+                    >
+                      Katso Kiinteistömaailmassa
+                      <ArrowRight size={14} />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </motion.div>
         </div>
@@ -267,22 +299,98 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <p className="text-body-text">{project.kaytto}</p>
                 </div>
               )}
-              {hasOwnLot && (
+              {(hasOwnLot || project.tontinOmistus) && (
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <MapPin size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Tontti</h3>
+                    <h3 className="font-semibold text-dark-muted">Tontin omistus</h3>
                   </div>
-                  <p className="text-body-text">Oma</p>
+                  <p className="text-body-text">{project.tontinOmistus || 'Oma'}</p>
                 </div>
               )}
-              <div className="bg-white p-5 rounded-lg border border-gray-200">
-                <div className="flex items-center gap-3 mb-2">
-                  <Calendar size={20} className="text-deep-teal" />
-                  <h3 className="font-semibold text-dark-muted">Status</h3>
+              {project.lämmitys && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Flame size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Lämmitys</h3>
+                  </div>
+                  <p className="text-body-text">{project.lämmitys}</p>
                 </div>
-                <p className="text-body-text">{project.status}</p>
-              </div>
+              )}
+              {project.autopaikat && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Car size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Autopaikat</h3>
+                  </div>
+                  <p className="text-body-text">{project.autopaikat}</p>
+                </div>
+              )}
+              {project.terassit && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Home size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Terassit</h3>
+                  </div>
+                  <p className="text-body-text">{project.terassit}</p>
+                </div>
+              )}
+              {project.toteutusmuoto && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Building2 size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Toteutusmuoto</h3>
+                  </div>
+                  <p className="text-body-text">{project.toteutusmuoto}</p>
+                </div>
+              )}
+              {project.rakennustapa && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Building2 size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Rakennustapa</h3>
+                  </div>
+                  <p className="text-body-text">{project.rakennustapa}</p>
+                </div>
+              )}
+              {project.asuntotyyppi && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Home size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Asuntotyyppi</h3>
+                  </div>
+                  <p className="text-body-text">{project.asuntotyyppi}</p>
+                </div>
+              )}
+              {project.rakennustyyppi && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Building2 size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Rakennustyyppi</h3>
+                  </div>
+                  <p className="text-body-text">{project.rakennustyyppi}</p>
+                </div>
+              )}
+              {(project.status === 'Myyty' || project.status === 'Vuokrattu') && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Calendar size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Status</h3>
+                  </div>
+                  <p className="text-body-text">
+                    {project.status === 'Vuokrattu' ? 'Valmistunut (vuokrattu / referenssikohde)' : 'Valmistunut'}
+                  </p>
+                </div>
+              )}
+              {project.erityista && (
+                <div className="bg-white p-5 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Building2 size={20} className="text-deep-teal" />
+                    <h3 className="font-semibold text-dark-muted">Erityistä</h3>
+                  </div>
+                  <p className="text-body-text">{project.erityista}</p>
+                </div>
+              )}
             </div>
           </motion.div>
         </div>
