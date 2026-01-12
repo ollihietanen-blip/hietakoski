@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Mail, Shield } from 'lucide-react'
 import Navbar from '@/components/Navbar'
