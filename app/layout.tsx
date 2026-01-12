@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
-import Script from 'next/script'
+import { Suspense } from 'react'
 import { I18nProvider } from '@/lib/i18n-context'
+import CookieConsentBanner from '@/components/CookieConsentBanner'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 import './globals.css'
 
 const inter = Inter({ 
@@ -29,22 +31,13 @@ export default function RootLayout({
   return (
     <html lang="fi" className={`${inter.variable} ${playfair.variable}`}>
       <body className={inter.className}>
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-B0D76PNX4D"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-B0D76PNX4D');
-          `}
-        </Script>
         <I18nProvider>
           {children}
         </I18nProvider>
+        <CookieConsentBanner />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
       </body>
     </html>
   )

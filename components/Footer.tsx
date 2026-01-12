@@ -139,6 +139,14 @@ export default function Footer() {
           <p className="text-white/50 text-xs">
             © {currentYear} Hietakoski Oy. {t.footer.allRightsReserved}.
           </p>
+          <button
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('open-cookie-settings'))
+            }}
+            className="text-white/50 hover:text-white/70 text-xs transition-colors underline"
+          >
+            Evästeasetukset
+          </button>
         </motion.div>
       </div>
     </footer>
