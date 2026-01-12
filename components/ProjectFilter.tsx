@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { ProjectStatus, Kohdetyyppi, Kaytto } from '@/lib/data'
+import { useI18n } from '@/lib/i18n-context'
 
 interface ProjectFilterProps {
   selectedStatus: ProjectStatus | 'Kaikki' | 'Valmis / Myyty / Vuokrattu'
@@ -35,6 +36,30 @@ export default function ProjectFilter({
   activeFilterCount,
   onClearFilters,
 }: ProjectFilterProps) {
+  const { t } = useI18n()
+  
+  // Helper function to translate status
+  const translateStatus = (status: ProjectStatus | 'Kaikki' | 'Valmis / Myyty / Vuokrattu'): string => {
+    if (status === 'Kaikki') return t.projects.all
+    if (status === 'Valmis / Myyty / Vuokrattu') return t.projects.completedSoldRented
+    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
+    return t.status[statusKey] || status
+  }
+  
+  // Helper function to translate project type
+  const translateProjectType = (type: Kohdetyyppi | 'Kaikki'): string => {
+    if (type === 'Kaikki') return t.projects.all
+    const typeKey = type.toLowerCase() as keyof typeof t.projectType
+    return t.projectType[typeKey] || type
+  }
+  
+  // Helper function to translate usage
+  const translateUsage = (usage: Kaytto | 'Kaikki'): string => {
+    if (usage === 'Kaikki') return t.projects.all
+    const usageKey = usage.toLowerCase().replace('-', '-') as keyof typeof t.usage
+    return t.usage[usageKey] || usage
+  }
+  
   const statusOptions: (ProjectStatus | 'Kaikki' | 'Valmis / Myyty / Vuokrattu')[] = [
     'Kaikki',
     'Myynnissä',
@@ -48,7 +73,7 @@ export default function ProjectFilter({
       {/* Pääsuodatus - Status */}
       <div className="mb-8">
         <h3 className="text-sm font-semibold text-meta-text mb-4 uppercase tracking-wide">
-          Tila
+          {t.projects.status}
         </h3>
         <div className="flex flex-wrap gap-3">
           {statusOptions.map((status) => (
@@ -63,7 +88,7 @@ export default function ProjectFilter({
                   : 'bg-white border-2 border-gray-200 text-dark-muted hover:border-deep-teal hover:text-deep-teal'
               }`}
             >
-              {status}
+              {translateStatus(status)}
             </motion.button>
           ))}
         </div>
@@ -74,17 +99,17 @@ export default function ProjectFilter({
         {/* Kohdetyyppi */}
         <div>
           <label className="block text-sm font-semibold text-meta-text mb-3 uppercase tracking-wide">
-            Kohdetyyppi
+            {t.projects.projectType}
           </label>
           <select
             value={selectedKohdetyyppi}
             onChange={(e) => onKohdetyyppiChange(e.target.value as Kohdetyyppi | 'Kaikki')}
             className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-dark-muted focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all"
           >
-            <option value="Kaikki">Kaikki</option>
+            <option value="Kaikki">{t.projects.all}</option>
             {availableKohdetyypit.map((type) => (
               <option key={type} value={type}>
-                {type}
+                {translateProjectType(type)}
               </option>
             ))}
           </select>
@@ -93,17 +118,17 @@ export default function ProjectFilter({
         {/* Käyttö */}
         <div>
           <label className="block text-sm font-semibold text-meta-text mb-3 uppercase tracking-wide">
-            Käyttö
+            {t.projects.usage}
           </label>
           <select
             value={selectedKaytto}
             onChange={(e) => onKayttoChange(e.target.value as Kaytto | 'Kaikki')}
             className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-dark-muted focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all"
           >
-            <option value="Kaikki">Kaikki</option>
+            <option value="Kaikki">{t.projects.all}</option>
             {availableKaytto.map((kaytto) => (
               <option key={kaytto} value={kaytto}>
-                {kaytto}
+                {translateUsage(kaytto)}
               </option>
             ))}
           </select>
@@ -112,14 +137,14 @@ export default function ProjectFilter({
         {/* Paikkakunta */}
         <div>
           <label className="block text-sm font-semibold text-meta-text mb-3 uppercase tracking-wide">
-            Paikkakunta
+            {t.projects.location}
           </label>
           <select
             value={selectedLocation}
             onChange={(e) => onLocationChange(e.target.value as string | 'Kaikki')}
             className="w-full px-4 py-2.5 bg-white border-2 border-gray-200 rounded-xl text-dark-muted focus:border-deep-teal focus:ring-2 focus:ring-deep-teal/20 outline-none transition-all"
           >
-            <option value="Kaikki">Kaikki</option>
+            <option value="Kaikki">{t.projects.all}</option>
             {availableLocations.map((location) => (
               <option key={location} value={location}>
                 {location}
@@ -138,7 +163,7 @@ export default function ProjectFilter({
           className="inline-flex items-center gap-2 px-4 py-2 text-sm text-meta-text hover:text-dark-muted transition-colors"
         >
           <X size={16} />
-          <span>Tyhjennä suodattimet ({activeFilterCount})</span>
+          <span>{t.projects.clearFilters} ({activeFilterCount})</span>
         </motion.button>
       )}
     </div>

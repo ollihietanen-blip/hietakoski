@@ -4,8 +4,28 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ArrowRight, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function ReferenceHighlight() {
+  const { t } = useI18n()
+  
+  // Helper function to translate status
+  const translateStatus = (status: string): string => {
+    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
+    return t.status[statusKey] || status
+  }
+  
+  // Helper function to translate project type
+  const translateProjectType = (type: string): string => {
+    const typeKey = type.toLowerCase() as keyof typeof t.projectType
+    return t.projectType[typeKey as keyof typeof t.projectType] || type
+  }
+  
+  // Helper function to translate usage
+  const translateUsage = (usage: string): string => {
+    const usageKey = usage.toLowerCase().replace('-', '-') as keyof typeof t.usage
+    return t.usage[usageKey as keyof typeof t.usage] || usage
+  }
   return (
     <section className="py-20 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +51,7 @@ export default function ReferenceHighlight() {
             {/* Badge */}
             <div className="absolute top-4 left-4">
               <span className="inline-block px-4 py-1.5 bg-deep-teal text-white text-xs font-semibold uppercase tracking-wide rounded-lg shadow-md">
-                Myynnissä
+                {translateStatus('Myynnissä')}
               </span>
             </div>
           </motion.div>
@@ -60,13 +80,13 @@ export default function ReferenceHighlight() {
 
             <div className="flex flex-wrap gap-3">
               <span className="px-4 py-2 bg-sand-white text-dark-muted text-sm font-medium rounded-lg">
-                118 m² / asunto
+                118 m² / {t.projects.apartment.toLowerCase()}
               </span>
               <span className="px-4 py-2 bg-sand-white text-dark-muted text-sm font-medium rounded-lg">
-                Paritalo
+                {translateProjectType('Paritalo')}
               </span>
               <span className="px-4 py-2 bg-sand-white text-dark-muted text-sm font-medium rounded-lg">
-                Loma-asunto
+                {translateUsage('Loma-asunto')}
               </span>
             </div>
 
@@ -76,7 +96,7 @@ export default function ReferenceHighlight() {
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 shadow-md hover:shadow-lg text-base rounded-xl cursor-pointer mt-2"
               >
-                Tutustu kohteeseen
+                {t.projects.viewProject}
                 <ArrowRight size={20} />
               </motion.div>
             </Link>

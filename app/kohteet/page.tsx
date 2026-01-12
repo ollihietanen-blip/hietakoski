@@ -8,8 +8,10 @@ import Footer from '@/components/Footer'
 import ProjectCard from '@/components/ProjectCard'
 import ProjectFilter from '@/components/ProjectFilter'
 import { projects, getUniqueLocations, getUniqueKohdetyypit, getUniqueKaytto, ProjectStatus, Kohdetyyppi, Kaytto } from '@/lib/data'
+import { useI18n } from '@/lib/i18n-context'
 
 function KohteetContent() {
+  const { t } = useI18n()
   const searchParams = useSearchParams()
   const statusParam = searchParams.get('status')
   
@@ -92,14 +94,13 @@ function KohteetContent() {
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="h-px w-12 bg-deep-teal" />
-              <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">Kohteet</span>
+              <span className="text-deep-teal text-sm font-medium tracking-wider uppercase">{t.nav.projects}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-dark-muted mb-4 leading-[1.1] tracking-tight">
-              Kaikki kohteet
+              {t.projects.allProjects}
             </h1>
             <p className="text-body-text text-base md:text-lg leading-relaxed max-w-3xl">
-              Hietakoski toteuttaa paritaloja ja pienempiä asuinkohteita kasvukeskuksiin. 
-              Alta löydät myynnissä, tulossa ja valmiit kohteet.
+              {t.projects.projectsDescription}
             </p>
           </motion.div>
         </div>
@@ -131,7 +132,7 @@ function KohteetContent() {
             animate={{ opacity: 1 }}
             className="text-meta-text text-sm mb-6"
           >
-            {filteredProjects.length} kohdetta
+            {filteredProjects.length} {t.projects.projectsCount}
           </motion.p>
 
           {/* Kohdelistaus */}
@@ -148,13 +149,13 @@ function KohteetContent() {
               className="text-center py-16 bg-white rounded-xl border border-gray-100"
             >
               <p className="text-body-text text-lg mb-4">
-                Ei kohteita valittujen suodattimien mukaan.
+                {t.projects.noProjects}
               </p>
               <button
                 onClick={handleClearFilters}
                 className="text-deep-teal hover:text-deep-teal/80 font-medium underline"
               >
-                Tyhjennä suodattimet
+                {t.projects.clearFilters}
               </button>
             </motion.div>
           )}
@@ -171,7 +172,7 @@ export default function KohteetPage() {
       <Suspense fallback={
         <section className="pt-24 md:pt-32 pb-8 md:pb-12 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-body-text">Ladataan...</p>
+            <p className="text-body-text">{t.projects.loading}</p>
           </div>
         </section>
       }>

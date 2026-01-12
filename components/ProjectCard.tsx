@@ -17,6 +17,18 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const { t } = useI18n()
   
+  // Helper function to translate status
+  const translateStatus = (status: string): string => {
+    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
+    return t.status[statusKey] || status
+  }
+  
+  // Helper function to translate project type
+  const translateProjectType = (type: string): string => {
+    const typeKey = type.toLowerCase() as keyof typeof t.projectType
+    return t.projectType[typeKey as keyof typeof t.projectType] || type
+  }
+  
   // Status-värikoodaus
   const getStatusColor = () => {
     switch (project.status) {
@@ -67,14 +79,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Status Badge */}
         <div className="absolute top-4 left-4 z-10">
           <span className={`inline-block px-3 py-1.5 ${statusColorClass} text-white text-xs font-semibold uppercase tracking-wide rounded-lg shadow-md`}>
-            {project.status}
+            {translateStatus(project.status)}
           </span>
         </div>
 
         {/* Tag */}
         <div className="absolute top-4 right-4 z-10">
           <span className="inline-block px-3 py-1.5 bg-white/95 backdrop-blur-sm text-dark-muted text-xs font-medium rounded-lg shadow-md">
-            {project.kohdetyyppi}
+            {translateProjectType(project.kohdetyyppi)}
           </span>
         </div>
       </div>

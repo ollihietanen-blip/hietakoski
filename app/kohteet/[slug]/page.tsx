@@ -36,7 +36,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       <main className="min-h-screen">
         <Navbar />
         <div className="pt-24 md:pt-32 pb-24 text-center">
-          <p className="text-body-text">Ladataan...</p>
+          <p className="text-body-text">{t.projects.loading}</p>
         </div>
         <Footer />
       </main>
@@ -65,12 +65,30 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     }
   }
 
+  // Helper function to translate status
+  const translateStatus = (status: string): string => {
+    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
+    return t.status[statusKey] || status
+  }
+  
+  // Helper function to translate project type
+  const translateProjectType = (type: string): string => {
+    const typeKey = type.toLowerCase() as keyof typeof t.projectType
+    return t.projectType[typeKey as keyof typeof t.projectType] || type
+  }
+  
+  // Helper function to translate usage
+  const translateUsage = (usage: string): string => {
+    const usageKey = usage.toLowerCase().replace('-', '-') as keyof typeof t.usage
+    return t.usage[usageKey as keyof typeof t.usage] || usage
+  }
+
   const getStatusLabel = () => {
     switch (project.status) {
       case 'Myynnissä':
-        return project.rakennusvuosi ? 'Valmis ja myynnissä' : 'Myynnissä'
+        return project.rakennusvuosi ? t.projects.readyAndForSale : translateStatus(project.status)
       default:
-        return project.status
+        return translateStatus(project.status)
     }
   }
 
@@ -175,7 +193,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               {/* Myyntihenkilö ja Kiinteistömaailma-linkki */}
               {project.myyntihenkilo && (
                 <div className="pt-4 border-t border-gray-200">
-                  <p className="text-sm text-meta-text mb-2">Myynti</p>
+                  <p className="text-sm text-meta-text mb-2">{t.projects.sales}</p>
                   <p className="font-semibold text-dark-muted mb-1">{project.myyntihenkilo.nimi}</p>
                   {project.myyntihenkilo.yritys && (
                     <p className="text-sm text-body-text mb-2">{project.myyntihenkilo.yritys}</p>
@@ -195,7 +213,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 mt-3 text-sm text-deep-teal font-semibold hover:underline"
                     >
-                      Katso Kiinteistömaailmassa
+                      {t.projects.viewInKiinteistomaailma}
                       <ArrowRight size={14} />
                     </a>
                   )}
@@ -272,7 +290,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <Building2 size={20} className="text-deep-teal" />
                   <h3 className="font-semibold text-dark-muted">{t.common.type}</h3>
                 </div>
-                <p className="text-body-text">{project.kohdetyyppi}</p>
+                <p className="text-body-text">{translateProjectType(project.kohdetyyppi)}</p>
               </div>
               {project.asuntojenLkm && (
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
@@ -287,7 +305,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Building2 size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Pinta-ala</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.projects.area}</h3>
                   </div>
                   <p className="text-body-text">{project.pintaAlat}</p>
                 </div>
@@ -298,7 +316,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <Home size={20} className="text-deep-teal" />
                     <h3 className="font-semibold text-dark-muted">{t.common.usage}</h3>
                   </div>
-                  <p className="text-body-text">{project.kaytto}</p>
+                  <p className="text-body-text">{project.kaytto ? translateUsage(project.kaytto) : ''}</p>
                 </div>
               )}
               {(hasOwnLot || project.tontinOmistus) && (
@@ -341,7 +359,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Building2 size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Toteutusmuoto</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.projects.implementation}</h3>
                   </div>
                   <p className="text-body-text">{project.toteutusmuoto}</p>
                 </div>
@@ -350,7 +368,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Building2 size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Rakennustapa</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.projects.buildingMethod}</h3>
                   </div>
                   <p className="text-body-text">{project.rakennustapa}</p>
                 </div>
@@ -359,7 +377,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Home size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Asuntotyyppi</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.projects.apartmentType}</h3>
                   </div>
                   <p className="text-body-text">{project.asuntotyyppi}</p>
                 </div>
@@ -368,7 +386,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Building2 size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Rakennustyyppi</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.projects.buildingType}</h3>
                   </div>
                   <p className="text-body-text">{project.rakennustyyppi}</p>
                 </div>
@@ -380,7 +398,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <h3 className="font-semibold text-dark-muted">{t.common.status}</h3>
                   </div>
                   <p className="text-body-text">
-                    {project.status === 'Vuokrattu' ? 'Valmistunut (vuokrattu / referenssikohde)' : 'Valmistunut'}
+                    {project.status === 'Vuokrattu' ? t.projects.completedRented : t.projects.completed}
                   </p>
                 </div>
               )}
@@ -388,7 +406,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <div className="bg-white p-5 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Building2 size={20} className="text-deep-teal" />
-                    <h3 className="font-semibold text-dark-muted">Erityistä</h3>
+                    <h3 className="font-semibold text-dark-muted">{t.projects.special}</h3>
                   </div>
                   <p className="text-body-text">{project.erityista}</p>
                 </div>
@@ -416,11 +434,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   const getStatusBadge = (status: string) => {
                     switch (status) {
                       case 'Myynnissä':
-                        return { label: 'Myynnissä', color: 'bg-deep-teal text-white' }
+                        return { label: translateStatus('Myynnissä'), color: 'bg-deep-teal text-white' }
                       case 'Varattu':
-                        return { label: 'Varattu', color: 'bg-slate-blue text-white' }
+                        return { label: translateStatus('Varattu'), color: 'bg-slate-blue text-white' }
                       default:
-                        return { label: status, color: 'bg-gray-100 text-body-text' }
+                        return { label: translateStatus(status), color: 'bg-gray-100 text-body-text' }
                     }
                   }
                   const statusBadge = getStatusBadge(apt.status)
@@ -429,7 +447,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <div key={apt.id} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="font-display text-xl font-bold text-dark-muted">
-                          Asunto {apt.id}
+                          {t.projects.apartment} {apt.id}
                         </h3>
                         <span className={`text-xs px-3 py-1 rounded-full ${statusBadge.color}`}>
                           {statusBadge.label}
@@ -444,7 +462,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       </div>
                       {project.myyntihenkilo && apt.status === 'Myynnissä' && (
                         <div className="mb-3 pt-3 border-t border-gray-100">
-                          <p className="text-xs text-meta-text mb-1">Myynti</p>
+                          <p className="text-xs text-meta-text mb-1">{t.projects.sales}</p>
                           <p className="text-sm font-semibold text-dark-muted mb-1">{project.myyntihenkilo.nimi}</p>
                           <div className="flex flex-col gap-1 text-xs text-body-text">
                             <a href={`mailto:${project.myyntihenkilo.email}`} className="hover:text-deep-teal transition-colors">
@@ -461,7 +479,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 mt-2 text-xs text-deep-teal font-semibold hover:underline"
                             >
-                              Katso Kiinteistömaailmassa
+                              {t.projects.viewInKiinteistomaailma}
                               <ArrowRight size={12} />
                             </a>
                           )}
@@ -509,14 +527,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             transition={{ duration: 0.7 }}
           >
             <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-6">
-              Näin Hietakoski rakentaa
+              {t.projects.howHietakoskiBuilds}
             </h2>
             <div className="text-body-text text-base md:text-lg leading-relaxed space-y-3">
               <p>
-                Hietakosken kohteet rakennetaan kotimaisista puuelementeistä Hietakulman menetelmällä. Rakenteet valmistetaan säältä suojassa hallituissa tehdasolosuhteissa, mikä takaa tasaisen laadun ja pitkäikäisyyden.
+                {t.projects.howHietakoskiBuildsText1}
               </p>
               <p>
-                Oma työmaaorganisaatio varmistaa, että jokainen kohde toteutetaan huolellisesti ja loppuun asti. Asiakas ostaa valmiin lopputuloksen – ei rakennusprojektia.
+                {t.projects.howHietakoskiBuildsText2}
               </p>
             </div>
           </motion.div>
@@ -534,7 +552,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               transition={{ duration: 0.7 }}
             >
               <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-8">
-                Tutustu myös näihin kohteisiin
+                {t.projects.seeAlsoProjects}
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {otherProjects.map((otherProject, index) => (
@@ -557,7 +575,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                         />
                         <div className="absolute top-3 left-3">
                           <span className={`inline-block px-2 py-1 text-xs font-semibold uppercase rounded ${getStatusColor(otherProject.status)} text-white`}>
-                            {otherProject.status}
+                            {translateStatus(otherProject.status)}
                           </span>
                         </div>
                       </div>
@@ -592,10 +610,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             transition={{ duration: 0.7 }}
           >
             <h2 className="font-display text-2xl md:text-3xl font-bold text-dark-muted mb-4">
-              Kiinnostuitko Hietakosken kohteista?
+              {t.projects.interestedInProjects}
             </h2>
             <p className="text-body-text text-base mb-8">
-              Ota yhteyttä ja kysy lisätietoja kohteesta tai muista Hietakosken toteuttamista kohteista.
+              {t.projects.interestedInProjectsText}
             </p>
             <Link href="/yhteystiedot#elma">
               <motion.div
@@ -603,7 +621,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 text-base cursor-pointer shadow-md hover:shadow-lg"
               >
-                Ota yhteyttä
+                {t.projects.contact}
                 <ArrowRight size={18} />
               </motion.div>
             </Link>
