@@ -336,6 +336,30 @@ export const translations = {
       completed: 'Completed',
       readyAndForSale: 'Ready and for sale',
     },
+    // Cookie Consent
+    cookieConsent: {
+      title: 'Cookie settings',
+      description: 'We use necessary cookies for the site\'s functionality and (optionally) analytics cookies to improve our service. You can change your choices at any time.',
+      acceptAll: 'Accept all',
+      reject: 'Reject',
+      settings: 'Settings',
+      save: 'Save',
+      cancel: 'Cancel',
+      necessaryTitle: 'Necessary cookies',
+      necessaryDescription: 'These cookies are necessary for the site\'s basic functionality and cannot be disabled.',
+      analyticsTitle: 'Analytics cookies',
+      analyticsDescription: 'These cookies collect anonymous information about site usage so we can improve our service.',
+      settingsDescription: 'Choose which cookies you want to allow. Necessary cookies are always enabled as they are essential for the site\'s functionality.',
+    },
+    // Contact Section
+    contactSection: {
+      title: 'Questions about projects or viewings?',
+      subtitle: 'Elma helps with all questions related to projects and sales.',
+      salesAndRental: 'Sales and rental',
+      callOrText: 'Call or text',
+      sendEmail: 'Send email',
+      contactButton: 'Get in touch',
+    },
     // Footer
     footer: {
       description: 'We build move-in ready homes in growth centers. Domestic wood elements, controlled implementation and clear responsibilities.',
@@ -344,6 +368,7 @@ export const translations = {
       address: 'Mailing address',
       billingInfo: 'Billing information',
       allRightsReserved: 'All rights reserved',
+      cookieSettings: 'Cookie settings',
     },
     // Customer Journey
     customerJourney: {
