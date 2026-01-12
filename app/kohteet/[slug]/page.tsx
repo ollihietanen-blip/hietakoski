@@ -20,9 +20,13 @@ interface ProjectPageProps {
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const router = useRouter()
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const slug = params.slug || ''
   const project = getProjectBySlug(slug)
+  
+  // Get translated project name and description
+  const projectName = locale === 'en' && project?.nameEn ? project.nameEn : project?.name || ''
+  const projectDescription = locale === 'en' && project?.descriptionEn ? project.descriptionEn : project?.description || ''
 
   useEffect(() => {
     if (slug && !project) {
@@ -117,6 +121,38 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     return usage
   }
 
+  // Helper function to translate project details
+  const translateProjectDetail = (detail: string | undefined): string => {
+    if (!detail) return ''
+    // Map common project detail values to i18n keys
+    const detailMap: Record<string, keyof typeof t.projectDetails> = {
+      'Vuokratontti - lunastusmahdollisuudella': 'leaseholdWithRedemption',
+      'Oma': 'own',
+      'PILP - viilennyksellä': 'pilpWithCooling',
+      '2 autopaikkaa / asunto': '2ParkingSpacesPerApartment',
+    }
+    const key = detailMap[detail]
+    if (key && t.projectDetails[key]) {
+      return t.projectDetails[key]
+    }
+    return detail
+  }
+
+  // Helper function to translate apartment rooms
+  const translateRooms = (rooms: string | undefined): string => {
+    if (!rooms) return ''
+    // Map common room descriptions to i18n keys
+    const roomsMap: Record<string, keyof typeof t.projectDetails> = {
+      '4h, kt, kh, s, lämmin varasto': 'rooms4hKtKhS',
+      '4h + k + pesutilat + sauna + wc/khh': 'rooms4hKPesutilat',
+    }
+    const key = roomsMap[rooms]
+    if (key && t.projectDetails[key]) {
+      return t.projectDetails[key]
+    }
+    return rooms
+  }
+
   const getStatusLabel = () => {
     switch (project.status) {
       case 'Myynnissä':
@@ -179,7 +215,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               {t.nav.projects}
             </Link>
             <span>/</span>
-            <span className="text-dark-muted font-medium">{project.name}</span>
+            <span className="text-dark-muted font-medium">{projectName}</span>
           </motion.div>
 
           {/* Hero Content */}
@@ -194,14 +230,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 {getStatusLabel()}
               </span>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted mb-3 leading-tight">
-                {project.name}
+                {projectName}
               </h1>
               <p className="text-meta-text text-lg mb-4 flex items-center gap-2">
                 <MapPin size={18} className="text-deep-teal" />
                 {project.location}
               </p>
               <p className="text-body-text text-base md:text-lg leading-relaxed max-w-2xl">
-                {getShortSubtitle()}
+                {locale === 'en' && project?.descriptionEn ? project.descriptionEn : getShortSubtitle()}
               </p>
             </div>
             
@@ -262,7 +298,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       {project.kuvat && project.kuvat.length > 0 && (
         <section className="py-8 md:py-12 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <ImageCarousel images={project.kuvat} alt={project.name} />
+            <ImageCarousel images={project.kuvat} alt={projectName} />
           </div>
         </section>
       )}
@@ -281,12 +317,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 {t.projects.projectEssence}
               </h2>
               <div className="text-body-text text-base md:text-lg leading-relaxed space-y-4">
-                {project.presentation ? (
+                {(locale === 'en' && project.presentationEn) || project.presentation ? (
                   // Jos on presentation, näytä se (lyhennettynä)
                   <div 
                     className="prose prose-lg max-w-none"
                     dangerouslySetInnerHTML={{ 
-                      __html: project.presentation
+                      __html: (locale === 'en' && project.presentationEn ? project.presentationEn : project.presentation || '')
                         .replace(/<p class="mb-6[^"]*">/g, '<p class="mb-4">')
                         .replace(/<p class="mb-4[^"]*">/g, '<p class="mb-4">')
                         .replace(/<ul class="mb-6[^"]*">/g, '<ul class="mb-4 ml-6 list-disc space-y-2">')
@@ -296,7 +332,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   // Muuten käytä description ja lisää lyhyt teksti
                   <>
                     <p>
-                      {project.description}
+                      {projectDescription}
                     </p>
                     <p>
                       {t.projects.howHietakoskiBuildsText1}
@@ -359,7 +395,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <MapPin size={20} className="text-deep-teal" />
                     <h3 className="font-semibold text-dark-muted">{t.common.lot}</h3>
                   </div>
-                  <p className="text-body-text">{project.tontinOmistus || 'Oma'}</p>
+                  <p className="text-body-text">{translateProjectDetail(project.tontinOmistus || 'Oma')}</p>
                 </div>
               )}
               {project.lämmitys && (
@@ -368,7 +404,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <Flame size={20} className="text-deep-teal" />
                     <h3 className="font-semibold text-dark-muted">{t.common.heating}</h3>
                   </div>
-                  <p className="text-body-text">{project.lämmitys}</p>
+                  <p className="text-body-text">{translateProjectDetail(project.lämmitys)}</p>
                 </div>
               )}
               {project.autopaikat && (
@@ -377,7 +413,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <Car size={20} className="text-deep-teal" />
                     <h3 className="font-semibold text-dark-muted">{t.common.parking}</h3>
                   </div>
-                  <p className="text-body-text">{project.autopaikat}</p>
+                  <p className="text-body-text">{translateProjectDetail(project.autopaikat)}</p>
                 </div>
               )}
               {project.terassit && (
@@ -488,7 +524,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                         </span>
                       </div>
                       <div className="space-y-2 mb-4 text-body-text">
-                        {apt.rooms && <p className="text-sm">• {apt.rooms}</p>}
+                        {apt.rooms && <p className="text-sm">• {translateRooms(apt.rooms)}</p>}
                         {apt.size && <p className="text-sm">• {apt.size}</p>}
                         {apt.price && (
                           <p className="text-deep-teal font-semibold mt-3">{apt.price}</p>
@@ -602,7 +638,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       <div className="relative w-full h-48 overflow-hidden bg-gray-100">
                         <Image
                           src={otherProject.imageUrl}
-                          alt={otherProject.name}
+                          alt={locale === 'en' && otherProject.nameEn ? otherProject.nameEn : otherProject.name}
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -615,14 +651,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       </div>
                       <div className="p-4">
                         <h3 className="font-display font-bold text-lg text-dark-muted mb-1">
-                          {otherProject.name}
+                          {locale === 'en' && otherProject.nameEn ? otherProject.nameEn : otherProject.name}
                         </h3>
                         <p className="text-meta-text text-sm flex items-center gap-1 mb-2">
                           <MapPin size={14} className="text-deep-teal" />
                           {otherProject.location}
                         </p>
                         <p className="text-body-text text-sm line-clamp-2">
-                          {otherProject.description}
+                          {locale === 'en' && otherProject.descriptionEn ? otherProject.descriptionEn : otherProject.description}
                         </p>
                       </div>
                     </motion.div>

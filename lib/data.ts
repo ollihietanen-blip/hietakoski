@@ -20,10 +20,12 @@ export interface Project {
   id: string;
   slug: string;
   name: string;
+  nameEn?: string;
   location: string;
   status: ProjectStatus;
   statusColor: 'copper' | 'slate-blue';
   description: string;
+  descriptionEn?: string;
   specs: string;
   tag: string;
   imageUrl: string;
@@ -45,6 +47,7 @@ export interface Project {
   valmistumisvuosi?: number;
   apartments?: Apartment[];
   presentation?: string;
+  presentationEn?: string;
   tontinOmistus?: string;
   lämmitys?: string;
   autopaikat?: string;
@@ -127,10 +130,12 @@ export const projects: Project[] = [
     id: 'vantaan-siira',
     slug: 'asunto-oy-vantaan-siira-siiratie-5',
     name: 'As Oy Vantaan Siira',
+    nameEn: 'As Oy Vantaan Siira',
     location: 'Vantaa',
     status: 'Myynnissä',
     statusColor: 'copper',
     description: 'Valmis kolmen paritalon kokonaisuus rauhallisella Nikinmäen pientaloalueella Vantaalla. Modernit, yksitasoiset perheasunnot on toteutettu kotimaisista puuelementeistä ja ne ovat muuttovalmiita ilman rakennusriskiä.',
+    descriptionEn: 'A completed three semi-detached house complex in the peaceful Nikinmäki single-family area in Vantaa. Modern, single-story family apartments built from domestic wood elements, move-in ready without construction risk.',
     specs: '3 paritaloa / 6 asuntoa | Paritalo',
     tag: 'Uusimaa',
     imageUrl: '/as_oy_vantaan_siira/Siiratie5_001.jpg',

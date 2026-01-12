@@ -15,7 +15,11 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
+  
+  // Get translated project name and description
+  const projectName = locale === 'en' && project.nameEn ? project.nameEn : project.name
+  const projectDescription = locale === 'en' && project.descriptionEn ? project.descriptionEn : project.description
   
   // Helper function to translate status
   const translateStatus = (status: string): string => {
@@ -121,7 +125,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Name and Location */}
         <div className="mb-3">
           <h3 className="font-display text-xl md:text-2xl font-bold text-dark-muted mb-1 group-hover:text-deep-teal transition-colors duration-300 leading-tight">
-            {project.name}
+            {projectName}
           </h3>
           <p className="text-meta-text text-sm flex items-center gap-1">
             <MapPin size={14} className="text-deep-teal" />
@@ -131,7 +135,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
         {/* Description */}
         <p className="text-body-text text-sm mb-4 line-clamp-2 leading-relaxed">
-          {project.description}
+          {projectDescription}
         </p>
 
         {/* Specs */}

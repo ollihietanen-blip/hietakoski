@@ -179,6 +179,15 @@ export const translations = {
       asuminen: 'Asuminen',
       'loma-asunto': 'Loma-asunto',
     },
+    // Project details translations
+    projectDetails: {
+      leaseholdWithRedemption: 'Vuokratontti - lunastusmahdollisuudella',
+      own: 'Oma',
+      pilpWithCooling: 'PILP - viilennyksellä',
+      '2ParkingSpacesPerApartment': '2 autopaikkaa / asunto',
+      rooms4hKtKhS: '4h, kt, kh, s, lämmin varasto',
+      rooms4hKPesutilat: '4h + k + pesutilat + sauna + wc/khh',
+    },
     // Reference Highlight
     referenceHighlight: {
       location: 'Kittilä / Levi',
@@ -275,6 +284,15 @@ export const translations = {
     usage: {
       asuminen: 'Residential',
       'loma-asunto': 'Holiday home',
+    },
+    // Project details translations
+    projectDetails: {
+      leaseholdWithRedemption: 'Leasehold - with redemption option',
+      own: 'Own',
+      pilpWithCooling: 'District heating - with cooling',
+      '2ParkingSpacesPerApartment': '2 parking spaces / apartment',
+      rooms4hKtKhS: '4 rooms, kitchen, bathroom, sauna, heated storage',
+      rooms4hKPesutilat: '4 rooms + kitchen + utility room + sauna + bathroom',
     },
     // Reference Highlight
     referenceHighlight: {
