@@ -166,6 +166,8 @@ function KohteetContent() {
 }
 
 export default function KohteetPage() {
+  const { t } = useI18n()
+  
   return (
     <main className="min-h-screen bg-sand-white">
       <Navbar />

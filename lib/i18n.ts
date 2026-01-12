@@ -294,54 +294,6 @@ export const translations = {
         description: 'You buy a ready home and move in without construction phase uncertainties.',
       },
     },
-    // Status translations
-    status: {
-      myynnissa: 'For sale',
-      vuokrattavana: 'For rent',
-      tulossa: 'Coming soon',
-      suunnittelussa: 'In planning',
-      valmis: 'Completed',
-      myyty: 'Sold',
-      vuokrattu: 'Rented',
-      varattu: 'Reserved',
-      vapaa: 'Free',
-    },
-    // Project type translations
-    projectType: {
-      paritalo: 'Semi-detached house',
-      'paritalo - kiinteistö': 'Semi-detached house - property',
-      rivitalo: 'Terraced house',
-      asuinkohde: 'Residential project',
-    },
-    // Usage translations
-    usage: {
-      asuminen: 'Residential',
-      'loma-asunto': 'Holiday home',
-    },
-    // Status translations
-    status: {
-      myynnissa: 'For sale',
-      vuokrattavana: 'For rent',
-      tulossa: 'Coming soon',
-      suunnittelussa: 'In planning',
-      valmis: 'Completed',
-      myyty: 'Sold',
-      vuokrattu: 'Rented',
-      varattu: 'Reserved',
-      vapaa: 'Free',
-    },
-    // Project type translations
-    projectType: {
-      paritalo: 'Semi-detached house',
-      'paritalo - kiinteistö': 'Semi-detached house - property',
-      rivitalo: 'Terraced house',
-      asuinkohde: 'Residential project',
-    },
-    // Usage translations
-    usage: {
-      asuminen: 'Residential',
-      'loma-asunto': 'Holiday home',
-    },
   },
 } as const
 
