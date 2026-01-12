@@ -149,6 +149,23 @@ export const translations = {
       asuminen: 'Asuminen',
       'loma-asunto': 'Loma-asunto',
     },
+    // Trust Cards
+    trustCards: {
+      title: 'Miksi valita Hietakoski?',
+      subtitle: 'Rakennamme kodit valmiiksi asti – turvallisesti ja läpinäkyvästi.',
+      card1: {
+        title: 'Ensin valmiiksi, sitten myyntiin',
+        text: 'Keräämme kiinnostuneita jo rakentamisen aikana, mutta emme myy keskeneräisiä koteja. Kohteet rakennetaan valmiiksi ja myydään vasta, kun lopputulos on nähtävissä ja valmis arvioitavaksi.',
+      },
+      card2: {
+        title: 'Kotimaiset puuelementit',
+        text: 'Rakennamme kotimaisista puuelementeistä hallitulla ja valvotulla tuotantoketjulla. Käytämme Hietakulma Oy:n puuelementtejä ja kattoristikoita. Elementit valmistetaan säältä suojassa ja laadunvarmistus kulkee mukana koko toteutuksen ajan.',
+      },
+      card3: {
+        title: 'Selkeät vastuut ja kokenut toteutus',
+        text: 'Myynnistä ja asiakasasioista vastaa Elma, työmaiden työnjohto toteutuksesta ja laadusta. Rakentamisesta vastaavat kokeneet ammattilaiset, joilla on vuosikymmenten kokemus vaativista pientalo- ja asuntokohteista.',
+      },
+    },
   },
   en: {
     // Navigation
@@ -217,6 +234,23 @@ export const translations = {
     usage: {
       asuminen: 'Residential',
       'loma-asunto': 'Holiday home',
+    },
+    // Trust Cards
+    trustCards: {
+      title: 'Why choose Hietakoski?',
+      subtitle: 'We build homes ready – safely and transparently.',
+      card1: {
+        title: 'First ready, then for sale',
+        text: 'We gather interested parties during construction, but we do not sell unfinished homes. Projects are built to completion and sold only when the final result is visible and ready for evaluation.',
+      },
+      card2: {
+        title: 'Domestic wood elements',
+        text: 'We build from domestic wood elements with a controlled and monitored production chain. We use Hietakulma Oy\'s wood elements and roof trusses. Elements are manufactured protected from weather, and quality assurance runs throughout the entire implementation.',
+      },
+      card3: {
+        title: 'Clear responsibilities and experienced implementation',
+        text: 'Sales and customer matters are handled by Elma, site management handles implementation and quality. Construction is handled by experienced professionals with decades of experience in demanding single-family and residential projects.',
+      },
     },
     // Projects
     projects: {

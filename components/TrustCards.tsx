@@ -2,23 +2,26 @@
 
 import { motion } from 'framer-motion'
 import { ShieldCheck, TreePine, Users } from 'lucide-react'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function TrustCards() {
+  const { t } = useI18n()
+  
   const cards = [
     {
       icon: ShieldCheck,
-      title: 'Ensin valmiiksi, sitten myyntiin',
-      text: 'Keräämme kiinnostuneita jo rakentamisen aikana, mutta emme myy keskeneräisiä koteja. Kohteet rakennetaan valmiiksi ja myydään vasta, kun lopputulos on nähtävissä ja valmis arvioitavaksi.',
+      title: t.trustCards.card1.title,
+      text: t.trustCards.card1.text,
     },
     {
       icon: TreePine,
-      title: 'Kotimaiset puuelementit',
-      text: 'Rakennamme kotimaisista puuelementeistä hallitulla ja valvotulla tuotantoketjulla. Käytämme Hietakulma Oy:n puuelementtejä ja kattoristikoita. Elementit valmistetaan säältä suojassa ja laadunvarmistus kulkee mukana koko toteutuksen ajan.',
+      title: t.trustCards.card2.title,
+      text: t.trustCards.card2.text,
     },
     {
       icon: Users,
-      title: 'Selkeät vastuut ja kokenut toteutus',
-      text: 'Myynnistä ja asiakasasioista vastaa Elma, työmaiden työnjohto toteutuksesta ja laadusta. Rakentamisesta vastaavat kokeneet ammattilaiset, joilla on vuosikymmenten kokemus vaativista pientalo- ja asuntokohteista.',
+      title: t.trustCards.card3.title,
+      text: t.trustCards.card3.text,
     },
   ]
 
@@ -34,10 +37,10 @@ export default function TrustCards() {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold text-dark-muted mb-4">
-            Miksi valita Hietakoski?
+            {t.trustCards.title}
           </h2>
           <p className="text-body-text text-base md:text-lg max-w-2xl mx-auto">
-            Rakennamme kodit valmiiksi asti – turvallisesti ja läpinäkyvästi.
+            {t.trustCards.subtitle}
           </p>
         </motion.div>
 
