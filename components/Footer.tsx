@@ -60,6 +60,16 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/tietosuoja">
+                  <motion.span
+                    whileHover={{ x: 4 }}
+                    className="text-white/70 hover:text-white transition-colors text-sm inline-flex items-center gap-1 cursor-pointer"
+                  >
+                    Tietosuojaseloste
+                  </motion.span>
+                </Link>
+              </li>
             </ul>
           </motion.div>
 
