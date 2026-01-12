@@ -6,22 +6,7 @@ import Link from 'next/link'
 import { useI18n } from '@/lib/i18n-context'
 
 export default function Hero() {
-  let t
-  try {
-    const i18n = useI18n()
-    t = i18n.t
-  } catch (error) {
-    // Fallback if i18n is not available
-    console.error('Error loading i18n:', error)
-    t = {
-      hero: {
-        title: 'Valmis koti – ei rakennusprojektia',
-        subtitle: 'Rakennamme kodit valmiiksi ennen myyntiä. Näet lopputuloksen ennen ostopäätöstä – ilman rakennusvaiheen epävarmuutta.',
-        ctaForSale: 'Myytävät asunnot',
-        ctaForRent: 'Vuokrattavat asunnot',
-      }
-    }
-  }
+  const { t } = useI18n()
   
   return (
     <section id="etusivu" className="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-dark-muted via-slate-blue to-dark-muted">
