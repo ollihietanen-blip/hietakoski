@@ -393,4 +393,6 @@ export const translations = {
   },
 } as const
 
+// TypeScript ensures both locales have the same structure
+
 export type TranslationKey = keyof typeof translations.fi
