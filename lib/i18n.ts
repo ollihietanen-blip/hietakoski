@@ -266,6 +266,12 @@ export const translations = {
       asuminen: 'Residential',
       'loma-asunto': 'Holiday home',
     },
+    // Reference Highlight
+    referenceHighlight: {
+      location: 'Kittilä / Levi',
+      projectName: 'Asunto Oy Levin Atrin Atmos',
+      description: 'Two 118 m² holiday homes in the best locations in Levi. A structure built from Hietakulma\'s large elements ensures that your holiday home is healthy, tight and energy efficient.',
+    },
     // Trust Cards
     trustCards: {
       title: 'Why choose Hietakoski?',
