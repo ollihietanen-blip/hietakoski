@@ -37,10 +37,20 @@ export function setConsent(consent: CookieConsent): void {
   }
 
   try {
-    localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent))
+    // Varmista että consent on serialisoitavissa
+    const serializableConsent = {
+      necessary: Boolean(consent.necessary),
+      analytics: Boolean(consent.analytics),
+      updatedAt: String(consent.updatedAt),
+    }
+    
+    localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(serializableConsent))
     
     // Lähetä custom event, jotta komponentit voivat reagoida muutoksiin
-    window.dispatchEvent(new CustomEvent('consent-updated', { detail: consent }))
+    // Varmista että detail on serialisoitavissa
+    window.dispatchEvent(new CustomEvent('consent-updated', { 
+      detail: serializableConsent 
+    }))
   } catch (error) {
     console.error('Error saving consent to localStorage:', error)
   }

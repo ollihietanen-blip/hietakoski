@@ -10,8 +10,13 @@ export default function CookieConsentBanner() {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false)
 
   useEffect(() => {
+    // Varmista että olemme client-puolella
+    if (typeof window === 'undefined') {
+      return
+    }
+
     // Automaattinen hyväksyntä kehitysympäristössä (vain localhost)
-    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    if (window.location.hostname === 'localhost') {
       const consent = getConsent()
       if (!consent) {
         // Hyväksy automaattisesti kehitysympäristössä
@@ -40,20 +45,24 @@ export default function CookieConsentBanner() {
     // Kuuntele consent-päivityksiä (esim. footer-linkin kautta)
     const handleConsentUpdate = (event: Event) => {
       const customEvent = event as CustomEvent<CookieConsent>
-      setAnalyticsEnabled(customEvent.detail.analytics)
+      if (customEvent.detail) {
+        setAnalyticsEnabled(customEvent.detail.analytics)
+        setShowBanner(true)
+        setShowSettings(true)
+      }
+    }
+
+    const handleOpenSettings = () => {
       setShowBanner(true)
       setShowSettings(true)
     }
 
     window.addEventListener('consent-updated', handleConsentUpdate)
-    window.addEventListener('open-cookie-settings', () => {
-      setShowBanner(true)
-      setShowSettings(true)
-    })
+    window.addEventListener('open-cookie-settings', handleOpenSettings)
 
     return () => {
       window.removeEventListener('consent-updated', handleConsentUpdate)
-      window.removeEventListener('open-cookie-settings', () => {})
+      window.removeEventListener('open-cookie-settings', handleOpenSettings)
     }
   }, [])
 
