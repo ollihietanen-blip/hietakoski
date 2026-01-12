@@ -155,7 +155,7 @@ export default function Footer() {
             }}
             className="text-white/50 hover:text-white/70 text-xs transition-colors underline"
           >
-            Evästeasetukset
+            {t.footer.cookieSettings}
           </button>
         </motion.div>
       </div>

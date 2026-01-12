@@ -104,6 +104,31 @@ export const translations = {
       address: 'Postiosoite',
       billingInfo: 'Laskutustiedot',
       allRightsReserved: 'Kaikki oikeudet pidätetään',
+      cookieSettings: 'Evästeasetukset',
+    },
+    // Cookie Consent
+    cookieConsent: {
+      title: 'Evästeasetukset',
+      description: 'Käytämme välttämättömiä evästeitä sivuston toimintaan sekä (valinnaisesti) analytiikkaevästeitä palvelun kehittämiseen. Voit muuttaa valintasi milloin tahansa.',
+      acceptAll: 'Hyväksy kaikki',
+      reject: 'Hylkää',
+      settings: 'Asetukset',
+      save: 'Tallenna',
+      cancel: 'Peruuta',
+      necessaryTitle: 'Välttämättömät evästeet',
+      necessaryDescription: 'Nämä evästeet ovat välttämättömiä sivuston perustoiminnalle eivätkä voida poistaa käytöstä.',
+      analyticsTitle: 'Analytiikkaevästeet',
+      analyticsDescription: 'Nämä evästeet keräävät anonyymiä tietoa sivuston käytöstä, jotta voimme parantaa palveluamme.',
+      settingsDescription: 'Valitse mitkä evästeet haluat sallia. Välttämättömät evästeet ovat aina käytössä, koska ne ovat välttämättömiä sivuston toiminnan kannalta.',
+    },
+    // Contact Section
+    contactSection: {
+      title: 'Kysyttävää kohteista tai esittelyistä?',
+      subtitle: 'Elma auttaa kaikissa kohteisiin ja myyntiin liittyvissä kysymyksissä.',
+      salesAndRental: 'Myynti ja vuokraus',
+      callOrText: 'Soita tai tekstaa',
+      sendEmail: 'Lähetä sähköpostia',
+      contactButton: 'Ota yhteyttä',
     },
     // Customer Journey
     customerJourney: {
@@ -148,6 +173,12 @@ export const translations = {
     usage: {
       asuminen: 'Asuminen',
       'loma-asunto': 'Loma-asunto',
+    },
+    // Reference Highlight
+    referenceHighlight: {
+      location: 'Kittilä / Levi',
+      projectName: 'Asunto Oy Levin Atrin Atmos',
+      description: 'Kaksi 118 m² loma-asuntoa Levin parhailla paikoilla. Hietakulman suurelementeistä rakennettu kokonaisuus takaa, että loma-kotisi on terveellinen, tiivis ja energiatehokas.',
     },
     // Trust Cards
     trustCards: {

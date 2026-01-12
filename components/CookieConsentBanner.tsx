@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import { X, Check } from 'lucide-react'
 import { getConsent, setConsent, hasConsentChoice, type CookieConsent } from '@/lib/consent'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function CookieConsentBanner() {
+  const { t } = useI18n()
   const [showBanner, setShowBanner] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false)
@@ -110,10 +112,10 @@ export default function CookieConsentBanner() {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex-1">
                 <h3 className="font-display font-bold text-base md:text-lg text-dark-muted mb-2">
-                  Evästeasetukset
+                  {t.cookieConsent.title}
                 </h3>
                 <p className="text-sm text-body-text leading-relaxed">
-                  Käytämme välttämättömiä evästeitä sivuston toimintaan sekä (valinnaisesti) analytiikkaevästeitä palvelun kehittämiseen. Voit muuttaa valintasi milloin tahansa.
+                  {t.cookieConsent.description}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
@@ -121,19 +123,19 @@ export default function CookieConsentBanner() {
                   onClick={handleReject}
                   className="px-4 py-2 text-sm font-medium text-body-text bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
                 >
-                  Hylkää
+                  {t.cookieConsent.reject}
                 </button>
                 <button
                   onClick={() => setShowSettings(true)}
                   className="px-4 py-2 text-sm font-medium text-body-text bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
                 >
-                  Asetukset
+                  {t.cookieConsent.settings}
                 </button>
                 <button
                   onClick={handleAcceptAll}
                   className="px-4 py-2 text-sm font-medium text-white bg-deep-teal rounded-md hover:bg-deep-teal/90 transition-colors"
                 >
-                  Hyväksy kaikki
+                  {t.cookieConsent.acceptAll}
                 </button>
               </div>
             </div>
@@ -152,12 +154,12 @@ export default function CookieConsentBanner() {
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-display font-bold text-xl text-dark-muted">
-                  Evästeasetukset
+                  {t.cookieConsent.title}
                 </h2>
                 <button
                   onClick={() => setShowSettings(false)}
                   className="p-1 text-body-text hover:text-dark-muted transition-colors"
-                  aria-label="Sulje"
+                  aria-label={t.cookieConsent.cancel}
                 >
                   <X size={20} />
                 </button>
@@ -165,7 +167,7 @@ export default function CookieConsentBanner() {
 
               {/* Description */}
               <p className="text-sm text-body-text mb-6 leading-relaxed">
-                Valitse mitkä evästeet haluat sallia. Välttämättömät evästeet ovat aina käytössä, koska ne ovat välttämättömiä sivuston toiminnan kannalta.
+                {t.cookieConsent.settingsDescription}
               </p>
 
               {/* Cookie Categories */}
@@ -175,10 +177,10 @@ export default function CookieConsentBanner() {
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <h3 className="font-semibold text-base text-dark-muted mb-1">
-                        Välttämättömät evästeet
+                        {t.cookieConsent.necessaryTitle}
                       </h3>
                       <p className="text-sm text-meta-text">
-                        Nämä evästeet ovat välttämättömiä sivuston perustoiminnalle eivätkä voida poistaa käytöstä.
+                        {t.cookieConsent.necessaryDescription}
                       </p>
                     </div>
                     <div className="ml-4">
@@ -194,10 +196,10 @@ export default function CookieConsentBanner() {
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <h3 className="font-semibold text-base text-dark-muted mb-1">
-                        Analytiikkaevästeet
+                        {t.cookieConsent.analyticsTitle}
                       </h3>
                       <p className="text-sm text-meta-text">
-                        Nämä evästeet keräävät anonyymiä tietoa sivuston käytöstä, jotta voimme parantaa palveluamme.
+                        {t.cookieConsent.analyticsDescription}
                       </p>
                     </div>
                     <div className="ml-4">
@@ -206,7 +208,7 @@ export default function CookieConsentBanner() {
                         className={`relative w-10 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-deep-teal focus:ring-offset-2 ${
                           analyticsEnabled ? 'bg-deep-teal' : 'bg-gray-300'
                         }`}
-                        aria-label="Ota analytiikka käyttöön"
+                        aria-label={t.cookieConsent.analyticsTitle}
                         role="switch"
                         aria-checked={analyticsEnabled}
                       >
@@ -230,13 +232,13 @@ export default function CookieConsentBanner() {
                   onClick={() => setShowSettings(false)}
                   className="px-4 py-2 text-sm font-medium text-body-text bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
                 >
-                  Peruuta
+                  {t.cookieConsent.cancel}
                 </button>
                 <button
                   onClick={handleSaveSettings}
                   className="px-4 py-2 text-sm font-medium text-white bg-deep-teal rounded-md hover:bg-deep-teal/90 transition-colors"
                 >
-                  Tallenna
+                  {t.cookieConsent.save}
                 </button>
               </div>
             </div>

@@ -4,8 +4,10 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, ArrowRight, MessageCircle, Linkedin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useI18n } from '@/lib/i18n-context'
 
 export default function ContactSection() {
+  const { t } = useI18n()
   return (
     <section id="elma" className="py-20 md:py-28 bg-gradient-to-b from-warm-rose/20 to-sand-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,10 +19,10 @@ export default function ContactSection() {
           className="mb-10 md:mb-12 text-center"
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted mb-4 leading-[1.1] tracking-tight">
-            Kysyttävää kohteista tai esittelyistä?
+            {t.contactSection.title}
           </h2>
           <p className="text-body-text text-base md:text-lg">
-            Elma auttaa kaikissa kohteisiin ja myyntiin liittyvissä kysymyksissä.
+            {t.contactSection.subtitle}
           </p>
         </motion.div>
 
@@ -47,7 +49,7 @@ export default function ContactSection() {
                 Elma Alakoski-Tomberg
               </h3>
               <p className="text-meta-text text-sm sm:text-base md:text-lg mb-3 md:mb-4">
-                Myynti ja vuokraus
+                {t.contactSection.salesAndRental}
               </p>
               {/* Social links */}
               <div className="flex items-center justify-center md:justify-start gap-3">
@@ -86,7 +88,7 @@ export default function ContactSection() {
                   <p className="text-dark-muted font-semibold text-base md:text-lg group-hover:text-deep-teal transition-colors break-words">
                     044 206 3617
                   </p>
-                  <p className="text-meta-text text-xs md:text-sm">Soita tai tekstaa</p>
+                  <p className="text-meta-text text-xs md:text-sm">{t.contactSection.callOrText}</p>
                 </div>
               </motion.a>
 
@@ -102,7 +104,7 @@ export default function ContactSection() {
                   <p className="text-dark-muted font-semibold text-sm md:text-lg group-hover:text-deep-teal transition-colors break-all">
                     elma.alakoski@areagroup.fi
                   </p>
-                  <p className="text-meta-text text-xs md:text-sm">Lähetä sähköpostia</p>
+                  <p className="text-meta-text text-xs md:text-sm">{t.contactSection.sendEmail}</p>
                 </div>
               </motion.a>
 
@@ -112,7 +114,7 @@ export default function ContactSection() {
                   whileTap={{ scale: 0.98 }}
                   className="w-full text-center px-6 md:px-8 py-3 md:py-4 bg-deep-teal text-white font-semibold hover:bg-deep-teal/90 transition-all duration-200 shadow-md hover:shadow-lg text-base md:text-lg rounded-xl flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  Ota yhteyttä
+                  {t.contactSection.contactButton}
                   <ArrowRight size={18} className="md:w-5 md:h-5" />
                 </motion.div>
               </Link>

@@ -11,20 +11,50 @@ export default function ReferenceHighlight() {
   
   // Helper function to translate status
   const translateStatus = (status: string): string => {
-    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
-    return t.status[statusKey] || status
+    const statusMap: Record<string, keyof typeof t.status> = {
+      'Myynnissä': 'myynnissa',
+      'Vuokrattavana': 'vuokrattavana',
+      'Tulossa': 'tulossa',
+      'Suunnittelussa': 'suunnittelussa',
+      'Valmis': 'valmis',
+      'Myyty': 'myyty',
+      'Vuokrattu': 'vuokrattu',
+      'Varattu': 'varattu',
+      'Vapaa': 'vapaa',
+    }
+    const key = statusMap[status]
+    if (key && t.status[key]) {
+      return t.status[key]
+    }
+    return status
   }
   
   // Helper function to translate project type
   const translateProjectType = (type: string): string => {
-    const typeKey = type.toLowerCase() as keyof typeof t.projectType
-    return t.projectType[typeKey as keyof typeof t.projectType] || type
+    const typeMap: Record<string, keyof typeof t.projectType> = {
+      'Paritalo': 'paritalo',
+      'Paritalo - kiinteistö': 'paritalo - kiinteistö',
+      'Rivitalo': 'rivitalo',
+      'Asuinkohde': 'asuinkohde',
+    }
+    const key = typeMap[type]
+    if (key && t.projectType[key]) {
+      return t.projectType[key]
+    }
+    return type
   }
   
   // Helper function to translate usage
   const translateUsage = (usage: string): string => {
-    const usageKey = usage.toLowerCase().replace('-', '-') as keyof typeof t.usage
-    return t.usage[usageKey as keyof typeof t.usage] || usage
+    const usageMap: Record<string, keyof typeof t.usage> = {
+      'Asuminen': 'asuminen',
+      'Loma-asunto': 'loma-asunto',
+    }
+    const key = usageMap[usage]
+    if (key && t.usage[key]) {
+      return t.usage[key]
+    }
+    return usage
   }
   return (
     <section className="py-20 md:py-28 bg-white overflow-hidden">
@@ -67,15 +97,15 @@ export default function ReferenceHighlight() {
             <div>
               <p className="text-deep-teal text-sm font-semibold uppercase tracking-wider mb-3 flex items-center gap-2">
                 <MapPin size={16} />
-                Kittilä / Levi
+                {t.referenceHighlight.location}
               </p>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-dark-muted leading-[1.1] tracking-tight">
-                Asunto Oy Levin Atrin Atmos
+                {t.referenceHighlight.projectName}
               </h2>
             </div>
             
             <p className="text-body-text text-base md:text-lg leading-relaxed">
-              Kaksi 118 m² loma-asuntoa Levin parhailla paikoilla. Hietakulman suurelementeistä rakennettu kokonaisuus takaa, että loma-kotisi on terveellinen, tiivis ja energiatehokas.
+              {t.referenceHighlight.description}
             </p>
 
             <div className="flex flex-wrap gap-3">
