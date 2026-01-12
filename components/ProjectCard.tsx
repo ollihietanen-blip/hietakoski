@@ -19,14 +19,39 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   
   // Helper function to translate status
   const translateStatus = (status: string): string => {
-    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
-    return t.status[statusKey] || status
+    // Map Finnish status values to i18n keys
+    const statusMap: Record<string, keyof typeof t.status> = {
+      'Myynnissä': 'myynnissa',
+      'Vuokrattavana': 'vuokrattavana',
+      'Tulossa': 'tulossa',
+      'Suunnittelussa': 'suunnittelussa',
+      'Valmis': 'valmis',
+      'Myyty': 'myyty',
+      'Vuokrattu': 'vuokrattu',
+      'Varattu': 'varattu',
+      'Vapaa': 'vapaa',
+    }
+    const key = statusMap[status]
+    if (key && t.status[key]) {
+      return t.status[key]
+    }
+    return status
   }
   
   // Helper function to translate project type
   const translateProjectType = (type: string): string => {
-    const typeKey = type.toLowerCase() as keyof typeof t.projectType
-    return t.projectType[typeKey as keyof typeof t.projectType] || type
+    // Map Finnish project type values to i18n keys
+    const typeMap: Record<string, keyof typeof t.projectType> = {
+      'Paritalo': 'paritalo',
+      'Paritalo - kiinteistö': 'paritalo - kiinteistö',
+      'Rivitalo': 'rivitalo',
+      'Asuinkohde': 'asuinkohde',
+    }
+    const key = typeMap[type]
+    if (key && t.projectType[key]) {
+      return t.projectType[key]
+    }
+    return type
   }
   
   // Status-värikoodaus
