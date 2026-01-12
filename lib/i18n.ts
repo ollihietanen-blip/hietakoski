@@ -48,6 +48,11 @@ export const translations = {
       inPlanning: 'Suunnittelussa',
       rented: 'Vuokrattu',
       sold: 'Myyty',
+      previousImage: 'Edellinen kuva',
+      nextImage: 'Seuraava kuva',
+      close: 'Sulje',
+      image: 'Kuva',
+      thumbnail: 'Pikkukuva',
     },
     // Projects
     projects: {
@@ -241,6 +246,11 @@ export const translations = {
       inPlanning: 'In planning',
       rented: 'Rented',
       sold: 'Sold',
+      previousImage: 'Previous image',
+      nextImage: 'Next image',
+      close: 'Close',
+      image: 'Image',
+      thumbnail: 'Thumbnail',
     },
     // Status translations
     status: {

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { useI18n } from '@/lib/i18n-context'
 
 interface ImageCarouselProps {
   images: string[]
@@ -11,6 +12,7 @@ interface ImageCarouselProps {
 }
 
 export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
+  const { t } = useI18n()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
@@ -49,7 +51,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
             >
               <Image
                 src={images[currentIndex]}
-                alt={`${alt} - Kuva ${currentIndex + 1}`}
+                alt={`${alt} - ${t.common.image} ${currentIndex + 1}`}
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -64,14 +66,14 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
               <button
                 onClick={goToPrevious}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
-                aria-label="Edellinen kuva"
+                aria-label={t.common.previousImage}
               >
                 <ChevronLeft size={24} className="text-dark-muted" />
               </button>
               <button
                 onClick={goToNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
-                aria-label="Seuraava kuva"
+                aria-label={t.common.nextImage}
               >
                 <ChevronRight size={24} className="text-dark-muted" />
               </button>
@@ -101,7 +103,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
               >
                 <Image
                   src={image}
-                  alt={`${alt} - Pikkukuva ${index + 1}`}
+                  alt={`${alt} - ${t.common.thumbnail} ${index + 1}`}
                   fill
                   className="object-cover"
                   sizes="96px"
@@ -125,7 +127,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
             <button
               onClick={closeFullscreen}
               className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all"
-              aria-label="Sulje"
+              aria-label={t.common.close}
             >
               <X size={24} />
             </button>
@@ -143,7 +145,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
                 >
                   <Image
                     src={images[currentIndex]}
-                    alt={`${alt} - Kuva ${currentIndex + 1}`}
+                    alt={`${alt} - ${t.common.image} ${currentIndex + 1}`}
                     fill
                     className="object-contain"
                     sizes="100vw"
@@ -159,7 +161,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
                       goToPrevious()
                     }}
                     className="absolute left-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all"
-                    aria-label="Edellinen kuva"
+                    aria-label={t.common.previousImage}
                   >
                     <ChevronLeft size={24} />
                   </button>
@@ -169,7 +171,7 @@ export default function ImageCarousel({ images, alt }: ImageCarouselProps) {
                       goToNext()
                     }}
                     className="absolute right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all"
-                    aria-label="Seuraava kuva"
+                    aria-label={t.common.nextImage}
                   >
                     <ChevronRight size={24} />
                   </button>

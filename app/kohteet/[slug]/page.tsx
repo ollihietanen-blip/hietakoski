@@ -67,20 +67,54 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   // Helper function to translate status
   const translateStatus = (status: string): string => {
-    const statusKey = status.toLowerCase().replace('ä', 'a').replace('ö', 'o') as keyof typeof t.status
-    return t.status[statusKey] || status
+    // Map Finnish status values to i18n keys (normalize to lowercase)
+    const normalizedStatus = status.toLowerCase().replace('ä', 'a').replace('ö', 'o')
+    const statusMap: Record<string, keyof typeof t.status> = {
+      'myynnissä': 'myynnissa',
+      'vuokrattavana': 'vuokrattavana',
+      'tulossa': 'tulossa',
+      'suunnittelussa': 'suunnittelussa',
+      'valmis': 'valmis',
+      'myyty': 'myyty',
+      'vuokrattu': 'vuokrattu',
+      'varattu': 'varattu',
+      'vapaa': 'vapaa',
+    }
+    const key = statusMap[normalizedStatus]
+    if (key && t.status[key]) {
+      return t.status[key]
+    }
+    return status
   }
   
   // Helper function to translate project type
   const translateProjectType = (type: string): string => {
-    const typeKey = type.toLowerCase() as keyof typeof t.projectType
-    return t.projectType[typeKey as keyof typeof t.projectType] || type
+    // Map Finnish project type values to i18n keys (exact match)
+    const typeMap: Record<string, keyof typeof t.projectType> = {
+      'Paritalo': 'paritalo',
+      'Paritalo - kiinteistö': 'paritalo - kiinteistö',
+      'Rivitalo': 'rivitalo',
+      'Asuinkohde': 'asuinkohde',
+    }
+    const key = typeMap[type]
+    if (key && t.projectType[key]) {
+      return t.projectType[key]
+    }
+    return type
   }
   
   // Helper function to translate usage
   const translateUsage = (usage: string): string => {
-    const usageKey = usage.toLowerCase().replace('-', '-') as keyof typeof t.usage
-    return t.usage[usageKey as keyof typeof t.usage] || usage
+    // Map Finnish usage values to i18n keys (exact match)
+    const usageMap: Record<string, keyof typeof t.usage> = {
+      'Asuminen': 'asuminen',
+      'Loma-asunto': 'loma-asunto',
+    }
+    const key = usageMap[usage]
+    if (key && t.usage[key]) {
+      return t.usage[key]
+    }
+    return usage
   }
 
   const getStatusLabel = () => {
@@ -265,7 +299,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                       {project.description}
                     </p>
                     <p>
-                      Kohde on toteutettu kotimaisista puuelementeistä Hietakulman menetelmällä. Rakenteet valmistetaan hallituissa tehdasolosuhteissa, mikä takaa tasaisen laadun, hyvän ääneneristyksen ja pitkäikäiset rakenteet.
+                      {t.projects.howHietakoskiBuildsText1}
                     </p>
                   </>
                 )}

@@ -19,19 +19,20 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   
   // Helper function to translate status
   const translateStatus = (status: string): string => {
-    // Map Finnish status values to i18n keys
+    // Map Finnish status values to i18n keys (normalize to lowercase)
+    const normalizedStatus = status.toLowerCase().replace('ä', 'a').replace('ö', 'o')
     const statusMap: Record<string, keyof typeof t.status> = {
-      'Myynnissä': 'myynnissa',
-      'Vuokrattavana': 'vuokrattavana',
-      'Tulossa': 'tulossa',
-      'Suunnittelussa': 'suunnittelussa',
-      'Valmis': 'valmis',
-      'Myyty': 'myyty',
-      'Vuokrattu': 'vuokrattu',
-      'Varattu': 'varattu',
-      'Vapaa': 'vapaa',
+      'myynnissä': 'myynnissa',
+      'vuokrattavana': 'vuokrattavana',
+      'tulossa': 'tulossa',
+      'suunnittelussa': 'suunnittelussa',
+      'valmis': 'valmis',
+      'myyty': 'myyty',
+      'vuokrattu': 'vuokrattu',
+      'varattu': 'varattu',
+      'vapaa': 'vapaa',
     }
-    const key = statusMap[status]
+    const key = statusMap[normalizedStatus]
     if (key && t.status[key]) {
       return t.status[key]
     }
@@ -40,7 +41,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   
   // Helper function to translate project type
   const translateProjectType = (type: string): string => {
-    // Map Finnish project type values to i18n keys
+    // Map Finnish project type values to i18n keys (exact match)
     const typeMap: Record<string, keyof typeof t.projectType> = {
       'Paritalo': 'paritalo',
       'Paritalo - kiinteistö': 'paritalo - kiinteistö',
