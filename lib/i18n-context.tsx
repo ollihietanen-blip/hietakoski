@@ -63,8 +63,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
 export function useI18n() {
   const context = useContext(I18nContext)
+  // During SSR/SSG, provide default translations if context is not available
   if (context === undefined) {
-    throw new Error('useI18n must be used within an I18nProvider')
+    return {
+      locale: defaultLocale,
+      setLocale: () => {}, // No-op during SSR
+      t: translations[defaultLocale],
+    }
   }
   return context
 }
